@@ -5,7 +5,7 @@
     { "name": "Eat a fruit", "probability": 160, "image": "fruit.jpg" },
     { "name": "Wipe the floor in bedroom, toilet, and kitchen", "probability": 120, "image": "cleaning.jpg" },
     { "name": "Brush Madrid", "probability": 30, "image": "brushing.jpg" },
-    { "name": "Scroll Instagram for 5 min", "probability": 80, "image": "scroll_instagram.jpg" },
+    { "name": "Scroll Instagram for 5 min", "probability": 80, "image": "phone.jpg" },
     { "name": "Make a salad", "probability": 50, "image": "salad.jpg" },
     { "name": "Guitar practice 30 min", "probability": 50, "image": "guitar.jpg" }
 ]
