@@ -3,7 +3,7 @@
     { "name": "Two minutes of superman", "probability": 120, "image": "superman.jpg" },
     { "name": "50 pushups", "probability": 120, "image": "pushups.jpg" },
     { "name": "Eat a fruit", "probability": 160, "image": "fruit.jpg" },
-    { "name": "Brush Madrid", "probability": 30, "image": "brushing.jpg" },
+    { "name": "Brush Madrid", "probability": 30, "image": "brushing.png" },
     { "name": "Scroll Instagram for 5 min", "probability": 80, "image": "phone.jpg" },
     { "name": "Drink 300ml water", "probability": 150, "image": "glasswater.jpg" },
     { "name": "Check the Instagram", "probability": 150, "image": "phone.jpg" },
