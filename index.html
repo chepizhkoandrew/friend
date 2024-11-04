@@ -25,6 +25,7 @@
             .then(response => response.json())
             .then(data => {
                 tasks = data;
+                console.log("Tasks loaded successfully:", tasks);
             })
             .catch(error => console.error('Error loading tasks:', error));
 
@@ -46,9 +47,16 @@
             document.getElementById('task').innerText = randomTask.name;
             const taskImage = document.getElementById('taskImage');
 
-            // Set the image source and make it visible
+            // Set the image source
             taskImage.src = 'images/' + randomTask.image;
             taskImage.style.display = 'block';
+
+            // Add error handling for image loading
+            taskImage.onerror = function() {
+                console.error(`Failed to load image: ${taskImage.src}`);
+                taskImage.style.display = 'none'; // Hide image if it can't be loaded
+                document.getElementById('task').innerText = `Failed to load image for "${randomTask.name}". Check that "images/${randomTask.image}" exists.`;
+            };
         }
 
         document.getElementById('getBusyButton').addEventListener('click', getRandomTask);
