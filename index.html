@@ -16,26 +16,30 @@
     <p id="task">Press "Get Busy" to start!</p>
 
     <script>
-        const tasks = [
-            { name: "Cup of tea and smoke", probability: 100 },
-            { name: "Two minutes of superman", probability: 120 },
-            { name: "50 pushups", probability: 120 },
-            { name: "Eat a fruit", probability: 160 },
-            { name: "Wipe the floor in bedroom, toilet, and kitchen", probability: 120 },
-            { name: "Brush Madrid", probability: 30 },
-            { name: "Scroll Instagram for 5 min", probability: 80 },
-            { name: "Make a salad", probability: 50 },
-            { name: "Guitar practice 30 min", probability: 50 }
-        ];
+        let tasks = [];
+
+        // Fetch tasks from JSON file
+        fetch('tasks.json')
+            .then(response => response.json())
+            .then(data => {
+                tasks = data;
+            })
+            .catch(error => console.error('Error loading tasks:', error));
 
         function getRandomTask() {
+            if (tasks.length === 0) {
+                alert("Tasks are not loaded yet. Please try again.");
+                return;
+            }
+
             let weightedTasks = [];
             tasks.forEach(task => {
-                let weight = Math.round(task.probability / 100 * 10); // Adjusting for weight scaling
+                let weight = Math.round(task.probability / 100 * 10); // Adjust weight scaling
                 for (let i = 0; i < weight; i++) {
                     weightedTasks.push(task.name);
                 }
             });
+
             const randomTask = weightedTasks[Math.floor(Math.random() * weightedTasks.length)];
             document.getElementById('task').innerText = randomTask;
         }
