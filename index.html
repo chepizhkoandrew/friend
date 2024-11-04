@@ -7,6 +7,7 @@
     <style>
         body { font-family: Arial, sans-serif; text-align: center; padding: 20px; }
         #task { font-size: 1.5em; margin-top: 20px; }
+        #taskImage { max-width: 200px; margin-top: 10px; }
         #getBusyButton { padding: 10px 20px; font-size: 1em; cursor: pointer; }
     </style>
 </head>
@@ -14,6 +15,7 @@
     <h1>Random Action Picker</h1>
     <button id="getBusyButton">Get Busy</button>
     <p id="task">Press "Get Busy" to start!</p>
+    <img id="taskImage" src="" alt="" style="display: none;">
 
     <script>
         let tasks = [];
@@ -36,12 +38,17 @@
             tasks.forEach(task => {
                 let weight = Math.round(task.probability / 100 * 10); // Adjust weight scaling
                 for (let i = 0; i < weight; i++) {
-                    weightedTasks.push(task.name);
+                    weightedTasks.push(task);
                 }
             });
 
             const randomTask = weightedTasks[Math.floor(Math.random() * weightedTasks.length)];
-            document.getElementById('task').innerText = randomTask;
+            document.getElementById('task').innerText = randomTask.name;
+            const taskImage = document.getElementById('taskImage');
+
+            // Set the image source and make it visible
+            taskImage.src = 'images/' + randomTask.image;
+            taskImage.style.display = 'block';
         }
 
         document.getElementById('getBusyButton').addEventListener('click', getRandomTask);
