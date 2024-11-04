@@ -10,6 +10,7 @@
     { "name": "10 deep breaths", "probability": 150, "image": "medit.png" },
     { "name": "10 min of cleaning", "probability": 90, "image": "cleaning.jpg" },
     { "name": "Send 3 CVs with cover letters", "probability": 80, "image": "jobsearch.png" },
+    { "name": "Write some good memory to someone", "probability": 70, "image": "gratitude.png" },
     { "name": "Make a salad", "probability": 50, "image": "salad.png" },
     { "name": "Guitar practice 30 min", "probability": 50, "image": "guitar.jpg" }
 ]
