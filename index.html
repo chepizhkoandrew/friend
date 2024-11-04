@@ -1,14 +1,46 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2487.7">
-  <style type="text/css">
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Action Picker</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; padding: 20px; }
+        #task { font-size: 1.5em; margin-top: 20px; }
+        #getBusyButton { padding: 10px 20px; font-size: 1em; cursor: pointer; }
+    </style>
 </head>
 <body>
+    <h1>Random Action Picker</h1>
+    <button id="getBusyButton">Get Busy</button>
+    <p id="task">Press "Get Busy" to start!</p>
+
+    <script>
+        const tasks = [
+            { name: "Cup of tea and smoke", probability: 100 },
+            { name: "Two minutes of superman", probability: 120 },
+            { name: "50 pushups", probability: 120 },
+            { name: "Eat a fruit", probability: 160 },
+            { name: "Wipe the floor in bedroom, toilet, and kitchen", probability: 120 },
+            { name: "Brush Madrid", probability: 30 },
+            { name: "Scroll Instagram for 5 min", probability: 80 },
+            { name: "Make a salad", probability: 50 },
+            { name: "Guitar practice 30 min", probability: 50 }
+        ];
+
+        function getRandomTask() {
+            let weightedTasks = [];
+            tasks.forEach(task => {
+                let weight = Math.round(task.probability / 100 * 10); // Adjusting for weight scaling
+                for (let i = 0; i < weight; i++) {
+                    weightedTasks.push(task.name);
+                }
+            });
+            const randomTask = weightedTasks[Math.floor(Math.random() * weightedTasks.length)];
+            document.getElementById('task').innerText = randomTask;
+        }
+
+        document.getElementById('getBusyButton').addEventListener('click', getRandomTask);
+    </script>
 </body>
 </html>
