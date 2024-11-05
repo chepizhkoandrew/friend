@@ -142,6 +142,16 @@
         // Disable the Get Busy button initially
         document.getElementById('getBusyButton').disabled = true;
 
+        // Functions to show/hide the initial message
+        function showInitialMessage() {
+            document.getElementById('task').innerText = 'Press "Get Busy" to start!';
+            document.getElementById('task').style.display = 'block';
+        }
+
+        function hideInitialMessage() {
+            document.getElementById('task').style.display = 'none';
+        }
+
         // Fetch tasks from JSON file
         fetch('tasks.json')
             .then(response => response.json())
@@ -151,6 +161,7 @@
 
                 // Enable the Get Busy button after loading tasks
                 document.getElementById('getBusyButton').disabled = false;
+                showInitialMessage(); // Show initial message once tasks are loaded
             })
             .catch(error => console.error('Error loading tasks:', error));
 
@@ -159,6 +170,8 @@
                 alert("Tasks are not loaded yet. Please try again.");
                 return;
             }
+
+            hideInitialMessage(); // Hide the initial message when task starts
 
             let weightedTasks = [];
             tasks.forEach(task => {
@@ -220,7 +233,7 @@
         }
 
         function resetToInitialState() {
-            document.getElementById('task').innerText = 'Press "Get Busy" to start!';
+            showInitialMessage(); // Show the initial message again
             document.getElementById('progressContainer').style.display = 'none';
             document.getElementById('afterText').style.display = 'none';
             document.getElementById('taskImage').classList.remove('activeTimer');

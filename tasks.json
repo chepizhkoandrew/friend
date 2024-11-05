@@ -13,6 +13,7 @@
     { "name": "Remember what happened within the last hour in details", "probability": 9, "image": "remember.png", "time": 120, "aftertext": "Memory exercise complete!" },
     { "name": "Learn 3 new words in Spanish", "probability": 90, "image": "spanish.jpg", "time": 3, "aftertext": "Expanding your Spanish vocabulary!" },
     { "name": "Write down a hokku", "probability": 80, "image": "remember.png", "time": 9, "aftertext": "Your creativity is flowing!" },
-    { "name": "Make a salad", "probability": 70, "image": "salad.png", "time": 600, "aftertext": "Fresh and delicious!" },
+    { "name": "Make a salad", "probability": 70, "image": "salad.png", "time": 6, "aftertext": "Fresh and delicious!" },
+    { "name": "Practice a knot", "probability": 70, "image": "knot.png", "time": 6, "aftertext": "You'll survive in the woods!" },
     { "name": "Guitar practice 10 min", "probability": 130, "image": "guitar.jpg", "time": 6, "aftertext": "Your music skills are growing!" }
 ]
