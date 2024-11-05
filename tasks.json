@@ -1,5 +1,5 @@
 [
-    { "name": "Cup of coffee", "probability": 100, "image": "coffee.jpg" },
+    { "name": "Cup of coffee", "probability": 100, "image": "smoke.jpg" },
     { "name": "Two minutes of superman", "probability": 120, "image": "superman.jpg" },
     { "name": "50 pushups", "probability": 120, "image": "pushups.jpg" },
     { "name": "Eat a fruit", "probability": 160, "image": "fruit.jpg" },
