@@ -145,11 +145,10 @@
         // Functions to show/hide the initial message
         function showInitialMessage() {
             document.getElementById('task').innerText = 'Press "Get Busy" to start!';
-            document.getElementById('task').style.display = 'block';
         }
 
-        function hideInitialMessage() {
-            document.getElementById('task').style.display = 'none';
+        function hideInitialMessage(taskName) {
+            document.getElementById('task').innerText = taskName;
         }
 
         // Fetch tasks from JSON file
@@ -171,8 +170,6 @@
                 return;
             }
 
-            hideInitialMessage(); // Hide the initial message when task starts
-
             let weightedTasks = [];
             tasks.forEach(task => {
                 let weight = Math.round(task.probability / 100 * 10);
@@ -189,7 +186,8 @@
             lastTask = randomTask;
             currentTask = randomTask;
 
-            document.getElementById('task').innerText = randomTask.name;
+            hideInitialMessage(randomTask.name); // Update the task name here
+
             const taskImage = document.getElementById('taskImage');
             taskImage.src = 'images/' + randomTask.image;
             taskImage.style.display = 'block';
