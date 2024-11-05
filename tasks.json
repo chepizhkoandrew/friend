@@ -1,5 +1,5 @@
 [
-    { "name": "Cup of coffee", "probability": 100, "image": "smoke.jpg" },
+    { "name": "Cup of coffee", "probability": 180, "image": "smoke.jpg" },
     { "name": "Two minutes of superman", "probability": 120, "image": "superman.jpg" },
     { "name": "50 pushups", "probability": 120, "image": "pushups.jpg" },
     { "name": "Eat a fruit", "probability": 160, "image": "fruit.jpg" },
@@ -10,7 +10,7 @@
     { "name": "10 min of cleaning", "probability": 120, "image": "cleaning.jpg" },
     { "name": "Send 3 CVs with cover letters", "probability": 80, "image": "jobsearch.png" },
     { "name": "Write some good memory to someone", "probability": 80, "image": "gratitude.png" },
-    { "name": "Remember what you did last hour in details", "probability": 90, "image": "remember.png" },
+    { "name": "Remember what happened within the last hour in details", "probability": 90, "image": "remember.png" },
     { "name": "Write down a hokku", "probability": 70, "image": "remember.png" },
     { "name": "Make a salad", "probability": 50, "image": "salad.png" },
     { "name": "Guitar practice 10 min", "probability": 130, "image": "guitar.jpg" }
