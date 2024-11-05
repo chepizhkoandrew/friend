@@ -11,6 +11,29 @@
         #task { font-size: 1.5em; margin-top: 20px; }
         #getBusyButton { padding: 10px 20px; font-size: 1em; cursor: pointer; border-radius: 8px; }
 
+        /* Centering input and button block */
+        #nameInputContainer {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        /* Styling for name input field */
+        #nameLabel {
+            font-size: 1.2em;
+            margin-bottom: 5px;
+        }
+
+        #nameInput {
+            width: 200px;
+            padding: 8px;
+            font-size: 1em;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            text-align: center;
+        }
+
         #imageContainer {
             display: flex;
             justify-content: center;
@@ -124,7 +147,13 @@
     </style>
 </head>
 <body>
-    <h1>Random Action Picker</h1>
+
+    <!-- Name Input Block -->
+    <div id="nameInputContainer">
+        <label id="nameLabel" for="nameInput">Name:</label>
+        <input type="text" id="nameInput" maxlength="20" placeholder="Enter your name">
+    </div>
+
     <button id="getBusyButton" disabled>Get Busy</button>
     <p id="task">Press "Get Busy" to start!</p>
     
@@ -133,7 +162,6 @@
         <div id="afterTextOverlay">After Text</div>
     </div>
 
-    <!-- Styled Popup -->
     <div id="popup">
         <p>Ready for the timer?</p>
         <button id="yesButton">Yes</button>
@@ -168,7 +196,6 @@
 
         function showInitialMessage() {
             document.getElementById('task').innerText = 'Press "Get Busy" to start!';
-            document.getElementById('getBusyButton').disabled = false; // Ensure button is enabled initially
         }
 
         function hideInitialMessage(taskName) {
@@ -184,6 +211,12 @@
             .then(data => {
                 tasks = data;
                 console.log("Tasks loaded successfully:", tasks);
+
+                // Enable Get Busy button once tasks and name are ready
+                document.getElementById('nameInput').addEventListener('input', () => {
+                    document.getElementById('getBusyButton').disabled = !document.getElementById('nameInput').value;
+                });
+
                 showInitialMessage();
             })
             .catch(error => console.error('Error loading tasks:', error));
@@ -277,8 +310,6 @@
 
             const randomColor = `hsl(${Math.floor(Math.random() * 360)}, 100%, 50%)`;
             afterTextOverlay.style.color = randomColor;
-
-            document.getElementById('getBusyButton').disabled = false; // Re-enable Get Busy after showing aftertext
         }
 
         document.getElementById('getBusyButton').addEventListener('click', getRandomTask);
