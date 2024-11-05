@@ -19,6 +19,7 @@
             height: 500px;
             margin: 0 auto;
             overflow: hidden;
+            position: relative;
             background-color: transparent;
             transition: transform 0.3s;
         }
@@ -32,6 +33,22 @@
             height: 100%;
             object-fit: contain;
             transition: filter 0.3s, transform 0.3s;
+        }
+
+        /* Centered aftertext overlay */
+        #afterTextOverlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 24pt;
+            font-weight: bold;
+            padding: 10px 20px;
+            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background for highlight */
+            border-radius: 8px;
+            display: none;
+            text-align: center;
+            max-width: 80%; /* Ensures text wraps within the image */
         }
 
         .activeTimer {
@@ -95,31 +112,27 @@
     
     <div id="imageContainer">
         <img id="taskImage" src="" alt="" style="display: none;">
+        <div id="afterTextOverlay">After Text</div>
     </div>
 
-    <!-- Popup for starting the timer -->
     <div id="popup">
         <p>Ready for the timer?</p>
         <button id="yesButton">Yes</button>
         <button id="cancelButton">Cancel</button>
     </div>
 
-    <!-- Popup for pausing timer -->
     <div id="pausePopup">
         <p>Want to skip it?</p>
         <button id="resumeButton">No</button>
         <button id="confirmCancelButton">Yes</button>
     </div>
 
-    <!-- Progress Bar and Cancel Button Wrapper -->
     <div id="progressContainerWrapper">
         <div id="progressContainer">
             <div id="progressBar"></div>
         </div>
         <button id="cancelTimerButton">Cancel</button>
     </div>
-    
-    <p id="afterText" style="display: none;"></p>
 
     <!-- JavaScript Block -->
     <script>
@@ -134,7 +147,6 @@
         // Disable the Get Busy button initially
         document.getElementById('getBusyButton').disabled = true;
 
-        // Functions to show/hide the initial message
         function showInitialMessage() {
             document.getElementById('task').innerText = 'Press "Get Busy" to start!';
         }
@@ -153,7 +165,6 @@
                 tasks = data;
                 console.log("Tasks loaded successfully:", tasks);
 
-                // Enable the Get Busy button after loading tasks
                 document.getElementById('getBusyButton').disabled = false;
                 showInitialMessage();
             })
@@ -228,7 +239,7 @@
         function resetToInitialState() {
             showInitialMessage();
             document.getElementById('progressContainer').style.display = 'none';
-            document.getElementById('afterText').style.display = 'none';
+            document.getElementById('afterTextOverlay').style.display = 'none';
             document.getElementById('taskImage').classList.remove('activeTimer');
             document.getElementById('cancelTimerButton').style.display = 'none';
             progress = 0;
@@ -236,12 +247,16 @@
         }
 
         function showAfterText() {
-            document.getElementById('afterText').innerText = currentTask.aftertext;
-            document.getElementById('afterText').style.display = 'block';
+            const afterTextOverlay = document.getElementById('afterTextOverlay');
+            afterTextOverlay.innerText = currentTask.aftertext;
+            afterTextOverlay.style.display = 'block';
+
+            // Apply random color
+            const randomColor = `hsl(${Math.floor(Math.random() * 360)}, 100%, 50%)`;
+            afterTextOverlay.style.color = randomColor;
         }
 
         document.getElementById('getBusyButton').addEventListener('click', getRandomTask);
-
         document.getElementById('taskImage').addEventListener('click', () => {
             if (!currentTask) return;
             document.getElementById('popup').style.display = 'block';
@@ -249,7 +264,7 @@
 
         document.getElementById('yesButton').addEventListener('click', () => {
             document.getElementById('popup').style.display = 'none';
-            document.getElementById('afterText').style.display = 'none';
+            document.getElementById('afterTextOverlay').style.display = 'none';
             startProgressBar(currentTask.time);
         });
 
