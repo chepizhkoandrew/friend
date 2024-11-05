@@ -4,7 +4,89 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Random Action Picker</title>
-    <link rel="stylesheet" href="styles.css">
+    
+    <!-- CSS Block -->
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; padding: 20px; }
+        #task { font-size: 1.5em; margin-top: 20px; }
+        #getBusyButton { padding: 10px 20px; font-size: 1em; cursor: pointer; }
+
+        #imageContainer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 500px;
+            height: 500px;
+            margin: 0 auto;
+            overflow: hidden;
+            background-color: transparent;
+            transition: transform 0.3s;
+        }
+
+        #imageContainer:hover {
+            transform: scale(1.02);
+        }
+
+        #taskImage {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            transition: filter 0.3s, transform 0.3s;
+        }
+
+        .activeTimer {
+            filter: grayscale(100%);
+            transform: scale(0.95);
+        }
+
+        #popup, #pausePopup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            background: white;
+            border: 1px solid #ddd;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            display: none;
+        }
+
+        #progressContainerWrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        #progressContainer {
+            width: 500px;
+            height: 30px;
+            background-color: #e0e0e0;
+            border-radius: 15px;
+            display: none;
+        }
+
+        #progressBar {
+            width: 0;
+            height: 100%;
+            background-color: green;
+            border-radius: 15px;
+        }
+
+        @keyframes blink {
+            50% { opacity: 0.5; }
+        }
+
+        #cancelTimerButton {
+            display: none;
+            margin-top: 10px;
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
     <h1>Random Action Picker</h1>
@@ -15,7 +97,182 @@
         <img id="taskImage" src="" alt="" style="display: none;">
     </div>
 
+    <!-- Popup for starting the timer -->
     <div id="popup">
         <p>Ready for the timer?</p>
         <button id="yesButton">Yes</button>
-        <button id="cancel
+        <button id="cancelButton">Cancel</button>
+    </div>
+
+    <!-- Popup for pausing timer -->
+    <div id="pausePopup">
+        <p>Want to skip it?</p>
+        <button id="resumeButton">No</button>
+        <button id="confirmCancelButton">Yes</button>
+    </div>
+
+    <!-- Progress Bar and Cancel Button Wrapper -->
+    <div id="progressContainerWrapper">
+        <div id="progressContainer">
+            <div id="progressBar"></div>
+        </div>
+        <button id="cancelTimerButton">Cancel</button>
+    </div>
+    
+    <p id="afterText" style="display: none;"></p>
+
+    <!-- JavaScript Block -->
+    <script>
+        let tasks = [];
+        let lastTask = null;
+        let currentTask = null;
+        let progressInterval = null;
+        let paused = false;
+        let progress = 0;
+        let elapsedTime = 0;
+
+        // Disable the Get Busy button initially
+        document.getElementById('getBusyButton').disabled = true;
+
+        // Functions to show/hide the initial message
+        function showInitialMessage() {
+            document.getElementById('task').innerText = 'Press "Get Busy" to start!';
+        }
+
+        function hideInitialMessage(taskName) {
+            document.getElementById('task').innerText = taskName;
+        }
+
+        // Fetch tasks from JSON file
+        fetch('tasks.json')
+            .then(response => {
+                if (!response.ok) throw new Error('Network response was not ok');
+                return response.json();
+            })
+            .then(data => {
+                tasks = data;
+                console.log("Tasks loaded successfully:", tasks);
+
+                // Enable the Get Busy button after loading tasks
+                document.getElementById('getBusyButton').disabled = false;
+                showInitialMessage();
+            })
+            .catch(error => console.error('Error loading tasks:', error));
+
+        function getRandomTask() {
+            if (tasks.length === 0) {
+                alert("Tasks are not loaded yet. Please try again.");
+                return;
+            }
+
+            let weightedTasks = [];
+            tasks.forEach(task => {
+                let weight = Math.round(task.probability / 100 * 10);
+                for (let i = 0; i < weight; i++) {
+                    weightedTasks.push(task);
+                }
+            });
+
+            let randomTask;
+            do {
+                randomTask = weightedTasks[Math.floor(Math.random() * weightedTasks.length)];
+            } while (lastTask && randomTask.name === lastTask.name);
+
+            lastTask = randomTask;
+            currentTask = randomTask;
+
+            hideInitialMessage(randomTask.name);
+
+            const taskImage = document.getElementById('taskImage');
+            taskImage.src = 'images/' + randomTask.image;
+            taskImage.style.display = 'block';
+
+            taskImage.onerror = function() {
+                console.error(`Failed to load image: ${taskImage.src}`);
+                taskImage.style.display = 'none';
+                document.getElementById('task').innerText = `Failed to load image for "${randomTask.name}". Check that "images/${randomTask.image}" exists.`;
+            };
+        }
+
+        function startProgressBar(duration) {
+            paused = false;
+            elapsedTime = progress;
+            const progressBar = document.getElementById('progressBar');
+            const progressContainer = document.getElementById('progressContainer');
+            const taskImage = document.getElementById('taskImage');
+            progressContainer.style.width = taskImage.offsetWidth + 'px';
+            progressContainer.style.display = 'block';
+            document.getElementById('cancelTimerButton').style.display = 'block';
+            taskImage.classList.add('activeTimer');
+
+            progressInterval = setInterval(() => {
+                if (!paused) {
+                    elapsedTime += 1;
+                    const fraction = (elapsedTime / duration) * 100;
+                    progressBar.style.width = fraction + '%';
+
+                    if (fraction >= 85) {
+                        progressBar.style.backgroundColor = 'red';
+                        progressBar.style.animation = 'blink 1s infinite';
+                    }
+
+                    if (elapsedTime >= duration) {
+                        clearInterval(progressInterval);
+                        resetToInitialState();
+                        showAfterText();
+                    }
+                }
+            }, 1000);
+        }
+
+        function resetToInitialState() {
+            showInitialMessage();
+            document.getElementById('progressContainer').style.display = 'none';
+            document.getElementById('afterText').style.display = 'none';
+            document.getElementById('taskImage').classList.remove('activeTimer');
+            document.getElementById('cancelTimerButton').style.display = 'none';
+            progress = 0;
+            elapsedTime = 0;
+        }
+
+        function showAfterText() {
+            document.getElementById('afterText').innerText = currentTask.aftertext;
+            document.getElementById('afterText').style.display = 'block';
+        }
+
+        document.getElementById('getBusyButton').addEventListener('click', getRandomTask);
+
+        document.getElementById('taskImage').addEventListener('click', () => {
+            if (!currentTask) return;
+            document.getElementById('popup').style.display = 'block';
+        });
+
+        document.getElementById('yesButton').addEventListener('click', () => {
+            document.getElementById('popup').style.display = 'none';
+            document.getElementById('afterText').style.display = 'none';
+            startProgressBar(currentTask.time);
+        });
+
+        document.getElementById('cancelButton').addEventListener('click', () => {
+            document.getElementById('popup').style.display = 'none';
+        });
+
+        document.getElementById('cancelTimerButton').addEventListener('click', () => {
+            paused = true;
+            clearInterval(progressInterval);
+            document.getElementById('pausePopup').style.display = 'block';
+        });
+
+        document.getElementById('confirmCancelButton').addEventListener('click', () => {
+            document.getElementById('pausePopup').style.display = 'none';
+            resetToInitialState();
+        });
+
+        document.getElementById('resumeButton').addEventListener('click', () => {
+            document.getElementById('pausePopup').style.display = 'none';
+            paused = false;
+            startProgressBar(currentTask.time);
+        });
+    </script>
+</body>
+</html>
