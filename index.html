@@ -89,7 +89,7 @@
 </head>
 <body>
     <h1>Random Action Picker</h1>
-    <button id="getBusyButton">Get Busy</button>
+    <button id="getBusyButton" disabled>Get Busy</button>
     <p id="task">Press "Get Busy" to start!</p>
     
     <!-- Container for centered image -->
@@ -129,12 +129,18 @@
         let paused = false;
         let progress = 0;
 
+        // Disable the Get Busy button initially
+        document.getElementById('getBusyButton').disabled = true;
+
         // Fetch tasks from JSON file
         fetch('tasks.json')
             .then(response => response.json())
             .then(data => {
                 tasks = data;
                 console.log("Tasks loaded successfully:", tasks);
+
+                // Enable the Get Busy button after loading tasks
+                document.getElementById('getBusyButton').disabled = false;
             })
             .catch(error => console.error('Error loading tasks:', error));
 
@@ -213,4 +219,48 @@
 
         function showAfterText() {
             document.getElementById('afterText').innerText = currentTask.aftertext;
-            document.getElementBy
+            document.getElementById('afterText').style.display = 'block';
+        }
+
+        document.getElementById('getBusyButton').addEventListener('click', getRandomTask);
+
+        // Image click event to show the popup
+        document.getElementById('taskImage').addEventListener('click', () => {
+            if (!currentTask) return;
+            document.getElementById('popup').style.display = 'block';
+        });
+
+        // Yes button to start the timer
+        document.getElementById('yesButton').addEventListener('click', () => {
+            document.getElementById('popup').style.display = 'none';
+            document.getElementById('afterText').style.display = 'none';
+            startProgressBar(currentTask.time);
+        });
+
+        // Cancel button to close the popup
+        document.getElementById('cancelButton').addEventListener('click', () => {
+            document.getElementById('popup').style.display = 'none';
+        });
+
+        // Cancel Timer button during active timer
+        document.getElementById('cancelTimerButton').addEventListener('click', () => {
+            paused = true;
+            clearInterval(progressInterval);
+            document.getElementById('pausePopup').style.display = 'block';
+        });
+
+        // Popup "Want to skip it?" - Yes to reset everything
+        document.getElementById('confirmCancelButton').addEventListener('click', () => {
+            document.getElementById('pausePopup').style.display = 'none';
+            resetToInitialState();
+        });
+
+        // Popup "Want to skip it?" - No to resume timer
+        document.getElementById('resumeButton').addEventListener('click', () => {
+            document.getElementById('pausePopup').style.display = 'none';
+            paused = false;
+            startProgressBar(currentTask.time - progress); // Resume timer from where it left off
+        });
+    </script>
+</body>
+</html>
