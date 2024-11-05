@@ -9,27 +9,52 @@
         #task { font-size: 1.5em; margin-top: 20px; }
         #getBusyButton { padding: 10px 20px; font-size: 1em; cursor: pointer; }
         
-        /* Center and resize the image */
-        #imageContainer {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 500px;
-            height: 500px;
-            margin: 0 auto;
-            overflow: hidden;
-            background-color: transparent; /* Transparent background */
+        /* Image Hover Effect */
+        #taskImage:hover {
+            transform: scale(1.02); /* 2% increase */
+            transition: transform 0.3s;
         }
-        
-        #taskImage {
+
+        /* Popup Styling */
+        #popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            background: white;
+            border: 1px solid #ddd;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            display: none;
+        }
+
+        /* Progress Bar Container */
+        #progressContainer {
             width: 100%;
+            height: 30px;
+            background-color: #e0e0e0;
+            margin-top: 20px;
+            border-radius: 15px;
+            display: none;
+        }
+
+        /* Progress Bar */
+        #progressBar {
+            width: 0;
             height: 100%;
-            object-fit: contain; /* Scales image to fit within frame without cropping */
+            background-color: green;
+            border-radius: 15px;
+        }
+
+        /* Blinking Animation */
+        @keyframes blink {
+            50% { opacity: 0.5; }
         }
     </style>
 </head>
 <body>
-    <h1>Anxiety because of frustration?</h1>
+    <h1>Random Action Picker</h1>
     <button id="getBusyButton">Get Busy</button>
     <p id="task">Press "Get Busy" to start!</p>
     
@@ -38,54 +63,117 @@
         <img id="taskImage" src="" alt="" style="display: none;">
     </div>
 
+    <!-- Popup -->
+    <div id="popup">
+        <p>Ready for the timer?</p>
+        <button id="yesButton">Yes</button>
+        <button id="cancelButton">Cancel</button>
+    </div>
+
+    <!-- Progress Bar -->
+    <div id="progressContainer">
+        <div id="progressBar"></div>
+    </div>
+    
+    <p id="afterText" style="display: none;"></p>
+
     <script>
-      let tasks = [];
-      let lastTask = null; // Variable to store the last selected task
-  
-      // Fetch tasks from JSON file
-      fetch('tasks.json')
-          .then(response => response.json())
-          .then(data => {
-              tasks = data;
-              console.log("Tasks loaded successfully:", tasks);
-          })
-          .catch(error => console.error('Error loading tasks:', error));
-  
-      function getRandomTask() {
-          if (tasks.length === 0) {
-              alert("Tasks are not loaded yet. Please try again.");
-              return;
-          }
-  
-          let weightedTasks = [];
-          tasks.forEach(task => {
-              let weight = Math.round(task.probability / 100 * 10); // Adjust weight scaling
-              for (let i = 0; i < weight; i++) {
-                  weightedTasks.push(task);
-              }
-          });
-  
-          let randomTask;
-          do {
-              randomTask = weightedTasks[Math.floor(Math.random() * weightedTasks.length)];
-          } while (lastTask && randomTask.name === lastTask.name);
-  
-          lastTask = randomTask; // Update lastTask with the new selection
-          document.getElementById('task').innerText = randomTask.name;
-          
-          const taskImage = document.getElementById('taskImage');
-          taskImage.src = 'images/' + randomTask.image;
-          taskImage.style.display = 'block';
-  
-          // Add error handling for image loading
-          taskImage.onerror = function() {
-              console.error(`Failed to load image: ${taskImage.src}`);
-              taskImage.style.display = 'none'; // Hide image if it can't be loaded
-              document.getElementById('task').innerText = `Failed to load image for "${randomTask.name}". Check that "images/${randomTask.image}" exists.`;
-          };
-      }
-  
-      document.getElementById('getBusyButton').addEventListener('click', getRandomTask);
-  </script>
+        let tasks = [];
+        let lastTask = null;
+        let currentTask = null; // Store the currently selected task
+        let progressInterval = null;
+
+        // Fetch tasks from JSON file
+        fetch('tasks.json')
+            .then(response => response.json())
+            .then(data => {
+                tasks = data;
+                console.log("Tasks loaded successfully:", tasks);
+            })
+            .catch(error => console.error('Error loading tasks:', error));
+
+        function getRandomTask() {
+            if (tasks.length === 0) {
+                alert("Tasks are not loaded yet. Please try again.");
+                return;
+            }
+
+            let weightedTasks = [];
+            tasks.forEach(task => {
+                let weight = Math.round(task.probability / 100 * 10); // Adjust weight scaling
+                for (let i = 0; i < weight; i++) {
+                    weightedTasks.push(task);
+                }
+            });
+
+            let randomTask;
+            do {
+                randomTask = weightedTasks[Math.floor(Math.random() * weightedTasks.length)];
+            } while (lastTask && randomTask.name === lastTask.name);
+
+            lastTask = randomTask;
+            currentTask = randomTask; // Update currentTask
+
+            document.getElementById('task').innerText = randomTask.name;
+            const taskImage = document.getElementById('taskImage');
+            taskImage.src = 'images/' + randomTask.image;
+            taskImage.style.display = 'block';
+
+            taskImage.onerror = function() {
+                console.error(`Failed to load image: ${taskImage.src}`);
+                taskImage.style.display = 'none';
+                document.getElementById('task').innerText = `Failed to load image for "${randomTask.name}". Check that "images/${randomTask.image}" exists.`;
+            };
+        }
+
+        function startProgressBar(duration) {
+            let progress = 0;
+            const progressBar = document.getElementById('progressBar');
+            const progressContainer = document.getElementById('progressContainer');
+            progressContainer.style.display = 'block';
+
+            progressInterval = setInterval(() => {
+                progress += 1;
+                const fraction = (progress / duration) * 100;
+                progressBar.style.width = fraction + '%';
+
+                if (fraction >= 85) {
+                    progressBar.style.backgroundColor = 'red';
+                    progressBar.style.animation = 'blink 1s infinite';
+                }
+
+                if (progress >= duration) {
+                    clearInterval(progressInterval);
+                    progressContainer.style.display = 'none';
+                    showAfterText();
+                }
+            }, 1000);
+        }
+
+        function showAfterText() {
+            document.getElementById('afterText').innerText = currentTask.aftertext;
+            document.getElementById('afterText').style.display = 'block';
+        }
+
+        document.getElementById('getBusyButton').addEventListener('click', getRandomTask);
+
+        // Image click event to show the popup
+        document.getElementById('taskImage').addEventListener('click', () => {
+            if (!currentTask) return; // Ensure there's a current task
+            document.getElementById('popup').style.display = 'block';
+        });
+
+        // Yes button to start the timer
+        document.getElementById('yesButton').addEventListener('click', () => {
+            document.getElementById('popup').style.display = 'none';
+            document.getElementById('afterText').style.display = 'none';
+            startProgressBar(currentTask.time);
+        });
+
+        // Cancel button to close the popup
+        document.getElementById('cancelButton').addEventListener('click', () => {
+            document.getElementById('popup').style.display = 'none';
+        });
+    </script>
 </body>
 </html>
