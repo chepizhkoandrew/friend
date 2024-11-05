@@ -19,22 +19,29 @@
             margin: 0 auto;
             overflow: hidden;
             background-color: transparent;
-            transition: transform 0.3s; /* Smooth hover effect */
+            transition: transform 0.3s;
         }
 
         /* Hover effect on the container */
         #imageContainer:hover {
-            transform: scale(1.02); /* 2% increase */
+            transform: scale(1.02);
         }
 
         #taskImage {
             width: 100%;
             height: 100%;
             object-fit: contain;
+            transition: filter 0.3s, transform 0.3s;
+        }
+
+        /* Grayscale effect when timer is active */
+        .activeTimer {
+            filter: grayscale(100%);
+            transform: scale(0.95); /* Slightly smaller */
         }
 
         /* Popup Styling */
-        #popup {
+        #popup, #pausePopup {
             position: fixed;
             top: 50%;
             left: 50%;
@@ -69,6 +76,15 @@
         @keyframes blink {
             50% { opacity: 0.5; }
         }
+
+        /* Cancel Button */
+        #cancelTimerButton {
+            display: none;
+            margin-top: 10px;
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -81,17 +97,27 @@
         <img id="taskImage" src="" alt="" style="display: none;">
     </div>
 
-    <!-- Popup -->
+    <!-- Popup for starting the timer -->
     <div id="popup">
         <p>Ready for the timer?</p>
         <button id="yesButton">Yes</button>
         <button id="cancelButton">Cancel</button>
     </div>
 
+    <!-- Popup for pausing timer -->
+    <div id="pausePopup">
+        <p>Want to skip it?</p>
+        <button id="resumeButton">No</button>
+        <button id="confirmCancelButton">Yes</button>
+    </div>
+
     <!-- Progress Bar -->
     <div id="progressContainer">
         <div id="progressBar"></div>
     </div>
+    
+    <!-- Cancel Timer Button -->
+    <button id="cancelTimerButton">Cancel</button>
     
     <p id="afterText" style="display: none;"></p>
 
@@ -100,6 +126,8 @@
         let lastTask = null;
         let currentTask = null;
         let progressInterval = null;
+        let paused = false;
+        let progress = 0;
 
         // Fetch tasks from JSON file
         fetch('tasks.json')
@@ -145,53 +173,44 @@
         }
 
         function startProgressBar(duration) {
-            let progress = 0;
+            progress = 0;
+            paused = false;
             const progressBar = document.getElementById('progressBar');
             const progressContainer = document.getElementById('progressContainer');
+            const taskImage = document.getElementById('taskImage');
+            progressContainer.style.width = taskImage.offsetWidth + 'px';
             progressContainer.style.display = 'block';
+            document.getElementById('cancelTimerButton').style.display = 'block';
+            taskImage.classList.add('activeTimer');
 
             progressInterval = setInterval(() => {
-                progress += 1;
-                const fraction = (progress / duration) * 100;
-                progressBar.style.width = fraction + '%';
+                if (!paused) {
+                    progress += 1;
+                    const fraction = (progress / duration) * 100;
+                    progressBar.style.width = fraction + '%';
 
-                if (fraction >= 85) {
-                    progressBar.style.backgroundColor = 'red';
-                    progressBar.style.animation = 'blink 1s infinite';
-                }
+                    if (fraction >= 85) {
+                        progressBar.style.backgroundColor = 'red';
+                        progressBar.style.animation = 'blink 1s infinite';
+                    }
 
-                if (progress >= duration) {
-                    clearInterval(progressInterval);
-                    progressContainer.style.display = 'none';
-                    showAfterText();
+                    if (progress >= duration) {
+                        clearInterval(progressInterval);
+                        resetToInitialState();
+                        showAfterText();
+                    }
                 }
             }, 1000);
         }
 
-        function showAfterText() {
-            document.getElementById('afterText').innerText = currentTask.aftertext;
-            document.getElementById('afterText').style.display = 'block';
+        function resetToInitialState() {
+            document.getElementById('task').innerText = 'Press "Get Busy" to start!';
+            document.getElementById('progressContainer').style.display = 'none';
+            document.getElementById('afterText').style.display = 'none';
+            document.getElementById('taskImage').classList.remove('activeTimer');
+            document.getElementById('cancelTimerButton').style.display = 'none';
         }
 
-        document.getElementById('getBusyButton').addEventListener('click', getRandomTask);
-
-        // Image click event to show the popup
-        document.getElementById('taskImage').addEventListener('click', () => {
-            if (!currentTask) return;
-            document.getElementById('popup').style.display = 'block';
-        });
-
-        // Yes button to start the timer
-        document.getElementById('yesButton').addEventListener('click', () => {
-            document.getElementById('popup').style.display = 'none';
-            document.getElementById('afterText').style.display = 'none';
-            startProgressBar(currentTask.time);
-        });
-
-        // Cancel button to close the popup
-        document.getElementById('cancelButton').addEventListener('click', () => {
-            document.getElementById('popup').style.display = 'none';
-        });
-    </script>
-</body>
-</html>
+        function showAfterText() {
+            document.getElementById('afterText').innerText = currentTask.aftertext;
+            document.getElementBy
