@@ -55,11 +55,18 @@
         }
 
         /* Progress Bar Container */
+        #progressContainerWrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        
         #progressContainer {
-            width: 100%;
+            width: 500px;
             height: 30px;
             background-color: #e0e0e0;
-            margin-top: 20px;
             border-radius: 15px;
             display: none;
         }
@@ -111,13 +118,15 @@
         <button id="confirmCancelButton">Yes</button>
     </div>
 
-    <!-- Progress Bar -->
-    <div id="progressContainer">
-        <div id="progressBar"></div>
+    <!-- Progress Bar and Cancel Button Wrapper -->
+    <div id="progressContainerWrapper">
+        <!-- Progress Bar -->
+        <div id="progressContainer">
+            <div id="progressBar"></div>
+        </div>
+        <!-- Cancel Timer Button -->
+        <button id="cancelTimerButton">Cancel</button>
     </div>
-    
-    <!-- Cancel Timer Button -->
-    <button id="cancelTimerButton">Cancel</button>
     
     <p id="afterText" style="display: none;"></p>
 
@@ -128,6 +137,7 @@
         let progressInterval = null;
         let paused = false;
         let progress = 0;
+        let elapsedTime = 0;
 
         // Disable the Get Busy button initially
         document.getElementById('getBusyButton').disabled = true;
@@ -179,8 +189,8 @@
         }
 
         function startProgressBar(duration) {
-            progress = 0;
             paused = false;
+            elapsedTime = progress;
             const progressBar = document.getElementById('progressBar');
             const progressContainer = document.getElementById('progressContainer');
             const taskImage = document.getElementById('taskImage');
@@ -191,8 +201,8 @@
 
             progressInterval = setInterval(() => {
                 if (!paused) {
-                    progress += 1;
-                    const fraction = (progress / duration) * 100;
+                    elapsedTime += 1;
+                    const fraction = (elapsedTime / duration) * 100;
                     progressBar.style.width = fraction + '%';
 
                     if (fraction >= 85) {
@@ -200,7 +210,7 @@
                         progressBar.style.animation = 'blink 1s infinite';
                     }
 
-                    if (progress >= duration) {
+                    if (elapsedTime >= duration) {
                         clearInterval(progressInterval);
                         resetToInitialState();
                         showAfterText();
@@ -215,6 +225,8 @@
             document.getElementById('afterText').style.display = 'none';
             document.getElementById('taskImage').classList.remove('activeTimer');
             document.getElementById('cancelTimerButton').style.display = 'none';
+            progress = 0;
+            elapsedTime = 0;
         }
 
         function showAfterText() {
@@ -259,7 +271,7 @@
         document.getElementById('resumeButton').addEventListener('click', () => {
             document.getElementById('pausePopup').style.display = 'none';
             paused = false;
-            startProgressBar(currentTask.time - progress); // Resume timer from where it left off
+            startProgressBar(currentTask.time); // Resume timer from where it left off
         });
     </script>
 </body>
