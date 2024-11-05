@@ -9,10 +9,28 @@
         #task { font-size: 1.5em; margin-top: 20px; }
         #getBusyButton { padding: 10px 20px; font-size: 1em; cursor: pointer; }
         
-        /* Image Hover Effect */
-        #taskImage:hover {
+        /* Center and resize the image */
+        #imageContainer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 500px;
+            height: 500px;
+            margin: 0 auto;
+            overflow: hidden;
+            background-color: transparent;
+            transition: transform 0.3s; /* Smooth hover effect */
+        }
+
+        /* Hover effect on the container */
+        #imageContainer:hover {
             transform: scale(1.02); /* 2% increase */
-            transition: transform 0.3s;
+        }
+
+        #taskImage {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
         }
 
         /* Popup Styling */
@@ -80,7 +98,7 @@
     <script>
         let tasks = [];
         let lastTask = null;
-        let currentTask = null; // Store the currently selected task
+        let currentTask = null;
         let progressInterval = null;
 
         // Fetch tasks from JSON file
@@ -100,7 +118,7 @@
 
             let weightedTasks = [];
             tasks.forEach(task => {
-                let weight = Math.round(task.probability / 100 * 10); // Adjust weight scaling
+                let weight = Math.round(task.probability / 100 * 10);
                 for (let i = 0; i < weight; i++) {
                     weightedTasks.push(task);
                 }
@@ -112,7 +130,7 @@
             } while (lastTask && randomTask.name === lastTask.name);
 
             lastTask = randomTask;
-            currentTask = randomTask; // Update currentTask
+            currentTask = randomTask;
 
             document.getElementById('task').innerText = randomTask.name;
             const taskImage = document.getElementById('taskImage');
@@ -159,7 +177,7 @@
 
         // Image click event to show the popup
         document.getElementById('taskImage').addEventListener('click', () => {
-            if (!currentTask) return; // Ensure there's a current task
+            if (!currentTask) return;
             document.getElementById('popup').style.display = 'block';
         });
 
