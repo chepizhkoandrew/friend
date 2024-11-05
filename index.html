@@ -168,6 +168,7 @@
 
         function showInitialMessage() {
             document.getElementById('task').innerText = 'Press "Get Busy" to start!';
+            document.getElementById('getBusyButton').disabled = false; // Ensure button is enabled initially
         }
 
         function hideInitialMessage(taskName) {
@@ -183,8 +184,6 @@
             .then(data => {
                 tasks = data;
                 console.log("Tasks loaded successfully:", tasks);
-
-                document.getElementById('getBusyButton').disabled = false;
                 showInitialMessage();
             })
             .catch(error => console.error('Error loading tasks:', error));
@@ -225,6 +224,7 @@
                 console.error(`Failed to load image: ${taskImage.src}`);
                 taskImage.style.display = 'none';
                 document.getElementById('task').innerText = `Failed to load image for "${randomTask.name}". Check that "images/${randomTask.image}" exists.`;
+                document.getElementById('getBusyButton').disabled = false; // Re-enable if image fails to load
             };
         }
 
@@ -237,7 +237,6 @@
             progressContainer.style.width = taskImage.offsetWidth + 'px';
             progressContainer.style.display = 'block';
             document.getElementById('cancelTimerButton').style.display = 'block';
-            document.getElementById('getBusyButton').disabled = true; // Disable Get Busy button during timer
             taskImage.classList.add('activeTimer');
 
             progressInterval = setInterval(() => {
@@ -278,9 +277,12 @@
 
             const randomColor = `hsl(${Math.floor(Math.random() * 360)}, 100%, 50%)`;
             afterTextOverlay.style.color = randomColor;
+
+            document.getElementById('getBusyButton').disabled = false; // Re-enable Get Busy after showing aftertext
         }
 
         document.getElementById('getBusyButton').addEventListener('click', getRandomTask);
+
         document.getElementById('taskImage').addEventListener('click', () => {
             if (!currentTask) return;
             document.getElementById('popup').style.display = 'block';
