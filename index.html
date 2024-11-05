@@ -103,6 +103,29 @@
             font-size: 1em;
             cursor: pointer;
         }
+
+        /* Rounded image */
+#taskImage {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: filter 0.3s, transform 0.3s;
+    border-radius: 15px; /* Add rounded corners */
+}
+
+/* Rounded buttons */
+button {
+    border-radius: 8px; /* Add rounded corners to all buttons */
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+/* Additional styling for popup buttons */
+#popup button, #pausePopup button {
+    border-radius: 8px;
+}
+
     </style>
 </head>
 <body>
