@@ -9,7 +9,7 @@
     <style>
         body { font-family: Arial, sans-serif; text-align: center; padding: 20px; }
         #task { font-size: 1.5em; margin-top: 20px; }
-        #getBusyButton { padding: 10px 20px; font-size: 1em; cursor: pointer; }
+        #getBusyButton { padding: 10px 20px; font-size: 1em; cursor: pointer; border-radius: 8px; }
 
         #imageContainer {
             display: flex;
@@ -33,6 +33,7 @@
             height: 100%;
             object-fit: contain;
             transition: filter 0.3s, transform 0.3s;
+            border-radius: 15px; /* Rounded corners for the image */
         }
 
         /* Centered aftertext overlay */
@@ -44,11 +45,27 @@
             font-size: 24pt;
             font-weight: bold;
             padding: 10px 20px;
-            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background for highlight */
+            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
             border-radius: 8px;
             display: none;
             text-align: center;
-            max-width: 80%; /* Ensures text wraps within the image */
+            max-width: 80%;
+        }
+
+        /* Styled popup */
+        #popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 10px 20px;
+            font-size: 24pt;
+            font-weight: bold;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 8px;
+            display: none;
+            text-align: center;
+            max-width: 80%;
         }
 
         .activeTimer {
@@ -56,7 +73,7 @@
             transform: scale(0.95);
         }
 
-        #popup, #pausePopup {
+        #pausePopup {
             position: fixed;
             top: 50%;
             left: 50%;
@@ -102,30 +119,8 @@
             padding: 10px 20px;
             font-size: 1em;
             cursor: pointer;
+            border-radius: 8px;
         }
-
-        /* Rounded image */
-#taskImage {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    transition: filter 0.3s, transform 0.3s;
-    border-radius: 15px; /* Add rounded corners */
-}
-
-/* Rounded buttons */
-button {
-    border-radius: 8px; /* Add rounded corners to all buttons */
-    padding: 10px 20px;
-    font-size: 1em;
-    cursor: pointer;
-}
-
-/* Additional styling for popup buttons */
-#popup button, #pausePopup button {
-    border-radius: 8px;
-}
-
     </style>
 </head>
 <body>
@@ -138,6 +133,7 @@ button {
         <div id="afterTextOverlay">After Text</div>
     </div>
 
+    <!-- Styled Popup -->
     <div id="popup">
         <p>Ready for the timer?</p>
         <button id="yesButton">Yes</button>
@@ -193,44 +189,44 @@ button {
             })
             .catch(error => console.error('Error loading tasks:', error));
 
-            function getRandomTask() {
-    if (tasks.length === 0) {
-        alert("Tasks are not loaded yet. Please try again.");
-        return;
-    }
+        function getRandomTask() {
+            if (tasks.length === 0) {
+                alert("Tasks are not loaded yet. Please try again.");
+                return;
+            }
 
-    // Clear any existing aftertext
-    document.getElementById('afterTextOverlay').style.display = 'none';
+            // Clear any existing aftertext and disable Get Busy button
+            document.getElementById('afterTextOverlay').style.display = 'none';
+            document.getElementById('getBusyButton').disabled = true;
 
-    let weightedTasks = [];
-    tasks.forEach(task => {
-        let weight = Math.round(task.probability / 100 * 10);
-        for (let i = 0; i < weight; i++) {
-            weightedTasks.push(task);
+            let weightedTasks = [];
+            tasks.forEach(task => {
+                let weight = Math.round(task.probability / 100 * 10);
+                for (let i = 0; i < weight; i++) {
+                    weightedTasks.push(task);
+                }
+            });
+
+            let randomTask;
+            do {
+                randomTask = weightedTasks[Math.floor(Math.random() * weightedTasks.length)];
+            } while (lastTask && randomTask.name === lastTask.name);
+
+            lastTask = randomTask;
+            currentTask = randomTask;
+
+            hideInitialMessage(randomTask.name);
+
+            const taskImage = document.getElementById('taskImage');
+            taskImage.src = 'images/' + randomTask.image;
+            taskImage.style.display = 'block';
+
+            taskImage.onerror = function() {
+                console.error(`Failed to load image: ${taskImage.src}`);
+                taskImage.style.display = 'none';
+                document.getElementById('task').innerText = `Failed to load image for "${randomTask.name}". Check that "images/${randomTask.image}" exists.`;
+            };
         }
-    });
-
-    let randomTask;
-    do {
-        randomTask = weightedTasks[Math.floor(Math.random() * weightedTasks.length)];
-    } while (lastTask && randomTask.name === lastTask.name);
-
-    lastTask = randomTask;
-    currentTask = randomTask;
-
-    hideInitialMessage(randomTask.name);
-
-    const taskImage = document.getElementById('taskImage');
-    taskImage.src = 'images/' + randomTask.image;
-    taskImage.style.display = 'block';
-
-    taskImage.onerror = function() {
-        console.error(`Failed to load image: ${taskImage.src}`);
-        taskImage.style.display = 'none';
-        document.getElementById('task').innerText = `Failed to load image for "${randomTask.name}". Check that "images/${randomTask.image}" exists.`;
-    };
-}
-
 
         function startProgressBar(duration) {
             paused = false;
@@ -241,6 +237,7 @@ button {
             progressContainer.style.width = taskImage.offsetWidth + 'px';
             progressContainer.style.display = 'block';
             document.getElementById('cancelTimerButton').style.display = 'block';
+            document.getElementById('getBusyButton').disabled = true; // Disable Get Busy button during timer
             taskImage.classList.add('activeTimer');
 
             progressInterval = setInterval(() => {
@@ -269,6 +266,7 @@ button {
             document.getElementById('afterTextOverlay').style.display = 'none';
             document.getElementById('taskImage').classList.remove('activeTimer');
             document.getElementById('cancelTimerButton').style.display = 'none';
+            document.getElementById('getBusyButton').disabled = false; // Re-enable Get Busy button
             progress = 0;
             elapsedTime = 0;
         }
@@ -278,7 +276,6 @@ button {
             afterTextOverlay.innerText = currentTask.aftertext;
             afterTextOverlay.style.display = 'block';
 
-            // Apply random color
             const randomColor = `hsl(${Math.floor(Math.random() * 360)}, 100%, 50%)`;
             afterTextOverlay.style.color = randomColor;
         }
@@ -287,6 +284,7 @@ button {
         document.getElementById('taskImage').addEventListener('click', () => {
             if (!currentTask) return;
             document.getElementById('popup').style.display = 'block';
+            document.getElementById('getBusyButton').disabled = true; // Disable Get Busy button when popup is open
         });
 
         document.getElementById('yesButton').addEventListener('click', () => {
@@ -297,6 +295,7 @@ button {
 
         document.getElementById('cancelButton').addEventListener('click', () => {
             document.getElementById('popup').style.display = 'none';
+            document.getElementById('getBusyButton').disabled = false; // Re-enable Get Busy button when popup is closed
         });
 
         document.getElementById('cancelTimerButton').addEventListener('click', () => {
