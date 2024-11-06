@@ -212,14 +212,20 @@
         </div>
 
         <div class="formField">
-            <label for="timeSelect">I have about...</label>
-            <select id="timeSelect">
-                <option value="">Select available time</option>
-                <option value="1">1 min</option>
-                <option value="5">5 min</option>
-                <option value="20">20 min</option>
-                <option value="60">1 hour</option>
-            </select>
+            <label>Where are you?</label>
+            <div class="radioGroup">
+                <input type="radio" id="1" name="environment" value="1 min">
+                <label for="home">Home</label>
+        
+                <input type="radio" id="5" name="environment" value="5 min">
+                <label for="outside">Outside</label>
+        
+                <input type="radio" id="20" name="environment" value="20 min">
+                <label for="work">Work</label>
+        
+                <input type="radio" id="60" name="environment" value="1 hour">
+                <label for="in-transit">In-transit</label>
+            </div>
         </div>
     </form>
 
