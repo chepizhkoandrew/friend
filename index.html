@@ -11,342 +11,110 @@
         #task { font-size: 1.5em; margin-top: 20px; }
         #getBusyButton { padding: 10px 20px; font-size: 1em; cursor: pointer; border-radius: 8px; }
 
-        /* Centering input and button block */
-        #nameInputContainer {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-bottom: 20px;
+        /* Centering form container */
+        #formContainer {
+            width: 500px;
+            margin: 0 auto;
+            text-align: left;
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: #f9f9f9;
         }
 
-        /* Styling for name input field */
-        #nameLabel {
-            font-size: 1.2em;
+        /* Styling form fields */
+        .formField {
+            margin-bottom: 15px;
+        }
+
+        label {
+            font-size: 1.1em;
             margin-bottom: 5px;
+            display: block;
         }
 
-        #nameInput {
-            width: 200px;
+        input[type="text"], select {
+            width: 100%;
             padding: 8px;
             font-size: 1em;
             border-radius: 5px;
             border: 1px solid #ccc;
+        }
+
+        /* Styling for name input field */
+        #nameInput {
             text-align: center;
-        }
-
-        #imageContainer {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 500px;
-            height: 500px;
-            margin: 0 auto;
-            overflow: hidden;
-            position: relative;
-            background-color: transparent;
-            transition: transform 0.3s;
-        }
-
-        #imageContainer:hover {
-            transform: scale(1.02);
-        }
-
-        #taskImage {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            transition: filter 0.3s, transform 0.3s;
-            border-radius: 15px; /* Rounded corners for the image */
-        }
-
-        /* Centered aftertext overlay */
-        #afterTextOverlay {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 24pt;
-            font-weight: bold;
-            padding: 10px 20px;
-            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
-            border-radius: 8px;
-            display: none;
-            text-align: center;
-            max-width: 80%;
-        }
-
-        /* Styled popup */
-        #popup {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            padding: 10px 20px;
-            font-size: 24pt;
-            font-weight: bold;
-            background-color: rgba(255, 255, 255, 0.8);
-            border-radius: 8px;
-            display: none;
-            text-align: center;
-            max-width: 80%;
-        }
-
-        .activeTimer {
-            filter: grayscale(100%);
-            transform: scale(0.95);
-        }
-
-        #pausePopup {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            padding: 20px;
-            background: white;
-            border: 1px solid #ddd;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            text-align: center;
-            display: none;
-        }
-
-        #progressContainerWrapper {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            margin-top: 20px;
-        }
-
-        #progressContainer {
-            width: 500px;
-            height: 30px;
-            background-color: #e0e0e0;
-            border-radius: 15px;
-            display: none;
-        }
-
-        #progressBar {
-            width: 0;
-            height: 100%;
-            background-color: green;
-            border-radius: 15px;
-        }
-
-        @keyframes blink {
-            50% { opacity: 0.5; }
-        }
-
-        #cancelTimerButton {
-            display: none;
-            margin-top: 10px;
-            padding: 10px 20px;
-            font-size: 1em;
-            cursor: pointer;
-            border-radius: 8px;
         }
     </style>
 </head>
 <body>
 
-    <!-- Name Input Block -->
-    <div id="nameInputContainer">
-        <label id="nameLabel" for="nameInput">Name:</label>
-        <input type="text" id="nameInput" maxlength="20" placeholder="Enter your name">
+    <!-- Form Container -->
+    <div id="formContainer">
+        <div class="formField">
+            <label for="nameInput">Name:</label>
+            <input type="text" id="nameInput" maxlength="20" placeholder="Enter your name">
+        </div>
+
+        <div class="formField">
+            <label for="environmentSelect">Where are you?</label>
+            <select id="environmentSelect">
+                <option value="">Select your environment</option>
+                <option value="home">Home</option>
+                <option value="outside">Outside</option>
+                <option value="work">Work</option>
+                <option value="in-transit">In-transit</option>
+            </select>
+        </div>
+
+        <div class="formField">
+            <label for="timeSelect">I have about...</label>
+            <select id="timeSelect">
+                <option value="">Select available time</option>
+                <option value="1">1 min</option>
+                <option value="5">5 min</option>
+                <option value="20">20 min</option>
+                <option value="60">1 hour</option>
+            </select>
+        </div>
     </div>
 
     <button id="getBusyButton" disabled>Get Busy</button>
-    <p id="task">Press "Get Busy" to start!</p>
-    
-    <div id="imageContainer">
+    <p id="task">Fill out the form to start!</p>
+
+    <div id="imageContainer" style="display: none;">
         <img id="taskImage" src="" alt="" style="display: none;">
         <div id="afterTextOverlay">After Text</div>
     </div>
 
-    <div id="popup">
-        <p>Ready for the timer?</p>
-        <button id="yesButton">Yes</button>
-        <button id="cancelButton">Cancel</button>
-    </div>
-
-    <div id="pausePopup">
-        <p>Want to skip it?</p>
-        <button id="resumeButton">No</button>
-        <button id="confirmCancelButton">Yes</button>
-    </div>
-
-    <div id="progressContainerWrapper">
-        <div id="progressContainer">
-            <div id="progressBar"></div>
-        </div>
-        <button id="cancelTimerButton">Cancel</button>
-    </div>
-
     <!-- JavaScript Block -->
     <script>
-        let tasks = [];
-        let lastTask = null;
-        let currentTask = null;
-        let progressInterval = null;
-        let paused = false;
-        let progress = 0;
-        let elapsedTime = 0;
+        const nameInput = document.getElementById('nameInput');
+        const environmentSelect = document.getElementById('environmentSelect');
+        const timeSelect = document.getElementById('timeSelect');
+        const getBusyButton = document.getElementById('getBusyButton');
 
-        // Disable the Get Busy button initially
-        document.getElementById('getBusyButton').disabled = true;
+        function validateForm() {
+            const isNameValid = nameInput.value.length >= 3;
+            const isEnvironmentSelected = environmentSelect.value !== '';
+            const isTimeSelected = timeSelect.value !== '';
 
-        function showInitialMessage() {
-            document.getElementById('task').innerText = 'Press "Get Busy" to start!';
+            // Enable "Get Busy" button if all fields are defined
+            getBusyButton.disabled = !(isNameValid && isEnvironmentSelected && isTimeSelected);
         }
 
-        function hideInitialMessage(taskName) {
-            document.getElementById('task').innerText = taskName;
-        }
-
-        // Fetch tasks from JSON file
-        fetch('tasks.json')
-            .then(response => {
-                if (!response.ok) throw new Error('Network response was not ok');
-                return response.json();
-            })
-            .then(data => {
-                tasks = data;
-                console.log("Tasks loaded successfully:", tasks);
-
-                // Enable Get Busy button once tasks and name are ready
-                document.getElementById('nameInput').addEventListener('input', () => {
-                    document.getElementById('getBusyButton').disabled = !document.getElementById('nameInput').value;
-                });
-
-                showInitialMessage();
-            })
-            .catch(error => console.error('Error loading tasks:', error));
+        // Attach event listeners for form validation
+        nameInput.addEventListener('input', validateForm);
+        environmentSelect.addEventListener('change', validateForm);
+        timeSelect.addEventListener('change', validateForm);
 
         function getRandomTask() {
-            if (tasks.length === 0) {
-                alert("Tasks are not loaded yet. Please try again.");
-                return;
-            }
-
-            // Clear any existing aftertext and disable Get Busy button
-            document.getElementById('afterTextOverlay').style.display = 'none';
-            document.getElementById('getBusyButton').disabled = true;
-
-            let weightedTasks = [];
-            tasks.forEach(task => {
-                let weight = Math.round(task.probability / 100 * 10);
-                for (let i = 0; i < weight; i++) {
-                    weightedTasks.push(task);
-                }
-            });
-
-            let randomTask;
-            do {
-                randomTask = weightedTasks[Math.floor(Math.random() * weightedTasks.length)];
-            } while (lastTask && randomTask.name === lastTask.name);
-
-            lastTask = randomTask;
-            currentTask = randomTask;
-
-            hideInitialMessage(randomTask.name);
-
-            const taskImage = document.getElementById('taskImage');
-            taskImage.src = 'images/' + randomTask.image;
-            taskImage.style.display = 'block';
-
-            taskImage.onerror = function() {
-                console.error(`Failed to load image: ${taskImage.src}`);
-                taskImage.style.display = 'none';
-                document.getElementById('task').innerText = `Failed to load image for "${randomTask.name}". Check that "images/${randomTask.image}" exists.`;
-                document.getElementById('getBusyButton').disabled = false; // Re-enable if image fails to load
-            };
+            // Implement logic for filtering tasks based on user input
+            // Example logic can include filtering tasks based on environment and time constraints
+            document.getElementById('task').innerText = 'Random task selected!';
         }
 
-        function startProgressBar(duration) {
-            paused = false;
-            elapsedTime = progress;
-            const progressBar = document.getElementById('progressBar');
-            const progressContainer = document.getElementById('progressContainer');
-            const taskImage = document.getElementById('taskImage');
-            progressContainer.style.width = taskImage.offsetWidth + 'px';
-            progressContainer.style.display = 'block';
-            document.getElementById('cancelTimerButton').style.display = 'block';
-            taskImage.classList.add('activeTimer');
-
-            progressInterval = setInterval(() => {
-                if (!paused) {
-                    elapsedTime += 1;
-                    const fraction = (elapsedTime / duration) * 100;
-                    progressBar.style.width = fraction + '%';
-
-                    if (fraction >= 85) {
-                        progressBar.style.backgroundColor = 'red';
-                        progressBar.style.animation = 'blink 1s infinite';
-                    }
-
-                    if (elapsedTime >= duration) {
-                        clearInterval(progressInterval);
-                        resetToInitialState();
-                        showAfterText();
-                    }
-                }
-            }, 1000);
-        }
-
-        function resetToInitialState() {
-            showInitialMessage();
-            document.getElementById('progressContainer').style.display = 'none';
-            document.getElementById('afterTextOverlay').style.display = 'none';
-            document.getElementById('taskImage').classList.remove('activeTimer');
-            document.getElementById('cancelTimerButton').style.display = 'none';
-            document.getElementById('getBusyButton').disabled = false; // Re-enable Get Busy button
-            progress = 0;
-            elapsedTime = 0;
-        }
-
-        function showAfterText() {
-            const afterTextOverlay = document.getElementById('afterTextOverlay');
-            afterTextOverlay.innerText = currentTask.aftertext;
-            afterTextOverlay.style.display = 'block';
-
-            const randomColor = `hsl(${Math.floor(Math.random() * 360)}, 100%, 50%)`;
-            afterTextOverlay.style.color = randomColor;
-        }
-
-        document.getElementById('getBusyButton').addEventListener('click', getRandomTask);
-
-        document.getElementById('taskImage').addEventListener('click', () => {
-            if (!currentTask) return;
-            document.getElementById('popup').style.display = 'block';
-            document.getElementById('getBusyButton').disabled = true; // Disable Get Busy button when popup is open
-        });
-
-        document.getElementById('yesButton').addEventListener('click', () => {
-            document.getElementById('popup').style.display = 'none';
-            document.getElementById('afterTextOverlay').style.display = 'none';
-            startProgressBar(currentTask.time);
-        });
-
-        document.getElementById('cancelButton').addEventListener('click', () => {
-            document.getElementById('popup').style.display = 'none';
-            document.getElementById('getBusyButton').disabled = false; // Re-enable Get Busy button when popup is closed
-        });
-
-        document.getElementById('cancelTimerButton').addEventListener('click', () => {
-            paused = true;
-            clearInterval(progressInterval);
-            document.getElementById('pausePopup').style.display = 'block';
-        });
-
-        document.getElementById('confirmCancelButton').addEventListener('click', () => {
-            document.getElementById('pausePopup').style.display = 'none';
-            resetToInitialState();
-        });
-
-        document.getElementById('resumeButton').addEventListener('click', () => {
-            document.getElementById('pausePopup').style.display = 'none';
-            paused = false;
-            startProgressBar(currentTask.time);
-        });
+        getBusyButton.addEventListener('click', getRandomTask);
     </script>
 </body>
 </html>
