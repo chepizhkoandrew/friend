@@ -268,10 +268,20 @@
         // Disable the Get Busy button initially
         getBusyButton.disabled = true;
 
-        function validateForm() {
-            const isNameValid = nameInput.value.length >= 3;
-            const isEnvironmentSelected = environmentSelect.value !== '';
-            const isTimeSelected = timeSelect.value !== '';
+        const radioEnvironment = document.getElementsByName('environment');
+const radioTime = document.getElementsByName('time');
+
+function validateForm() {
+    const isNameValid = nameInput.value.length >= 3;
+    const isEnvironmentSelected = Array.from(radioEnvironment).some(radio => radio.checked);
+    const isTimeSelected = Array.from(radioTime).some(radio => radio.checked);
+
+    getBusyButton.disabled = !(isNameValid && isEnvironmentSelected && isTimeSelected);
+}
+
+radioEnvironment.forEach(radio => radio.addEventListener('change', validateForm));
+radioTime.forEach(radio => radio.addEventListener('change', validateForm));
+
 
             // Enable "Get Busy" button if all fields are defined
             getBusyButton.disabled = !(isNameValid && isEnvironmentSelected && isTimeSelected);
