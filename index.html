@@ -11,29 +11,37 @@
         #task { font-size: 1.5em; margin-top: 20px; }
         #getBusyButton { padding: 10px 20px; font-size: 1em; cursor: pointer; border-radius: 8px; }
 
-        /* Centering input and button block */
-        #nameInputContainer {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-bottom: 20px;
+        /* Centering form container */
+        #formContainer {
+            width: 500px;
+            margin: 0 auto;
+            text-align: left;
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: #f9f9f9;
         }
 
-        /* Styling for name input field */
-        #nameLabel {
-            font-size: 1.2em;
+        /* Styling form fields */
+        .formField {
+            margin-bottom: 15px;
+        }
+
+        label {
+            font-size: 1.1em;
             margin-bottom: 5px;
+            display: block;
         }
 
-        #nameInput {
-            width: 200px;
+        input[type="text"], select {
+            width: 100%;
             padding: 8px;
             font-size: 1em;
             border-radius: 5px;
             border: 1px solid #ccc;
-            text-align: center;
         }
 
+        /* Centering the main image container */
         #imageContainer {
             display: flex;
             justify-content: center;
@@ -148,11 +156,35 @@
 </head>
 <body>
 
-    <!-- Name Input Block -->
-    <div id="nameInputContainer">
-        <label id="nameLabel" for="nameInput">Name:</label>
-        <input type="text" id="nameInput" maxlength="20" placeholder="Enter your name">
-    </div>
+    <!-- Form Container -->
+    <form id="formContainer">
+        <div class="formField">
+            <label for="nameInput">Name:</label>
+            <input type="text" id="nameInput" maxlength="20" placeholder="Enter your name">
+        </div>
+
+        <div class="formField">
+            <label for="environmentSelect">Where are you?</label>
+            <select id="environmentSelect">
+                <option value="">Select your environment</option>
+                <option value="home">Home</option>
+                <option value="outside">Outside</option>
+                <option value="work">Work</option>
+                <option value="in-transit">In-transit</option>
+            </select>
+        </div>
+
+        <div class="formField">
+            <label for="timeSelect">I have about...</label>
+            <select id="timeSelect">
+                <option value="">Select available time</option>
+                <option value="1">1 min</option>
+                <option value="5">5 min</option>
+                <option value="20">20 min</option>
+                <option value="60">1 hour</option>
+            </select>
+        </div>
+    </form>
 
     <button id="getBusyButton" disabled>Get Busy</button>
     <p id="task">Press "Get Busy" to start!</p>
@@ -191,33 +223,35 @@
         let progress = 0;
         let elapsedTime = 0;
 
+        const nameInput = document.getElementById('nameInput');
+        const environmentSelect = document.getElementById('environmentSelect');
+        const timeSelect = document.getElementById('timeSelect');
+        const getBusyButton = document.getElementById('getBusyButton');
+
         // Disable the Get Busy button initially
-        document.getElementById('getBusyButton').disabled = true;
+        getBusyButton.disabled = true;
 
-        function showInitialMessage() {
-            document.getElementById('task').innerText = 'Press "Get Busy" to start!';
+        function validateForm() {
+            const isNameValid = nameInput.value.length >= 3;
+            const isEnvironmentSelected = environmentSelect.value !== '';
+            const isTimeSelected = timeSelect.value !== '';
+
+            // Enable "Get Busy" button if all fields are defined
+            getBusyButton.disabled = !(isNameValid && isEnvironmentSelected && isTimeSelected);
         }
 
-        function hideInitialMessage(taskName) {
-            document.getElementById('task').innerText = taskName;
-        }
+        // Attach event listeners for form validation
+        nameInput.addEventListener('input', validateForm);
+        environmentSelect.addEventListener('change', validateForm);
+        timeSelect.addEventListener('change', validateForm);
 
         // Fetch tasks from JSON file
         fetch('tasks.json')
-            .then(response => {
-                if (!response.ok) throw new Error('Network response was not ok');
-                return response.json();
-            })
+            .then(response => response.json())
             .then(data => {
                 tasks = data;
                 console.log("Tasks loaded successfully:", tasks);
-
-                // Enable Get Busy button once tasks and name are ready
-                document.getElementById('nameInput').addEventListener('input', () => {
-                    document.getElementById('getBusyButton').disabled = !document.getElementById('nameInput').value;
-                });
-
-                showInitialMessage();
+                validateForm();
             })
             .catch(error => console.error('Error loading tasks:', error));
 
@@ -227,9 +261,8 @@
                 return;
             }
 
-            // Clear any existing aftertext and disable Get Busy button
             document.getElementById('afterTextOverlay').style.display = 'none';
-            document.getElementById('getBusyButton').disabled = true;
+            getBusyButton.disabled = true;
 
             let weightedTasks = [];
             tasks.forEach(task => {
@@ -247,7 +280,7 @@
             lastTask = randomTask;
             currentTask = randomTask;
 
-            hideInitialMessage(randomTask.name);
+            document.getElementById('task').innerText = randomTask.name;
 
             const taskImage = document.getElementById('taskImage');
             taskImage.src = 'images/' + randomTask.image;
@@ -257,20 +290,17 @@
                 console.error(`Failed to load image: ${taskImage.src}`);
                 taskImage.style.display = 'none';
                 document.getElementById('task').innerText = `Failed to load image for "${randomTask.name}". Check that "images/${randomTask.image}" exists.`;
-                document.getElementById('getBusyButton').disabled = false; // Re-enable if image fails to load
+                getBusyButton.disabled = false;
             };
         }
 
         function startProgressBar(duration) {
             paused = false;
-            elapsedTime = progress;
+            elapsedTime = 0;
             const progressBar = document.getElementById('progressBar');
             const progressContainer = document.getElementById('progressContainer');
-            const taskImage = document.getElementById('taskImage');
-            progressContainer.style.width = taskImage.offsetWidth + 'px';
             progressContainer.style.display = 'block';
             document.getElementById('cancelTimerButton').style.display = 'block';
-            taskImage.classList.add('activeTimer');
 
             progressInterval = setInterval(() => {
                 if (!paused) {
@@ -293,12 +323,11 @@
         }
 
         function resetToInitialState() {
-            showInitialMessage();
+            document.getElementById('task').innerText = 'Press "Get Busy" to start!';
             document.getElementById('progressContainer').style.display = 'none';
             document.getElementById('afterTextOverlay').style.display = 'none';
-            document.getElementById('taskImage').classList.remove('activeTimer');
             document.getElementById('cancelTimerButton').style.display = 'none';
-            document.getElementById('getBusyButton').disabled = false; // Re-enable Get Busy button
+            getBusyButton.disabled = false;
             progress = 0;
             elapsedTime = 0;
         }
@@ -307,46 +336,9 @@
             const afterTextOverlay = document.getElementById('afterTextOverlay');
             afterTextOverlay.innerText = currentTask.aftertext;
             afterTextOverlay.style.display = 'block';
-
-            const randomColor = `hsl(${Math.floor(Math.random() * 360)}, 100%, 50%)`;
-            afterTextOverlay.style.color = randomColor;
         }
 
-        document.getElementById('getBusyButton').addEventListener('click', getRandomTask);
-
-        document.getElementById('taskImage').addEventListener('click', () => {
-            if (!currentTask) return;
-            document.getElementById('popup').style.display = 'block';
-            document.getElementById('getBusyButton').disabled = true; // Disable Get Busy button when popup is open
-        });
-
-        document.getElementById('yesButton').addEventListener('click', () => {
-            document.getElementById('popup').style.display = 'none';
-            document.getElementById('afterTextOverlay').style.display = 'none';
-            startProgressBar(currentTask.time);
-        });
-
-        document.getElementById('cancelButton').addEventListener('click', () => {
-            document.getElementById('popup').style.display = 'none';
-            document.getElementById('getBusyButton').disabled = false; // Re-enable Get Busy button when popup is closed
-        });
-
-        document.getElementById('cancelTimerButton').addEventListener('click', () => {
-            paused = true;
-            clearInterval(progressInterval);
-            document.getElementById('pausePopup').style.display = 'block';
-        });
-
-        document.getElementById('confirmCancelButton').addEventListener('click', () => {
-            document.getElementById('pausePopup').style.display = 'none';
-            resetToInitialState();
-        });
-
-        document.getElementById('resumeButton').addEventListener('click', () => {
-            document.getElementById('pausePopup').style.display = 'none';
-            paused = false;
-            startProgressBar(currentTask.time);
-        });
+        getBusyButton.addEventListener('click', getRandomTask);
     </script>
 </body>
 </html>
