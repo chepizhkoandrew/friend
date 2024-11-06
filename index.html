@@ -41,9 +41,117 @@
             border: 1px solid #ccc;
         }
 
-        /* Styling for name input field */
-        #nameInput {
+        /* Centering the main image container */
+        #imageContainer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 500px;
+            height: 500px;
+            margin: 0 auto;
+            overflow: hidden;
+            position: relative;
+            background-color: transparent;
+            transition: transform 0.3s;
+            display: none; /* Initially hidden */
+        }
+
+        #imageContainer:hover {
+            transform: scale(1.02);
+        }
+
+        #taskImage {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            transition: filter 0.3s, transform 0.3s;
+            border-radius: 15px; /* Rounded corners for the image */
+        }
+
+        /* Centered aftertext overlay */
+        #afterTextOverlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 24pt;
+            font-weight: bold;
+            padding: 10px 20px;
+            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+            border-radius: 8px;
+            display: none;
             text-align: center;
+            max-width: 80%;
+        }
+
+        /* Styled popup */
+        #popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 10px 20px;
+            font-size: 24pt;
+            font-weight: bold;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 8px;
+            display: none;
+            text-align: center;
+            max-width: 80%;
+        }
+
+        .activeTimer {
+            filter: grayscale(100%);
+            transform: scale(0.95);
+        }
+
+        #pausePopup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            background: white;
+            border: 1px solid #ddd;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            display: none;
+        }
+
+        #progressContainerWrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        #progressContainer {
+            width: 500px;
+            height: 30px;
+            background-color: #e0e0e0;
+            border-radius: 15px;
+            display: none;
+        }
+
+        #progressBar {
+            width: 0;
+            height: 100%;
+            background-color: green;
+            border-radius: 15px;
+        }
+
+        @keyframes blink {
+            50% { opacity: 0.5; }
+        }
+
+        #cancelTimerButton {
+            display: none;
+            margin-top: 10px;
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+            border-radius: 8px;
         }
     </style>
 </head>
@@ -82,9 +190,28 @@
     <button id="getBusyButton" disabled>Get Busy</button>
     <p id="task">Fill out the form to start!</p>
 
-    <div id="imageContainer" style="display: none;">
+    <div id="imageContainer">
         <img id="taskImage" src="" alt="" style="display: none;">
         <div id="afterTextOverlay">After Text</div>
+    </div>
+
+    <div id="popup">
+        <p>Ready for the timer?</p>
+        <button id="yesButton">Yes</button>
+        <button id="cancelButton">Cancel</button>
+    </div>
+
+    <div id="pausePopup">
+        <p>Want to skip it?</p>
+        <button id="resumeButton">No</button>
+        <button id="confirmCancelButton">Yes</button>
+    </div>
+
+    <div id="progressContainerWrapper">
+        <div id="progressContainer">
+            <div id="progressBar"></div>
+        </div>
+        <button id="cancelTimerButton">Cancel</button>
     </div>
 
     <!-- JavaScript Block -->
@@ -109,9 +236,29 @@
         timeSelect.addEventListener('change', validateForm);
 
         function getRandomTask() {
-            // Implement logic for filtering tasks based on user input
-            // Example logic can include filtering tasks based on environment and time constraints
-            document.getElementById('task').innerText = 'Random task selected!';
+            if (tasks.length === 0) {
+                alert("Tasks are not loaded yet. Please try again.");
+                return;
+            }
+
+            // Clear any existing aftertext and disable Get Busy button
+            document.getElementById('afterTextOverlay').style.display = 'none';
+            getBusyButton.disabled = true;
+
+            // Example logic for selecting a task based on environment and time constraints
+            const environment = environmentSelect.value;
+            const timeAvailable = parseInt(timeSelect.value);
+
+            let weightedTasks = tasks.filter(task => {
+                return task.environment.includes(environment) && task.time <= timeAvailable;
+            });
+
+            // Logic to select a random task
+            let randomTask = weightedTasks[Math.floor(Math.random() * weightedTasks.length)];
+            document.getElementById('task').innerText = randomTask.name || 'No tasks available';
+
+            // Display task image and other logic here
+            // ...
         }
 
         getBusyButton.addEventListener('click', getRandomTask);
