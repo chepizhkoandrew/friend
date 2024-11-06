@@ -21,6 +21,13 @@
             border-radius: 8px;
             background-color: #f9f9f9;
         }
+        /* CSS to move mainContentWrapper down */
+.moveDown {
+    margin-top: 50px; /* adjust this value as needed */
+    position: relative;
+    top: 100px; /* or however far down you want it to move */
+    transition: top 0.5s ease;
+}
 
         /* Styling form fields */
         .formField {
@@ -41,6 +48,11 @@
             border: 1px solid #ccc;
         }
 
+
+
+
+
+        
         /* Centering the main image container */
         #imageContainer {
             display: flex;
@@ -181,13 +193,7 @@
     color: white;
 }
 
-/* CSS to move mainContentWrapper down */
-.moveDown {
-    margin-top: 50px; /* adjust this value as needed */
-    position: relative;
-    top: 100px; /* or however far down you want it to move */
-    transition: top 0.5s ease;
-}
+
 
 
     </style>
@@ -195,7 +201,7 @@
 <body>
 
     <!-- Form Container -->
-    <form id="formfieldsblock">
+    <form id="formContainer">
         <div class="formField">
             <label for="nameInput">Name:</label>
             <input type="text" id="nameInput" maxlength="20" placeholder="Enter your name" style="background-color: #d0f0ff; border: 1px solid #a0cbe8; border-radius: 5px; padding: 8px; width: 100%; font-size: 1em;">
@@ -239,7 +245,6 @@
     
     <div id="mainContentWrapper">
         <form id="formContainer">
-            <!-- form contents here -->
         </form>
         <button id="getBusyButton" disabled>Get Busy</button>
         <p id="task">Press "Get Busy" to start!</p>
@@ -291,22 +296,17 @@
 
          // Function to validate the form
          function validateForm() {
-            const isNameValid = nameInput.value.length >= 3;
-            const isEnvironmentSelected = Array.from(radioEnvironment).some(radio => radio.checked);
-            const isTimeSelected = Array.from(radioTime).some(radio => radio.checked);
+    const isNameValid = nameInput.value.length >= 3;
+    const isEnvironmentSelected = Array.from(radioEnvironment).some(radio => radio.checked);
+    const isTimeSelected = Array.from(radioTime).some(radio => radio.checked);
+    getBusyButton.disabled = !(isNameValid && isEnvironmentSelected && isTimeSelected);
+}
 
-            getBusyButton.disabled = !(isNameValid && isEnvironmentSelected && isTimeSelected);
-        }
-
+       
         // Attach event listeners for form validation
         nameInput.addEventListener('input', validateForm);
-        radioEnvironment.forEach(radio => radio.addEventListener('change', validateForm));
-        radioTime.forEach(radio => radio.addEventListener('change', validateForm));
-
-        // Attach event listeners for form validation
-        nameInput.addEventListener('input', validateForm);
-        radioEnvironment.forEach(radio => radio.addEventListener('change', validateForm));
-        radioTime.forEach(radio => radio.addEventListener('change', validateForm));
+radioEnvironment.forEach(radio => radio.addEventListener('change', validateForm));
+radioTime.forEach(radio => radio.addEventListener('change', validateForm));
 
         // Fetch tasks from JSON file
         fetch('tasks.json')
@@ -405,6 +405,9 @@
         getBusyButton.addEventListener('click', getRandomTask);
         document.getElementById('getBusyButton').addEventListener('click', function() {
     document.getElementById('mainContentWrapper').classList.add('moveDown');
+});
+getBusyButton.addEventListener('click', function() {
+    mainContentWrapper.classList.add('moveDown');
 });
 
         // Event listener for clicking on the task image
