@@ -22,11 +22,7 @@
             background-color: #f9f9f9;
         }
         /* CSS to move mainContentWrapper down */
-.moveDown {
-    position:absolute;
-    bottom:0;
-    transition: top 0.5s ease;
-}
+
 
         /* Styling form fields */
         .formField {
@@ -47,6 +43,14 @@
             border: 1px solid #ccc;
         }
 
+
+        body, html {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
 
 
@@ -79,8 +83,8 @@
 
 #app {
     display: flex;
-    overflow: hidden; /* Hides content outside the visible slot */
-    width: 100vw; /* Set the width to the viewport width, or use a specific pixel size */
+    overflow: visible; /* Hides content outside the visible slot */
+    width: 150vw; /* Set the width to the viewport width, or use a specific pixel size */
     max-width: 500px; /* Optional: maximum width */
     height: 100vh; /* Optional: adjust to control the height of each slot */
     max-height: 500px; /* Optional: maximum height */
@@ -229,6 +233,10 @@
     transform: translateX(100%);
 }
 
+#prevBtn, #nextBtn {
+    display: none;
+}
+
 #mainContentWrapper, #activity {
     display: flex;
     flex-direction: column;
@@ -243,6 +251,9 @@
     min-height: 100%;
     transition: transform 0.5s ease;  /* Smooth slide transition */
     box-sizing: border-box;
+    padding-left: 40%;  /* Adjust to control the visible space on the right */
+    display: flex;
+    justify-content: flex-start; /* Aligns content to the left of the padding */
 }
 
     </style>
@@ -290,7 +301,7 @@
     
         <!-- Carousel Content 2 -->
         <div id="activity" class="carousel-content">
-            <p id="task">Press "Get Busy" to start!</p>
+            <p id="task">task</p>
             <div id="imageContainer">
                 <img id="taskImage" src="" alt="Task Image" style="display: none;">
                 <div id="afterTextOverlay">After Text</div>
@@ -423,7 +434,7 @@ radioTime.forEach(radio => radio.addEventListener('change', validateForm));
         }
 
         function resetToInitialState() {
-            document.getElementById('task').innerText = 'Press "Get Busy" to start!';
+            document.getElementById('task').innerText = '';
             document.getElementById('progressContainer').style.display = 'none';
             document.getElementById('afterTextOverlay').style.display = 'none';
             document.getElementById('cancelTimerButton').style.display = 'none';
