@@ -7,68 +7,48 @@
     
     <!-- CSS Block -->
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; padding: 20px; background-color: #f3f3f3; }
+        body { font-family: Arial, sans-serif; text-align: center; padding: 20px; }
         #task { font-size: 1.5em; margin-top: 20px; }
-        #getBusyButton { padding: 10px 20px; font-size: 1em; cursor: pointer; border-radius: 8px; margin-top: 20px; }
+        #getBusyButton { padding: 10px 20px; font-size: 1em; cursor: pointer; border-radius: 8px; }
 
         /* Centering form container */
         #formContainer {
             width: 500px;
             margin: 0 auto;
             text-align: left;
-            border: 1px solid #ddd;
+            border: 1px solid #ccc;
             padding: 20px;
             border-radius: 8px;
-            background-color: #fff;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            background-color: #f9f9f9;
         }
 
         /* Styling form fields */
         .formField {
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
         label {
             font-size: 1.1em;
-            margin-bottom: 10px;
-            color: #333;
+            margin-bottom: 5px;
             display: block;
-            font-weight: bold;
         }
 
-        input[type="text"] {
+        input[type="text"], select {
             width: 100%;
             padding: 8px;
             font-size: 1em;
             border-radius: 5px;
-            border: 1px solid #ddd;
-            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.05);
+            border: 1px solid #ccc;
         }
 
-        .radioGroup {
-            display: flex;
-            justify-content: space-around;
-            margin-top: 10px;
-        }
-
-        .radioOption {
-            display: flex;
-            align-items: center;
-            margin-right: 10px;
-        }
-
-        .radioOption input[type="radio"] {
-            margin-right: 5px;
-            accent-color: #4CAF50; /* Customize the radio button color */
-        }
-
+        /* Centering the main image container */
         #imageContainer {
             display: flex;
             justify-content: center;
             align-items: center;
             width: 500px;
             height: 500px;
-            margin: 20px auto;
+            margin: 0 auto;
             overflow: hidden;
             position: relative;
             background-color: transparent;
@@ -84,9 +64,10 @@
             height: 100%;
             object-fit: contain;
             transition: filter 0.3s, transform 0.3s;
-            border-radius: 15px;
+            border-radius: 15px; /* Rounded corners for the image */
         }
 
+        /* Centered aftertext overlay */
         #afterTextOverlay {
             position: absolute;
             top: 50%;
@@ -95,13 +76,14 @@
             font-size: 24pt;
             font-weight: bold;
             padding: 10px 20px;
-            background-color: rgba(255, 255, 255, 0.8);
+            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
             border-radius: 8px;
             display: none;
             text-align: center;
             max-width: 80%;
         }
 
+        /* Styled popup */
         #popup {
             position: fixed;
             top: 50%;
@@ -120,6 +102,19 @@
         .activeTimer {
             filter: grayscale(100%);
             transform: scale(0.95);
+        }
+
+        #pausePopup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            background: white;
+            border: 1px solid #ddd;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            display: none;
         }
 
         #progressContainerWrapper {
@@ -169,27 +164,30 @@
         </div>
 
         <div class="formField">
-            <label>Where are you?</label>
-            <div class="radioGroup" id="environmentSelect">
-                <label class="radioOption"><input type="radio" name="environment" value="home"> Home</label>
-                <label class="radioOption"><input type="radio" name="environment" value="outside"> Outside</label>
-                <label class="radioOption"><input type="radio" name="environment" value="work"> Work</label>
-                <label class="radioOption"><input type="radio" name="environment" value="in-transit"> In-transit</label>
-            </div>
+            <label for="environmentSelect">Where are you?</label>
+            <select id="environmentSelect">
+                <option value="">Select your environment</option>
+                <option value="home">Home</option>
+                <option value="outside">Outside</option>
+                <option value="work">Work</option>
+                <option value="in-transit">In-transit</option>
+            </select>
         </div>
 
         <div class="formField">
-            <label>I have about...</label>
-            <div class="radioGroup" id="timeSelect">
-                <label class="radioOption"><input type="radio" name="time" value="1"> 1 min</label>
-                <label class="radioOption"><input type="radio" name="time" value="5"> 5 min</label>
-                <label class="radioOption"><input type="radio" name="time" value="20"> 20 min</label>
-                <label class="radioOption"><input type="radio" name="time" value="60"> 1 hour</label>
-            </div>
+            <label for="timeSelect">I have about...</label>
+            <select id="timeSelect">
+                <option value="">Select available time</option>
+                <option value="1">1 min</option>
+                <option value="5">5 min</option>
+                <option value="20">20 min</option>
+                <option value="60">1 hour</option>
+            </select>
         </div>
     </form>
 
     <button id="getBusyButton" disabled>Get Busy</button>
+    <p id="task">Press "Get Busy" to start!</p>
     
     <div id="imageContainer">
         <img id="taskImage" src="" alt="" style="display: none;">
@@ -200,6 +198,19 @@
         <p>Ready for the timer?</p>
         <button id="yesButton">Yes</button>
         <button id="cancelButton">Cancel</button>
+    </div>
+
+    <div id="pausePopup">
+        <p>Want to skip it?</p>
+        <button id="resumeButton">No</button>
+        <button id="confirmCancelButton">Yes</button>
+    </div>
+
+    <div id="progressContainerWrapper">
+        <div id="progressContainer">
+            <div id="progressBar"></div>
+        </div>
+        <button id="cancelTimerButton">Cancel</button>
     </div>
 
     <!-- JavaScript Block -->
@@ -213,26 +224,33 @@
         let elapsedTime = 0;
 
         const nameInput = document.getElementById('nameInput');
-        const getBusyButton = document.getElementById('getBusyButton');
         const environmentSelect = document.getElementById('environmentSelect');
         const timeSelect = document.getElementById('timeSelect');
+        const getBusyButton = document.getElementById('getBusyButton');
 
-        // Form validation to enable Get Busy button
+        // Disable the Get Busy button initially
+        getBusyButton.disabled = true;
+
         function validateForm() {
             const isNameValid = nameInput.value.length >= 3;
-            const isEnvironmentSelected = !!document.querySelector('input[name="environment"]:checked');
-            const isTimeSelected = !!document.querySelector('input[name="time"]:checked');
+            const isEnvironmentSelected = environmentSelect.value !== '';
+            const isTimeSelected = timeSelect.value !== '';
+
+            // Enable "Get Busy" button if all fields are defined
             getBusyButton.disabled = !(isNameValid && isEnvironmentSelected && isTimeSelected);
         }
 
+        // Attach event listeners for form validation
         nameInput.addEventListener('input', validateForm);
         environmentSelect.addEventListener('change', validateForm);
         timeSelect.addEventListener('change', validateForm);
 
+        // Fetch tasks from JSON file
         fetch('tasks.json')
             .then(response => response.json())
             .then(data => {
                 tasks = data;
+                console.log("Tasks loaded successfully:", tasks);
                 validateForm();
             })
             .catch(error => console.error('Error loading tasks:', error));
@@ -320,14 +338,17 @@
             afterTextOverlay.style.display = 'block';
         }
 
+        // Event listener for Get Busy button
         getBusyButton.addEventListener('click', getRandomTask);
 
+        // Event listener for clicking on the task image
         document.getElementById('taskImage').addEventListener('click', () => {
             if (!currentTask) return;
             document.getElementById('popup').style.display = 'block';
-            getBusyButton.disabled = true;
+            getBusyButton.disabled = true; // Disable Get Busy button when popup is open
         });
 
+        // Event listeners for popup buttons
         document.getElementById('yesButton').addEventListener('click', () => {
             document.getElementById('popup').style.display = 'none';
             document.getElementById('afterTextOverlay').style.display = 'none';
@@ -336,7 +357,7 @@
 
         document.getElementById('cancelButton').addEventListener('click', () => {
             document.getElementById('popup').style.display = 'none';
-            getBusyButton.disabled = false;
+            getBusyButton.disabled = false; // Re-enable Get Busy button when popup is closed
         });
     </script>
 </body>
