@@ -201,50 +201,49 @@
 <body>
 
     <!-- Form Container -->
-    <form id="formContainer">
-        <div class="formField">
-            <label for="nameInput">Name:</label>
-            <input type="text" id="nameInput" maxlength="20" placeholder="Enter your name" style="background-color: #d0f0ff; border: 1px solid #a0cbe8; border-radius: 5px; padding: 8px; width: 100%; font-size: 1em;">
-        </div>
-
-        <div class="formField">
-            <label>I'm at..</label>
-            <div class="radioGroup">
-                <input type="radio" id="home" name="environment" value="home">
-                <label for="home">Home</label>
-        
-                <input type="radio" id="outside" name="environment" value="outside">
-                <label for="outside">Outside</label>
-        
-                <input type="radio" id="work" name="environment" value="work">
-                <label for="work">Work</label>
-        
-                <input type="radio" id="in-transit" name="environment" value="in-transit">
-                <label for="in-transit">In-transit</label>
-            </div>
-        </div>
-
-        <div class="formField">
-            <label>I have about..</label>
-            <div class="radioGroup">
-                <input type="radio" id="1" name="time" value="1">
-                <label for="1">1 min</label>
-        
-                <input type="radio" id="5" name="time" value="5">
-                <label for="5">5 min</label>
-        
-                <input type="radio" id="20" name="time" value="20">
-                <label for="20">20 min</label>
-        
-                <input type="radio" id="60" name="time" value="60">
-                <label for="60">1 hour</label>
-            </div>
-        </div>
-    </form>
+ 
 
     
     <div id="mainContentWrapper">
         <form id="formContainer">
+            <div class="formField">
+                <label for="nameInput">Name:</label>
+                <input type="text" id="nameInput" maxlength="20" placeholder="Enter your name" style="background-color: #d0f0ff; border: 1px solid #a0cbe8; border-radius: 5px; padding: 8px; width: 100%; font-size: 1em;">
+            </div>
+    
+            <div class="formField">
+                <label>I'm at..</label>
+                <div class="radioGroup">
+                    <input type="radio" id="home" name="environment" value="home">
+                    <label for="home">Home</label>
+            
+                    <input type="radio" id="outside" name="environment" value="outside">
+                    <label for="outside">Outside</label>
+            
+                    <input type="radio" id="work" name="environment" value="work">
+                    <label for="work">Work</label>
+            
+                    <input type="radio" id="in-transit" name="environment" value="in-transit">
+                    <label for="in-transit">In-transit</label>
+                </div>
+            </div>
+    
+            <div class="formField">
+                <label>I have about..</label>
+                <div class="radioGroup">
+                    <input type="radio" id="1" name="time" value="1">
+                    <label for="1">1 min</label>
+            
+                    <input type="radio" id="5" name="time" value="5">
+                    <label for="5">5 min</label>
+            
+                    <input type="radio" id="20" name="time" value="20">
+                    <label for="20">20 min</label>
+            
+                    <input type="radio" id="60" name="time" value="60">
+                    <label for="60">1 hour</label>
+                </div>
+            </div>
         </form>
         <button id="getBusyButton" disabled>Get Busy</button>
         <p id="task">Press "Get Busy" to start!</p>
