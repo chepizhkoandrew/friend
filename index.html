@@ -283,12 +283,12 @@
 
             // Enable "Get Busy" button if all fields are defined
             getBusyButton.disabled = !(isNameValid && isEnvironmentSelected && isTimeSelected);
-        }
+}
 
         // Attach event listeners for form validation
         nameInput.addEventListener('input', validateForm);
-        environmentSelect.addEventListener('change', validateForm);
-        timeSelect.addEventListener('change', validateForm);
+        radioEnvironment.addEventListener('change', validateForm);
+        radioTime.addEventListener('change', validateForm);
 
         // Fetch tasks from JSON file
         fetch('tasks.json')
