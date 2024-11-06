@@ -267,14 +267,13 @@
         let elapsedTime = 0;
 
         const nameInput = document.getElementById('nameInput');
-        const environmentSelect = document.getElementById('environmentSelect');
         const timeSelect = document.getElementById('timeSelect');
         const radioEnvironment = document.getElementsByName('environment');
         const radioTime = document.getElementsByName('time');
         const getBusyButton = document.getElementById('getBusyButton');
 
         // Disable the Get Busy button initially
-        getBusyButton.disabled = true;
+        getBusyButton.disabled = false;
 
         function validateForm() {
     const isNameValid = nameInput.value.length >= 3;
