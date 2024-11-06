@@ -83,6 +83,8 @@
     flex-direction: column;
     align-items: center;
     transition: transform 0.5s ease;
+    width: 100%;
+    max-width: 500px;
 }
 
         #taskImage {
@@ -214,83 +216,81 @@
 </head>
 <body>
 
-    <!-- Form Container -->
+    <!-- two big blocks -->
  
+ <div id="mainContentWrapper">
+   <form id="formContainer">
+       <div class="formField">
+           <label for="nameInput">Name:</label>
+           <input type="text" id="nameInput" maxlength="20" placeholder="Enter your name" style="background-color: #d0f0ff; border: 1px solid #a0cbe8; border-radius: 5px; padding: 8px; width: 100%; font-size: 1em;">
+       </div>
 
-<div id="app">
-    <div id="mainContentWrapper">
-        <form id="formContainer">
-            <div class="formField">
-                <label for="nameInput">Name:</label>
-                <input type="text" id="nameInput" maxlength="20" placeholder="Enter your name" style="background-color: #d0f0ff; border: 1px solid #a0cbe8; border-radius: 5px; padding: 8px; width: 100%; font-size: 1em;">
-            </div>
-    
-            <div class="formField">
-                <label>I'm at..</label>
-                <div class="radioGroup">
-                    <input type="radio" id="home" name="environment" value="home">
-                    <label for="home">Home</label>
-            
-                    <input type="radio" id="outside" name="environment" value="outside">
-                    <label for="outside">Outside</label>
-            
-                    <input type="radio" id="work" name="environment" value="work">
-                    <label for="work">Work</label>
-            
-                    <input type="radio" id="in-transit" name="environment" value="in-transit">
-                    <label for="in-transit">In-transit</label>
-                </div>
-            </div>
-    
-            <div class="formField">
-                <label>I have about..</label>
-                <div class="radioGroup">
-                    <input type="radio" id="1" name="time" value="1">
-                    <label for="1">1 min</label>
-            
-                    <input type="radio" id="5" name="time" value="5">
-                    <label for="5">5 min</label>
-            
-                    <input type="radio" id="20" name="time" value="20">
-                    <label for="20">20 min</label>
-            
-                    <input type="radio" id="60" name="time" value="60">
-                    <label for="60">1 hour</label>
-                </div>
-            </div>
-        </form>
-        <button id="getBusyButton" disabled>Get Busy</button>
-        <p id="task">Press "Get Busy" to start!</p>
-    </div>
-    <div id="activity">
+       <div class="formField">
+           <label>I'm at..</label>
+           <div class="radioGroup">
+               <input type="radio" id="home" name="environment" value="home">
+               <label for="home">Home</label>
+       
+               <input type="radio" id="outside" name="environment" value="outside">
+               <label for="outside">Outside</label>
+       
+               <input type="radio" id="work" name="environment" value="work">
+               <label for="work">Work</label>
+       
+               <input type="radio" id="in-transit" name="environment" value="in-transit">
+               <label for="in-transit">In-transit</label>
+           </div>
+       </div>
 
-
-    <div id="imageContainer">
-        <img id="taskImage" src="" alt="" style="display: none;">
-        <div id="afterTextOverlay">After Text</div>
-    </div>
-
-    <div id="popup">
-        <p>Ready for the timer?</p>
-        <button id="yesButton">Yes</button>
-        <button id="cancelButton">Cancel</button>
-    </div>
-
-    <div id="pausePopup">
-        <p>Want to skip it?</p>
-        <button id="resumeButton">No</button>
-        <button id="confirmCancelButton">Yes</button>
-    </div>
-
-    <div id="progressContainerWrapper">
-        <div id="progressContainer">
-            <div id="progressBar"></div>
-        </div>
-        <button id="cancelTimerButton">Cancel</button>
-    </div>
+       <div class="formField">
+           <label>I have about..</label>
+           <div class="radioGroup">
+               <input type="radio" id="1" name="time" value="1">
+               <label for="1">1 min</label>
+       
+               <input type="radio" id="5" name="time" value="5">
+               <label for="5">5 min</label>
+       
+               <input type="radio" id="20" name="time" value="20">
+               <label for="20">20 min</label>
+       
+               <input type="radio" id="60" name="time" value="60">
+               <label for="60">1 hour</label>
+           </div>
+       </div>
+   </form>
+   <button id="getBusyButton" disabled>Get Busy</button>
+   <p id="task">Press "Get Busy" to start!</p>
 </div>
 
- 
+   <div id="activity">
+
+    <div id="imageContainer">
+   <img id="taskImage" src="" alt="" style="display: none;">
+   <div id="afterTextOverlay">After Text</div>
+</div>
+
+<div id="popup">
+   <p>Ready for the timer?</p>
+   <button id="yesButton">Yes</button>
+   <button id="cancelButton">Cancel</button>
+</div>
+
+<div id="pausePopup">
+   <p>Want to skip it?</p>
+   <button id="resumeButton">No</button>
+   <button id="confirmCancelButton">Yes</button>
+</div>
+
+<div id="progressContainerWrapper">
+   <div id="progressContainer">
+       <div id="progressBar"></div>
+   </div>
+   <button id="cancelTimerButton">Cancel</button>
+</div>
+</div>
+
+
 
 
 
