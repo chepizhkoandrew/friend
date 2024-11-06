@@ -181,6 +181,14 @@
     color: white;
 }
 
+/* CSS to move mainContentWrapper down */
+.moveDown {
+    margin-top: 50px; /* adjust this value as needed */
+    position: relative;
+    top: 100px; /* or however far down you want it to move */
+    transition: top 0.5s ease;
+}
+
 
     </style>
 </head>
@@ -231,6 +239,15 @@
     <button id="getBusyButton" disabled>Get Busy</button>
     <p id="task">Press "Get Busy" to start!</p>
     
+    <div id="mainContentWrapper">
+        <form id="formContainer">
+            <!-- form contents here -->
+        </form>
+        <button id="getBusyButton" disabled>Get Busy</button>
+        <p id="task">Press "Get Busy" to start!</p>
+    </div>
+
+
     <div id="imageContainer">
         <img id="taskImage" src="" alt="" style="display: none;">
         <div id="afterTextOverlay">After Text</div>
@@ -388,6 +405,9 @@
 
         // Event listener for Get Busy button
         getBusyButton.addEventListener('click', getRandomTask);
+        document.getElementById('getBusyButton').addEventListener('click', function() {
+    document.getElementById('mainContentWrapper').classList.add('moveDown');
+});
 
         // Event listener for clicking on the task image
         document.getElementById('taskImage').addEventListener('click', () => {
