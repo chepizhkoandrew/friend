@@ -255,7 +255,7 @@
 
             // Logic to select a random task
             let randomTask = weightedTasks[Math.floor(Math.random() * weightedTasks.length)];
-            document.getElementById('task').innerText = randomTask.name || 'No tasks available';
+            document.getElementById('task').innerText = randomTask?.name || 'No tasks available';
 
             // Display task image and other logic here
             // ...
