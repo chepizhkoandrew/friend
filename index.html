@@ -214,17 +214,17 @@
         <div class="formField">
             <label>I have about..</label>
             <div class="radioGroup">
-                <input type="radio" id="1" name="environment" value="1">
-                <label for="home">1 min</label>
+                <input type="radio" id="1" name="time" value="1">
+                <label for="1">1 min</label>
         
-                <input type="radio" id="5" name="environment" value="5">
-                <label for="outside">5 min</label>
+                <input type="radio" id="5" name="time" value="5">
+                <label for="5">5 min</label>
         
-                <input type="radio" id="20" name="environment" value="20">
-                <label for="work">20 min</label>
+                <input type="radio" id="20" name="time" value="20">
+                <label for="20">20 min</label>
         
-                <input type="radio" id="60" name="environment" value="1">
-                <label for="in-transit">1 hour</label>
+                <input type="radio" id="60" name="time" value="60">
+                <label for="60">1 hour</label>
             </div>
         </div>
     </form>
@@ -269,13 +269,15 @@
         const nameInput = document.getElementById('nameInput');
         const environmentSelect = document.getElementById('environmentSelect');
         const timeSelect = document.getElementById('timeSelect');
+        const radioEnvironment = document.getElementsByName('environment');
+        const radioTime = document.getElementsByName('time');
         const getBusyButton = document.getElementById('getBusyButton');
 
         // Disable the Get Busy button initially
         getBusyButton.disabled = true;
 
         function validateForm() {
-            const isNameValid = nameInput.value.length >= 3;
+    const isNameValid = nameInput.value.length >= 3;
     const isEnvironmentSelected = Array.from(radioEnvironment).some(radio => radio.checked);
     const isTimeSelected = Array.from(radioTime).some(radio => radio.checked);
 
