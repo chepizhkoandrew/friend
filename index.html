@@ -208,7 +208,7 @@
     color: white;
 }
 
-/* Carousel content - horizontal layout */
+/* Carousel Content - Horizontal Layout */
 .carousel-content {
     min-width: 100%;
     transition: transform 0.5s ease;
@@ -216,8 +216,7 @@
 
 /* To handle the sliding effect */
 #mainContentWrapper {
-    transform: translateX(0%);
-}
+    transform: translateX(0%);}
 
 #activity {
     transform: translateX(100%);
@@ -228,77 +227,44 @@
 <body>
 
     <!-- two big blocks -->
- 
- <div id="mainContentWrapper"> class="carousel-content">
-   <form id="formContainer">
-       <div class="formField">
-           <label for="nameInput">Name:</label>
-           <input type="text" id="nameInput" maxlength="20" placeholder="Enter your name" style="background-color: #d0f0ff; border: 1px solid #a0cbe8; border-radius: 5px; padding: 8px; width: 100%; font-size: 1em;">
-       </div>
-
-       <div class="formField">
-           <label>I'm at..</label>
-           <div class="radioGroup">
-               <input type="radio" id="home" name="environment" value="home">
-               <label for="home">Home</label>
-       
-               <input type="radio" id="outside" name="environment" value="outside">
-               <label for="outside">Outside</label>
-       
-               <input type="radio" id="work" name="environment" value="work">
-               <label for="work">Work</label>
-       
-               <input type="radio" id="in-transit" name="environment" value="in-transit">
-               <label for="in-transit">In-transit</label>
-           </div>
-       </div>
-
-       <div class="formField">
-           <label>I have about..</label>
-           <div class="radioGroup">
-               <input type="radio" id="1" name="time" value="1">
-               <label for="1">1 min</label>
-       
-               <input type="radio" id="5" name="time" value="5">
-               <label for="5">5 min</label>
-       
-               <input type="radio" id="20" name="time" value="20">
-               <label for="20">20 min</label>
-       
-               <input type="radio" id="60" name="time" value="60">
-               <label for="60">1 hour</label>
-           </div>
-       </div>
-   </form>
-   <button id="getBusyButton" disabled>Get Busy</button>
-</div>
-
-   <div id="activity"> class="carousel-content">
-    <p id="task">Press "Get Busy" to start!</p>
-    <div id="imageContainer">
-   <img id="taskImage" src="" alt="" style="display: none;">
-   <div id="afterTextOverlay">After Text</div>
-</div>
-
-<div id="popup">
-   <p>Ready for the timer?</p>
-   <button id="yesButton">Yes</button>
-   <button id="cancelButton">Cancel</button>
-</div>
-
-<div id="pausePopup">
-   <p>Want to skip it?</p>
-   <button id="resumeButton">No</button>
-   <button id="confirmCancelButton">Yes</button>
-</div>
-
-<div id="progressContainerWrapper">
-   <div id="progressContainer">
-       <div id="progressBar"></div>
-   </div>
-   <button id="cancelTimerButton">Cancel</button>
-</div>
-</div>
+    <div id="app">
+        <!-- Carousel Content 1 -->
+        <div id="mainContentWrapper" class="carousel-content">
+            <form id="formContainer">
+                <div class="formField">
+                    <label for="nameInput">Name:</label>
+                    <input type="text" id="nameInput" maxlength="20" placeholder="Enter your name">
+                </div>
+                <div class="formField">
+                    <label>I'm at...</label>
+                    <div class="radioGroup">
+                        <input type="radio" id="home" name="environment" value="home">
+                        <label for="home">Home</label>
+                        <input type="radio" id="outside" name="environment" value="outside">
+                        <label for="outside">Outside</label>
+                        <input type="radio" id="work" name="environment" value="work">
+                        <label for="work">Work</label>
+                        <input type="radio" id="in-transit" name="environment" value="in-transit">
+                        <label for="in-transit">In-transit</label>
+                    </div>
+                </div>
+                <button id="getBusyButton" disabled>Get Busy</button>
+            </form>
+        </div>
+    
+        <!-- Carousel Content 2 -->
+        <div id="activity" class="carousel-content">
+            <p id="task">Press "Get Busy" to start!</p>
+            <div id="imageContainer">
+                <img id="taskImage" src="" alt="Task Image" style="display: none;">
+                <div id="afterTextOverlay">After Text</div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Carousel Navigation Buttons -->
+    <button id="prevBtn">Previous</button>
+    <button id="nextBtn">Next</button>
 
 
 
@@ -313,11 +279,17 @@
         let paused = false;
         let progress = 0;
         let elapsedTime = 0;
+        let currentIndex = 0; // 0 for mainContentWrapper, 1 for activity
+
+
+
 
         const nameInput = document.getElementById('nameInput');
         const timeSelect = document.getElementById('timeSelect');
         const radioEnvironment = document.getElementsByName('environment');
         const radioTime = document.getElementsByName('time');
+        const contentWrapper = document.getElementById('mainContentWrapper');
+        const activity = document.getElementById('activity');
         const getBusyButton = document.getElementById('getBusyButton');
 
         // Disable the Get Busy button initially
@@ -429,6 +401,34 @@ radioTime.forEach(radio => radio.addEventListener('change', validateForm));
             afterTextOverlay.innerText = currentTask.aftertext;
             afterTextOverlay.style.display = 'block';
         }
+
+// Function to show the next content in the carousel
+function showNext() {
+    currentIndex = (currentIndex + 1) % 2;
+    updateCarousel();
+}
+
+// Function to show the previous content in the carousel
+function showPrev() {
+    currentIndex = (currentIndex - 1 + 2) % 2;
+    updateCarousel();
+}
+
+// Update carousel based on the current index
+function updateCarousel() {
+    if (currentIndex === 0) {
+        contentWrapper.style.transform = 'translateX(0%)';
+        activity.style.transform = 'translateX(100%)';
+    } else {
+        contentWrapper.style.transform = 'translateX(-100%)';
+        activity.style.transform = 'translateX(0%)';
+    }
+}
+
+// Attach event listeners to navigation buttons
+document.getElementById('nextBtn').addEventListener('click', showNext);
+document.getElementById('prevBtn').addEventListener('click', showPrev);
+
 
         // Event listener for Get Busy button
         getBusyButton.addEventListener('click', getRandomTask);
