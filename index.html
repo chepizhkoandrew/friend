@@ -75,16 +75,20 @@
     flex-direction: column;
     align-items: center;
     width: 100%;
-    max-width: 500px;
 }
 
 #app {
     display: flex;
-    overflow: hidden;
-    width: 100%;
-    max-width: 500px;
+    overflow: hidden; /* Hides content outside the visible slot */
+    width: 100vw; /* Set the width to the viewport width, or use a specific pixel size */
+    max-width: 500px; /* Optional: maximum width */
+    height: 100vh; /* Optional: adjust to control the height of each slot */
+    max-height: 500px; /* Optional: maximum height */
     position: relative;
+    align-items: center;
+    justify-content: center;
 }
+
 
         #taskImage {
             width: 100%;
@@ -210,8 +214,11 @@
 
 /* Carousel Content - Horizontal Layout */
 .carousel-content {
-    min-width: 100%;
-    transition: transform 0.5s ease;
+    min-width: 100%; /* Ensures each child container fills the width of #app */
+    height: 100%; /* Ensures each child container fills the height of #app */
+    transition: transform 0.5s ease; /* Smooth slide transition */
+    box-sizing: border-box;
+    padding: 20px; /* Optional: padding for inner content */
 }
 
 /* To handle the sliding effect */
@@ -220,6 +227,22 @@
 
 #activity {
     transform: translateX(100%);
+}
+
+#mainContentWrapper, #activity {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transform: scale(0.9); /* Optional: scales down the entire container */
+}
+
+/* Carousel Content - Ensures each slide takes up full visible portion */
+.carousel-content {
+    min-width: 100%;
+    min-height: 100%;
+    transition: transform 0.5s ease;  /* Smooth slide transition */
+    box-sizing: border-box;
 }
 
     </style>
