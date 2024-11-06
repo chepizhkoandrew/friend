@@ -338,7 +338,27 @@
             afterTextOverlay.style.display = 'block';
         }
 
+        // Event listener for Get Busy button
         getBusyButton.addEventListener('click', getRandomTask);
+
+        // Event listener for clicking on the task image
+        document.getElementById('taskImage').addEventListener('click', () => {
+            if (!currentTask) return;
+            document.getElementById('popup').style.display = 'block';
+            getBusyButton.disabled = true; // Disable Get Busy button when popup is open
+        });
+
+        // Event listeners for popup buttons
+        document.getElementById('yesButton').addEventListener('click', () => {
+            document.getElementById('popup').style.display = 'none';
+            document.getElementById('afterTextOverlay').style.display = 'none';
+            startProgressBar(currentTask.time);
+        });
+
+        document.getElementById('cancelButton').addEventListener('click', () => {
+            document.getElementById('popup').style.display = 'none';
+            getBusyButton.disabled = false; // Re-enable Get Busy button when popup is closed
+        });
     </script>
 </body>
 </html>
