@@ -14,6 +14,7 @@
         /* Centering form container */
         #formContainer {
             width: 500px;
+            margin: 0 auto 20px auto;
             margin: 0 auto;
             text-align: left;
             border: 1px solid #ccc;
@@ -152,6 +153,36 @@
             cursor: pointer;
             border-radius: 8px;
         }
+
+        .radioGroup {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    padding: 8px;
+    border-radius: 5px;
+    background-color: #e8f3fc;
+    border: 1px solid #d0e2f0;
+}
+
+.radioGroup label {
+    font-size: 1em;
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 5px;
+    background-color: #d0e9ff;
+    transition: background-color 0.3s;
+}
+
+.radioGroup input[type="radio"] {
+    display: none;
+}
+
+.radioGroup input[type="radio"]:checked + label {
+    background-color: #91c4f2;
+    color: white;
+}
+
+
     </style>
 </head>
 <body>
@@ -160,18 +191,24 @@
     <form id="formContainer">
         <div class="formField">
             <label for="nameInput">Name:</label>
-            <input type="text" id="nameInput" maxlength="20" placeholder="Enter your name">
+            <input type="text" id="nameInput" maxlength="20" placeholder="Enter your name" style="background-color: #d0f0ff; border: 1px solid #a0cbe8; border-radius: 5px; padding: 8px; width: 100%; font-size: 1em;">
         </div>
 
         <div class="formField">
-            <label for="environmentSelect">Where are you?</label>
-            <select id="environmentSelect">
-                <option value="">Select your environment</option>
-                <option value="home">Home</option>
-                <option value="outside">Outside</option>
-                <option value="work">Work</option>
-                <option value="in-transit">In-transit</option>
-            </select>
+            <label>Where are you?</label>
+            <div class="radioGroup">
+                <input type="radio" id="home" name="environment" value="home">
+                <label for="home">Home</label>
+        
+                <input type="radio" id="outside" name="environment" value="outside">
+                <label for="outside">Outside</label>
+        
+                <input type="radio" id="work" name="environment" value="work">
+                <label for="work">Work</label>
+        
+                <input type="radio" id="in-transit" name="environment" value="in-transit">
+                <label for="in-transit">In-transit</label>
+            </div>
         </div>
 
         <div class="formField">
