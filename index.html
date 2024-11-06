@@ -70,6 +70,13 @@
             transform: scale(1.02);
         }
 
+        #app {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.5s ease;
+}
+
         #taskImage {
             width: 100%;
             height: 100%;
@@ -408,7 +415,7 @@ radioTime.forEach(radio => radio.addEventListener('change', validateForm));
         // Event listener for Get Busy button
         getBusyButton.addEventListener('click', getRandomTask);
         document.getElementById('getBusyButton').addEventListener('click', function() {
-    document.getElementById('mainContentWrapper').classList.add('moveDown');
+    document.getElementById('app').classList.add('moveDown');
 });
 getBusyButton.addEventListener('click', function() {
     mainContentWrapper.classList.add('moveDown');
