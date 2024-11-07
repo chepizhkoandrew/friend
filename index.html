@@ -1105,24 +1105,16 @@ loadCitations();
 
 // Scroll to the top of the page on load
 window.onload = function() {
-        window.scrollTo(0, 0);
-    };
-
-    document.getElementById('getStartedButton').addEventListener('click', function() {
-        document.getElementById('formContainer').scrollIntoView({ behavior: 'smooth' });
-    });
-    function handleCredentialResponse(response) {
-    console.log("Encoded JWT ID token: " + response.credential);
-    // Here, add code to handle the token on your backend or show logged-in content
-}
-
-window.onload = function() {
+    // Initialize Google Sign-In
     google.accounts.id.initialize({
         client_id: "515649551791-2m70cejboi72ct3cileeii6ntn6jmis7.apps.googleusercontent.com",
         callback: handleCredentialResponse
     });
+    
+    google.accounts.id.prompt(); // Automatically prompt for Google Sign-In
 
-    google.accounts.id.prompt(); // Triggers Google Sign-In automatically on load
+    // Scroll to the top of the page on load
+    window.scrollTo(0, 0);
 };
 
     </script>
