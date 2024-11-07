@@ -337,15 +337,14 @@ p {
 
 /* Styling for the intro text */
 .intro-text {
-    font-family: 'Raleway', sans-serif;
-    font-size: 26px;
+    font-size: 1.5em;
     font-weight: 300;
-    color: hsl(180, 2%, 37%);
-    text-align: center;
-    margin-top: 10px;
-    margin-inline: 10px;
-    animation:   5s linear slide-in,
-    5s ease-out 5s slide-out;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 8px;
+    opacity: 0;
+    animation: fadeIn 3s ease forwards;
+    animation-delay: 0.5s;
 }
 
 /* Logo Section */
@@ -382,10 +381,10 @@ p {
 
 /* Carousel Styling */
 .carousel {
-    width: 110%;
-    max-width: 700px;
+    position: relative;
     overflow: hidden;
-    margin-bottom: 40px;
+    width: 100%;
+    max-width: 700px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
@@ -397,10 +396,24 @@ p {
     transition: transform 0.5s ease;
 }
 
+.slide {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-size: cover;
+    background-position: center;
+    color: white;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+}
+
 .carousel .carousel-inner {
     display: flex;
     animation: slide 20s infinite;
 }
+
 
 @keyframes slide {
     0%, 20% { transform: translateX(0); }
@@ -714,17 +727,29 @@ p {
 
     <div id="app">
 
-        <p class="intro-text">A dog has anxiety. But he/she/them never suffer from it</p>
+        <p class="intro-text">Second text</p>
+        <p class="intro-text">third text</p>
 
          <!-- Carousel Section -->
          <div id="carousel" class="carousel">
             <div class="carousel-inner">
-                <img src="images/dog-anxiety-scaled.jpg" alt="Dog Image 1"> <!-- Replace with actual filenames -->
-                <img src="images/separation-anxiety-in-dog-featured-image-1.png" alt="Dog Image 2">
-                <img src="images/Fearful dog.jpg" alt="Dog Image 3">
-                <!-- Add more images if necessary -->
+                <div id="carousel" class="carousel">
+                    <div class="carousel-inner">
+                        <div class="slide" style="background-image: url('images/Fearful dog.jpg');">
+                            <p class="intro-text">A dog has anxiety. But he/she/them never suffer from it</p>
+                        </div>
+                        <div class="slide" style="background-image: url('images/separation-anxiety-in-dog-featured-image-1.png');">
+                            <p class="intro-text">Second text</p>
+                        </div>
+                        <div class="slide" style="background-image: url('images/dog-anxiety-scaled.jpg');">
+                            <p class="intro-text">Third text</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
+
+        
          <!-- Main Call-to-Action Button -->
          <button id="getStartedButton">Pick an Activity</button>
 
