@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;700&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TailTrailClub</title>
     <div id="logo">
@@ -13,11 +12,11 @@
 
     <style>
         :root {
-            --primary-color: hsl(197, 36%, 19%);;
-            --hover-color: hsl(208, 21%, 74%);
+            --primary-color: #91c4f2;
+            --hover-color: #d0e9ff;
             --border-radius: 8px;
             --background-light: #f9f9f9;
-            --text-dark: #993232;
+            --text-dark: #555;
         }
 
        /* General Styling */
@@ -37,7 +36,7 @@ p {
     margin-top: 10px;
     text-align: center;
     font-size: 30pt;
-    color: hsl(197, 36%, 19%);
+    color: #91c4f2;
 }
 
 #app {
@@ -92,7 +91,6 @@ p {
             cursor: pointer;
             transition: background-color 0.3s;
             background-color: var(--hover-color);
-            color: hsl(214, 14%, 23%);
         }
 
         .radioGroup input[type="radio"] {
@@ -183,7 +181,7 @@ p {
     padding: 10px 20px;
     font-size: 1em;
     border: none;
-    background-color: #hsl(197, 36%, 19%);;
+    background-color: #91c4f2;
     color: white;
     border-radius: 5px;
     cursor: pointer;
@@ -240,7 +238,7 @@ p {
     padding: 10px 20px;
     font-size: 1em;
     border: none;
-    background-color: hsl(197, 36%, 19%);
+    background-color: #91c4f2;
     color: white;
     border-radius: 5px;
     cursor: pointer;
@@ -248,7 +246,7 @@ p {
 }
 
 #closeCompletionPopup:hover {
-    background-color: hsl(208, 6%, 45%);
+    background-color: #6baee4;
 }
 
 /* Pale pulsing animation */
@@ -293,7 +291,7 @@ p {
 }
 
 #achievementsLog th {
-    background-color: hsl(155, 7%, 48%);
+    background-color: #f1f1f1;
 }
 
 .medal {
@@ -301,29 +299,7 @@ p {
     color: gold;
 }
 
-/* Fade-in animation */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-20px); /* Slight upward movement */
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
 
-/* Styling for the intro text */
-.intro-text {
-    font-family: 'Raleway', sans-serif;
-    font-size: 30px;
-    font-weight: 300;
-    color: hsl(180, 2%, 37%);
-    text-align: center;
-    margin-top: 50px;
-    animation:   3s linear slide-in,
-    3s ease-out 5s slide-out;
-}
 
 /* Logo Section */
 #logo {
@@ -387,7 +363,7 @@ p {
 /* Main Button */
 #getStartedButton {
     padding: 10px 20px;
-    background-color: hsl(197, 36%, 19%);
+    background-color: #91c4f2;
     color: white;
     border: none;
     border-radius: 8px;
@@ -398,7 +374,7 @@ p {
 }
 
 #getStartedButton:hover {
-    background-color: hsl(206, 16%, 61%);
+    background-color: #6baee4;
 }
 
 /* Achievements Log Table */
@@ -451,7 +427,7 @@ p {
 
 .citation-author {
     font-size: 1em;
-    color: hsl(208, 45%, 36%);
+    color: #555;
     text-align: center;
     margin-top: 5px;
     font-style: italic;
@@ -492,7 +468,7 @@ p {
 <body>
 
     <div id="app">
-        <p class="intro-text">A dog has anxiety. But he/she/them never suffer from it</p>
+        <p>A dog has anxiety. But he/she/them never suffer from it </p>
 
          <!-- Carousel Section -->
          <div id="carousel" class="carousel">

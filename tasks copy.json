@@ -1,0 +1,19 @@
+[
+    { "name": "Cup of coffee", "probability": 180, "image": "smoke.jpg", "time": 10, "aftertext": "Hope you enjoyed your coffee!" },
+    { "name": "Two minutes of superman", "probability": 120, "image": "superman.jpg", "time": 12, "aftertext": "Feeling stronger already?" },
+    { "name": "50 pushups", "probability": 120, "image": "pushups.jpg", "time": 9, "aftertext": "Great job on those pushups!" },
+    { "name": "Eat a fruit", "probability": 140, "image": "fruit.jpg", "time": 4, "aftertext": "Healthy choice!" },
+    { "name": "Brush Madrid", "probability": 50, "image": "brushing.png", "time": 6, "aftertext": "Madrid is happy and clean!" },
+    { "name": "Scroll Instagram for 5 min", "probability": 80, "image": "phone.jpg", "time": 30, "aftertext": "Social media break is over!" },
+    { "name": "Drink 300ml water", "probability": 130, "image": "glasswater.jpg", "time": 6, "aftertext": "Stay hydrated!" },
+    { "name": "10 deep breaths", "probability": 130, "image": "medit.png", "time": 3, "aftertext": "Feeling more relaxed?" },
+    { "name": "10 min of cleaning", "probability": 120, "image": "cleaning.jpg", "time": 6, "aftertext": "Feels good to have a clean space!" },
+    { "name": "Send 3 CVs with cover letters", "probability": 80, "image": "jobsearch.png", "time": 9, "aftertext": "You're getting closer to a new opportunity!" },
+    { "name": "Write some good memory to someone", "probability": 80, "image": "gratitude.png", "time": 3, "aftertext": "You’ve shared a bit of joy!" },
+    { "name": "Remember what happened within the last hour in details", "probability": 9, "image": "remember.png", "time": 120, "aftertext": "Memory exercise complete!" },
+    { "name": "Learn 3 new words in Spanish", "probability": 90, "image": "spanish.jpg", "time": 3, "aftertext": "Expanding your Spanish vocabulary!" },
+    { "name": "Write down a hokku", "probability": 80, "image": "remember.png", "time": 9, "aftertext": "Your creativity is flowing!" },
+    { "name": "Make a salad", "probability": 70, "image": "salad.png", "time": 6, "aftertext": "Fresh and delicious!" },
+    { "name": "Practice a knot", "probability": 70, "image": "knot.jpg", "time": 6, "aftertext": "You'll survive in the woods!" },
+    { "name": "Guitar practice 10 min", "probability": 130, "image": "guitar.jpg", "time": 6, "aftertext": "Your music skills are growing!" }
+]

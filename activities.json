@@ -120,9 +120,9 @@
         "id": "t010",
         "name": "Wave at a child or pet you see on the street.",
         "tags": {
-            "environment": ["Street", "City Park"],
+            "location": ["Street", "City Park"],
             "type": ["With People", "Kids"],
-            "duration": ["1 min"]
+            "time": ["1 min"]
         },
         "time": 1,
         "probability": 100,
