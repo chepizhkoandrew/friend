@@ -389,6 +389,57 @@ p {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
+.carousel {
+    width: 100%;
+    max-width: 700px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.carousel-inner {
+    display: flex;
+    animation: slide 20s infinite;
+}
+
+.carousel-slide {
+    position: relative;
+    flex-shrink: 0;
+    width: 100%;
+}
+
+.carousel-slide img {
+    width: 100%;
+    border-radius: 8px;
+}
+
+.carousel-text {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 1.2em;
+    animation: fadeIn 2s ease-in-out;
+}
+
+/* Slide animation */
+@keyframes slide {
+    0%, 20% { transform: translateX(0); }
+    25%, 45% { transform: translateX(-100%); }
+    50%, 70% { transform: translateX(-200%); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
 .carousel-inner img {
     width: 100%;
     height: auto;
@@ -733,17 +784,22 @@ p {
          <!-- Carousel Section -->
          <div id="carousel" class="carousel">
             <div class="carousel-inner">
-                <div id="carousel" class="carousel">
-                    <div class="carousel-inner">
-                        <div class="slide" style="background-image: url('images/Fearful dog.jpg');">
-                            <p class="intro-text">A dog has anxiety. But he/she/them never suffer from it</p>
-                        </div>
-                        <div class="slide" style="background-image: url('images/separation-anxiety-in-dog-featured-image-1.png');">
-                            <p class="intro-text">Second text</p>
-                        </div>
-                        <div class="slide" style="background-image: url('images/dog-anxiety-scaled.jpg');">
-                            <p class="intro-text">Third text</p>
-                        </div>
+                <div class="carousel-slide">
+                    <img src="images/dog-anxiety-scaled.jpg" alt="Dog Image 1">
+                    <div class="carousel-text">
+                        <p>A dog has anxiety. But he/she/them never suffer from it.</p>
+                    </div>
+                </div>
+                <div class="carousel-slide">
+                    <img src="images/separation-anxiety-in-dog-featured-image-1.png" alt="Dog Image 2">
+                    <div class="carousel-text">
+                        <p>Second text</p>
+                    </div>
+                </div>
+                <div class="carousel-slide">
+                    <img src="images/Fearful dog.jpg" alt="Dog Image 3">
+                    <div class="carousel-text">
+                        <p>Third text</p>
                     </div>
                 </div>
             </div>
