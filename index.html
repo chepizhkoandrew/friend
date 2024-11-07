@@ -54,7 +54,7 @@ p {
 
         #formContainer {
             margin-bottom: 20px;
-            margin-top: 40px;
+            margin-top: 25px;
 
             text-align: left;
         }
@@ -1082,6 +1082,10 @@ loadCitations();
 window.onload = function() {
         window.scrollTo(0, 0);
     };
+
+    document.getElementById('getStartedButton').addEventListener('click', function() {
+        document.getElementById('formContainer').scrollIntoView({ behavior: 'smooth' });
+    });
 
     </script>
 </body>
