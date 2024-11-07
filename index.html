@@ -486,6 +486,43 @@ p {
     }
 }
 
+/* Apply styles to screens 600px wide or smaller */
+@media (max-width: 600px) {
+    #app {
+        width: 100%;
+        max-width: none;
+        padding: 15px;
+        box-shadow: none; /* Remove shadow for simplicity on mobile */
+    }
+
+    /* Adjust logo */
+    #logo {
+        flex-direction: column;
+        width: 100%;
+        height: auto;
+    }
+    #logo img {
+        width: 120px;
+        height: 120px;
+        margin-bottom: 10px;
+    }
+    #logo h1 {
+        font-size: 1.5em;
+    }
+
+    /* General text and button adjustments */
+    p {
+        font-size: 1.2em; /* Smaller font for paragraph */
+    }
+
+    #getStartedButton, #getBusyButton {
+        font-size: 1em;
+        padding: 8px 16px;
+        margin-top: 5px;
+    }
+
+    /* Adjust form fields */
+    .formField {
 
     </style>
 </head>
