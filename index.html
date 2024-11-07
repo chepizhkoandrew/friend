@@ -329,10 +329,11 @@ p {
 #logo {
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
     flex-direction: row;
     width: 800px;
     height: 100px;
+    width: 100%; 
     
     margin-bottom: 20px;
     position: sticky;
@@ -344,14 +345,15 @@ p {
 }
 
 #logo img {
-    width: 200px;
-    height: 200px;
+    width: 70px;
+    height: 70px;
     border-radius: 50%;
  
 }
 
 #logo h1 {
-    font-size: 2em;
+    font-size: 1.5em;
+    margin: 0 10px; /* Spacing between logo and text */
     color: #333;
 }
 
@@ -600,6 +602,89 @@ p {
         padding: 8px;
     }
 }
+
+@media (max-width: 380px) {
+    /* Container adjustments */
+    #app {
+        width: 100%;
+        padding: 10px;
+        max-width: 100%;
+    }
+
+    /* Logo adjustments */
+    #logo {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    #logo img {
+        width: 80px;
+        height: 80px;
+        margin-bottom: 5px;
+    }
+    #logo h1 {
+        font-size: 1.2em;
+        margin: 0;
+    }
+
+    /* Adjust main text */
+    p {
+        font-size: 1.2em;
+        line-height: 1.4em;
+        margin: 10px 0;
+        padding: 0 5px;
+        text-align: center;
+    }
+
+    /* Image adjustments */
+    #imageContainer {
+        width: 100%;
+        max-width: 320px;
+        margin: 0 auto;
+    }
+    #taskImage {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+    }
+
+    /* Button adjustments */
+    #getStartedButton, #getBusyButton {
+        font-size: 1em;
+        padding: 10px;
+        width: 100%;
+        max-width: 300px;
+        margin: 10px auto;
+    }
+
+    /* Text for task display */
+    #task {
+        font-size: 1.1em;
+        padding: 0 10px;
+    }
+
+    /* Progress bar adjustments */
+    #progressContainer {
+        width: 100%;
+        margin-top: 10px;
+    }
+    #progressBar {
+        height: 10px;
+        border-radius: 5px;
+    }
+
+    /* Achievements table adjustments */
+    #achievementsLog {
+        font-size: 0.9em;
+        padding: 5px;
+    }
+    #achievementsLog th, #achievementsLog td {
+        padding: 8px;
+    }
+}
+
     </style>
 </head>
 <body>
