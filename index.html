@@ -2,12 +2,29 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;700&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TailTrailClub</title>
     <div id="logo">
         <img src="images/medit.png" alt="TailTrailClub Logo"> <!-- Replace with actual logo filename -->
         <h1>TailTrailClub</h1>
+        <div id="g_id_onload"
+         data-client_id="515649551791-2m70cejboi72ct3cileeii6ntn6jmis7.apps.googleusercontent.com"
+         data-context="signin"
+         data-ux_mode="popup"
+         data-callback="handleCredentialResponse"
+         data-auto_prompt="false">
+    </div>
+
+    <button id="getStartedButton" class="g_id_signin"
+            data-type="standard"
+            data-shape="rectangular"
+            data-theme="outline"
+            data-text="continue_with"
+            data-size="large">
+        Pick an Activity
+    </button>
 
     </div>
 
@@ -1086,6 +1103,22 @@ window.onload = function() {
     document.getElementById('getStartedButton').addEventListener('click', function() {
         document.getElementById('formContainer').scrollIntoView({ behavior: 'smooth' });
     });
+    function handleCredentialResponse(response) {
+            console.log("Encoded JWT ID token: " + response.credential);
+            // Send the token to your server for authentication
+            // Redirect or show logged-in content if desired
+        }
+
+        window.onload = function() {
+            google.accounts.id.initialize({
+                client_id: "515649551791-2m70cejboi72ct3cileeii6ntn6jmis7.apps.googleusercontent.com",
+                callback: handleCredentialResponse
+            });
+
+            document.getElementById('getStartedButton').addEventListener('click', function() {
+                google.accounts.id.prompt(); // Triggers the Google Sign-In popup
+            });
+        };
 
     </script>
 </body>
