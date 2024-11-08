@@ -1,0 +1,91 @@
+/* Reset and Basic Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Background Image */
+.background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('/images/IMG_2412.jpg');
+  background-size: cover;
+  background-position: center;
+  filter: brightness(0.7); /* Optional filter effect */
+}
+
+/* Frame Layer */
+.frame {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.5); /* Overlay effect */
+  padding: 0 50px; /* Side margin */
+}
+
+/* Text Content */
+.text-content {
+  width: 60%;
+  max-width: 100%; /* Ensure it doesn't overflow */
+  color: #fff;
+  text-align: center;
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
+}
+
+/* Responsive Font Size */
+.text {
+  font-size: 5vw; /* Responsive size based on viewport width */
+  line-height: 1.2;
+}
+
+/* Larger font size for desktop */
+@media (min-width: 768px) {
+  .text {
+    font-size: 60px; /* Base font size for larger screens */
+  }
+}
+
+/* Join Button */
+.join-button {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px 20px;
+  font-size: 1rem;
+  color: white;
+  background-color: #ff5722;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  display: none;
+}
+
+/* Hidden class for animations */
+.hidden {
+  display: none;
+}
