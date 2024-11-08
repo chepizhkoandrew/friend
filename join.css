@@ -71,25 +71,42 @@ body, html {
   line-height: 1.9;
   font-weight: 600;
   text-align: center;
-  color: white; /* Base color */
-  text-shadow: 0 0 10px #fff, 0 0 20px #ff77ff, 0 0 30px #ff77ff, 
-               0 0 40px #ff77ff, 0 0 50px #ff77ff, 0 0 60px #ff77ff;
-  animation: shine 3s linear infinite, rainbow 3s linear infinite;
+  color: white; /* Initial font color */
+  text-shadow: none; /* No shadow initially */
+  animation: shineOnceshort 1s ease-in forwards;
+  animation-delay: 9s;
 }
 
-/* Animation for glowing effect */
-@keyframes shine {
+/* Animation for short glowing effect */
+@keyframes shineOnceshort {
   0% {
-    text-shadow: 0 0 10px #fff, 0 0 20px #ff77ff, 0 0 30px #ff77ff, 
-                 0 0 40px #ff77ff, 0 0 50px #ff77ff, 0 0 60px #ff77ff;
+    color: white; /* Start with the original color */
+    text-shadow: none; /* No glow initially */
   }
   50% {
-    text-shadow: 0 0 20px #fff, 0 0 30px #ff77ff, 0 0 40px #ff77ff, 
-                 0 0 50px #ff77ff, 0 0 60px #ff77ff, 0 0 70px #ff77ff;
+    color: #e29be2; /* Shiny purple color */
+    text-shadow: 0 0 10px #8399ce, 0 0 20px #ff77ff, 0 0 30px #ff77ff, 
+                 0 0 40px #ff77ff, 0 0 50px #ff77ff, 0 0 60px #ff77ff;
   }
   100% {
-    text-shadow: 0 0 10px #fff, 0 0 20px #ff77ff, 0 0 30px #ff77ff, 
+    color: white; /* Back to the original color */
+    text-shadow: none; /* No shadow */
+  }
+}
+
+@keyframes shineOnce {
+  0% {
+    color: white; /* Start with the original color */
+    text-shadow: none; /* No glow initially */
+  }
+  90% {
+    color: #e29be2; /* Shiny purple color */
+    text-shadow: 0 0 10px #8399ce, 0 0 20px #ff77ff, 0 0 30px #ff77ff, 
                  0 0 40px #ff77ff, 0 0 50px #ff77ff, 0 0 60px #ff77ff;
+  }
+  100% {
+    color: white; /* Back to the original color */
+    text-shadow: none; /* No shadow */
   }
 }
 
@@ -115,7 +132,7 @@ body, html {
 .motto .line2 {
   opacity: 0;
   animation: fadeInText 1s ease-in forwards;
-  animation-delay: 8s;
+  animation-delay: 7s;
 }
 
 @keyframes fadeInText {
@@ -146,7 +163,6 @@ body, html {
 .dolphin {
   position: absolute;
   top: -500px; left: 100px;;
-  animation: moveDog cubic-bezier(0.165, 0.84, 0.44, 1) ease-in-out forwards;
   width: 10vw; /* Default size for desktop */
 }
 
@@ -207,12 +223,48 @@ body, html {
   left: 50%;
   transform: translateX(-50%);
   font-size: 2rem;
-  color: white;
-  background-color: #434c4e;
-  border: none;
-  border-radius: 5px;
+  color: rgb(252, 210, 187);
+  text-decoration: none; /* Remove underline for link-like behavior */
   cursor: pointer;
   opacity: 0;
   transition: opacity 1s ease-in;
-  padding: 10px 40px;
+  padding: 0; /* Remove padding */
+  background: none; /* Remove background */
+  border: none; /* Remove border */
+  animation: shineOnce 2s ease-in 7s forwards; fadeInButton 1s ease-in 7s forwards
+}
+
+/* Animation for glowing effect */
+@keyframes shineOnce {
+  0% {
+    color: white; /* Start with the original color */
+    text-shadow: none; /* No glow initially */
+  }
+  100% {
+    color: #e29be2; /* End with shiny purple color */
+    text-shadow: 0 0 10px #8399ce, 0 0 20px #ff77ff, 0 0 30px #ff77ff, 
+                 0 0 40px #ff77ff, 0 0 50px #ff77ff, 0 0 60px #ff77ff;
+  }
+}
+
+
+
+
+
+}
+
+/* Optional hover effect for visual feedback */
+.join-button:hover {
+  color: rgb(255, 255, 255); /* Lighten text color on hover */
+  text-shadow: 0 0 10px rgb(252, 210, 187); /* Add glow effect on hover */
+}
+
+/* Keyframe for fading in the button */
+@keyframes fadeInButton {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
