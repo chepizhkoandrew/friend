@@ -43,12 +43,14 @@ body, html {
 /* Background Animation for Scaling and Grayscale */
 @keyframes backgroundEffect {
   0% {
-    background-size: 190%; /* Start zoomed-in */
+    background-size: 220%; /* Start zoomed-in */
     filter: none; /* Natural color */
   }
   100% {
-    background-size: 170%; /* Zoom out slightly */
+    background-size: 190%; /* Zoom out slightly */
     filter: grayscale(100%); /* Fully grayscale */
+    top: 20px;  /* Move down by 20px */
+    right: 50px; /* Move right by 50px */
   }
 }
 
@@ -84,7 +86,7 @@ body, html {
 
 /* Motto Container */
 .motto {
-  width: 88%; /* Adjusted width for better spacing */
+  width: 95%; /* Adjusted width for better spacing */
   color: #fff;
   text-align: center; /* Center-align text */
   font-family: 'Quicksand', Arial, sans-serif; /* Apply calming font to the motto */
@@ -92,7 +94,7 @@ body, html {
 }
 
 .motto p {
-  font-size: 7vw; /* Responsive font size */
+  font-size: 6.5vw; /* Responsive font size */
   line-height: 1.9;
   font-weight: 600; /* Slightly bold for clarity */
 
