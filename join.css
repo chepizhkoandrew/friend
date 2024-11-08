@@ -36,16 +36,16 @@ body, html {
 /* Mobile Background Scaling Animation */
 @media (max-width: 768px) {
   .background {
-    background-size: 200%; /* Start at 150% on mobile */
+    background-size: 190%; /* Start at 150% on mobile */
     animation: backgroundScaleMobile 10s ease-out forwards;
   }
 
   @keyframes backgroundScaleMobile {
     from {
-      background-size: 150%; /* Initial zoomed in for mobile */
+      background-size: 190%; /* Initial zoomed in for mobile */
     }
     to {
-      background-size: 110%; /* Gradually zoom out to normal */
+      background-size: 170%; /* Gradually zoom out to normal */
     }
   }
 }
@@ -63,15 +63,15 @@ body, html {
 
 /* Motto Container */
 .motto {
-  width: 70%;
+  width: 80%;
   margin: 0 10px;
   color: #fff;
   text-align: justify;
 }
 
 .motto p {
-  font-size: 5vw; /* Responsive font size */
-  line-height: 1.2;
+  font-size: 7vw; /* Responsive font size */
+  line-height: 1.9;
 }
 
 .motto .line1 {
