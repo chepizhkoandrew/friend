@@ -1,5 +1,7 @@
-/* Import fonts and basic reset */
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap');
+/* Import Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Monoton&display=swap');
+
+/* Basic Reset */
 * {
   margin: 0;
   padding: 0;
@@ -9,8 +11,7 @@
 body, html {
   width: 100%;
   height: 100%;
-  overflow: hidden;
-  font-family: 'Quicksand', sans-serif;
+  font-family: 'Monoton', cursive;
 }
 
 .container {
@@ -22,97 +23,165 @@ body, html {
   justify-content: center;
 }
 
-/* Background Image */
+/* Background */
 .background {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url('/images/view-textured-fur-fabric_23-2149600304.jpeg');
-  background-size: cover;
-  background-position: center;
-  filter: blur(3px) brightness(0.7);
+  background-color: #000;
+  opacity: 0.5;
+  z-index: -1;
 }
 
-/* Frame Layer */
+/* Frame */
 .frame {
-  position: relative;
-  width: 100%;
-  max-width: 600px;
-  height: 90%;
-  background: rgba(0, 0, 0, 0.5);
-  border-radius: 10px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  color: white;
   text-align: center;
+  width: 90%;
+  max-width: 600px;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
 }
 
-h1 {
+.header {
   font-size: 2rem;
   margin-bottom: 20px;
+  color: white;
+  animation: shineOnce 2s ease-in-out infinite alternate; /* Match glow tact */
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.6), 0 0 20px rgba(255, 255, 255, 0.4);
 }
 
-.options {
+/* Carousel */
+.carousel {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.carousel-inner {
   display: flex;
-  flex-wrap: wrap;
-  gap: 15px;
-  justify-content: center;
+  transition: transform 0.5s ease-in-out;
+  transform: translateX(-20%); /* Adjusted for partial view */
 }
 
-.option {
-  background: #ffffff;
-  color: #333;
-  font-size: 1rem;
+.carousel-item img {
+    width: 100%;
+    border-radius: 50px; /* Highly rounded corners */
+    filter: grayscale(100%) brightness(1.3);
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.5); /* Adds a soft, smoky shadow */
+    transition: all 0.3s ease-in-out;
+    
+    /* Apply a gradient mask for the fade-to-transparent effect */
+    -webkit-mask-image: radial-gradient(circle, rgba(0, 0, 0, 1) 70%, rgba(0, 0, 0, 0) 100%);
+    mask-image: radial-gradient(circle, rgba(0, 0, 0, 1) 70%, rgba(0, 0, 0, 0) 100%);
+    -webkit-mask-size: 100% 100%;
+    mask-size: 100% 100%;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+  }
+  
+  .carousel-item img:hover {
+    transform: scale(1.05);
+  }
+  
+  /* Adjust gradient transition when scaling for smooth edges */
+  .carousel-item img:hover {
+    -webkit-mask-image: radial-gradient(circle, rgba(0, 0, 0, 1) 65%, rgba(0, 0, 0, 0) 100%);
+    mask-image: radial-gradient(circle, rgba(0, 0, 0, 1) 65%, rgba(0, 0, 0, 0) 100%);
+  }
+
+.carousel-item img::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 25px;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.3) 100%);
+}
+
+.caption {
+  margin-top: 10px;
+  font-size: 1.2rem;
   font-weight: bold;
-  padding: 15px 25px;
+  color: white;
+  animation: shinePulse 4s infinite; /* Match pulsating glow animation */
+}
+
+/* Animations */
+@keyframes shineOnce {
+  0%, 100% {
+    color: white; /* Start and end with white */
+    text-shadow: none; /* No glow initially or at the end */
+  }
+  50% {
+    color: #e29be2; /* Shiny purple color */
+    text-shadow: 0 0 10px #8399ce, 0 0 20px #ff77ff, 0 0 30px #ff77ff, 
+                 0 0 40px #ff77ff, 0 0 50px #ff77ff, 0 0 60px #ff77ff;
+  }
+}
+
+@keyframes shinePulse {
+  0% {
+    color: #e29be2; /* Shiny purple color */
+    text-shadow: 0 0 10px #8399ce, 0 0 20px #ff77ff, 0 0 30px #ff77ff, 
+                 0 0 40px #ff77ff, 0 0 50px #ff77ff, 0 0 60px #ff77ff;
+  }
+  50% {
+    color: white; /* Transition to white */
+    text-shadow: none; /* No glow */
+  }
+  70% {
+    color: #e29be2; /* Back to shiny purple color */
+    text-shadow: 0 0 10px #8399ce, 0 0 20px #ff77ff, 0 0 30px #ff77ff, 
+                 0 0 40px #ff77ff, 0 0 50px #ff77ff, 0 0 60px #ff77ff;
+  }
+  100% {
+    color: #e29be2; /* Reset to shiny purple color */
+    text-shadow: 0 0 10px #8399ce, 0 0 20px #ff77ff, 0 0 30px #ff77ff, 
+                 0 0 40px #ff77ff, 0 0 50px #ff77ff, 0 0 60px #ff77ff;
+  }
+}
+
+/* Navigation Buttons */
+.nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
   border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.option:hover {
-  background: #ffd700;
-  transform: scale(1.1);
-}
-
-.option:active {
-  background: #ffc300;
-}
-
-.option.selected {
-  background: #ffd700;
-  color: #fff;
-}
-
-.next-button {
-  margin-top: 20px;
-  background: #ffd700;
-  color: #333;
-  font-size: 1rem;
-  font-weight: bold;
   padding: 10px 20px;
-  border: none;
-  border-radius: 8px;
   cursor: pointer;
-  opacity: 0.6;
-  transition: opacity 0.3s ease;
+  border-radius: 5px;
+  font-size: 1.5rem;
+  z-index: 10;
 }
 
-.next-button:disabled {
-  cursor: not-allowed;
+.nav.prev {
+  left: 10px;
 }
 
-.next-button:not(:disabled) {
-  opacity: 1;
+.nav.next {
+  right: 10px;
 }
 
-.hidden {
-  display: none;
+.nav:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .carousel-item {
+    flex: 0 0 60%; /* Adjusted scaling for mobile screens */
+  }
+
+  .carousel-inner {
+    transform: translateX(-10%); /* Adjusted for partial view */
+  }
+
+  .carousel-item img {
+    border-radius: 15px;
+  }
 }

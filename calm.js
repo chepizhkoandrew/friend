@@ -1,30 +1,32 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const screens = document.querySelectorAll(".question-screen");
-    let currentScreen = 0;
+    const carouselInner = document.querySelector(".carousel-inner");
+    const items = document.querySelectorAll(".carousel-item");
+    const nextButton = document.querySelector(".nav.next");
+    const prevButton = document.querySelector(".nav.prev");
+    let currentIndex = 0;
   
-    // Add event listeners to options
-    document.querySelectorAll(".option").forEach((option) => {
-      option.addEventListener("click", (e) => {
-        const parentScreen = option.closest(".question-screen");
-        parentScreen.querySelectorAll(".option").forEach((btn) =>
-          btn.classList.remove("selected")
-        );
-        option.classList.add("selected");
-        parentScreen.querySelector(".next-button").disabled = false;
-      });
+    function updateCarousel() {
+      carouselInner.style.transform = `translateX(-${currentIndex * 50}%)`; // Adjust for partial view
+    }
+  
+    function handleClick(event) {
+      const target = event.target.closest(".carousel-item");
+      if (target) {
+        const environment = target.dataset.environment;
+        window.location.href = `/${environment}`;
+      }
+    }
+  
+    nextButton.addEventListener("click", () => {
+      currentIndex = (currentIndex + 1) % items.length;
+      updateCarousel();
     });
   
-    // Add event listeners to "Next" buttons
-    document.querySelectorAll(".next-button").forEach((button, index) => {
-      button.addEventListener("click", () => {
-        screens[currentScreen].classList.add("hidden");
-        currentScreen++;
-        if (currentScreen < screens.length) {
-          screens[currentScreen].classList.remove("hidden");
-        } else {
-          window.location.href = "/task"; // Redirect to /task
-        }
-      });
+    prevButton.addEventListener("click", () => {
+      currentIndex = (currentIndex - 1 + items.length) % items.length;
+      updateCarousel();
     });
+  
+    items.forEach((item) => item.addEventListener("click", handleClick));
   });
   
