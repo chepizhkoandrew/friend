@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calm - Tailtrail</title>
+  <link rel="stylesheet" href="calm.css">
+</head>
+<body>
+  <div class="container">
+    <div class="background"></div>
+    <div class="frame">
+      <div class="quiz">
+        <!-- Question Screens -->
+        <div class="question-screen" id="screen1">
+          <h1>What's around?</h1>
+          <div class="options">
+            <button class="option" data-value="Home">Home</button>
+            <button class="option" data-value="Park">Park</button>
+            <button class="option" data-value="Office">Office</button>
+          </div>
+          <button class="next-button" id="next1" disabled>Next</button>
+        </div>
+        <div class="question-screen hidden" id="screen2">
+          <h1>I'm ready for it</h1>
+          <div class="options">
+            <button class="option" data-value="Hardcore">Hardcore</button>
+            <button class="option" data-value="With People">With People</button>
+            <button class="option" data-value="Solo">Solo</button>
+          </div>
+          <button class="next-button" id="next2" disabled>Next</button>
+        </div>
+        <div class="question-screen hidden" id="screen3">
+          <h1>I have time</h1>
+          <div class="options">
+            <button class="option" data-value="1 Min">1 Min</button>
+            <button class="option" data-value="5 Min">5 Min</button>
+            <button class="option" data-value="20 Min">20 Min</button>
+          </div>
+          <button class="next-button" id="go" disabled>GO</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="calm.js"></script>
+</body>
+</html>

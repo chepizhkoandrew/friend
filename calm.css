@@ -1,0 +1,118 @@
+/* Import fonts and basic reset */
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap');
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: 'Quicksand', sans-serif;
+}
+
+.container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Background Image */
+.background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('/images/view-textured-fur-fabric_23-2149600304.jpeg');
+  background-size: cover;
+  background-position: center;
+  filter: blur(3px) brightness(0.7);
+}
+
+/* Frame Layer */
+.frame {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  height: 90%;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  color: white;
+  text-align: center;
+}
+
+h1 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+}
+
+.option {
+  background: #ffffff;
+  color: #333;
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 15px 25px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.option:hover {
+  background: #ffd700;
+  transform: scale(1.1);
+}
+
+.option:active {
+  background: #ffc300;
+}
+
+.option.selected {
+  background: #ffd700;
+  color: #fff;
+}
+
+.next-button {
+  margin-top: 20px;
+  background: #ffd700;
+  color: #333;
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+}
+
+.next-button:disabled {
+  cursor: not-allowed;
+}
+
+.next-button:not(:disabled) {
+  opacity: 1;
+}
+
+.hidden {
+  display: none;
+}
