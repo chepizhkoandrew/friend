@@ -31,21 +31,37 @@ body, html {
   background-image: url('/images/IMG_2412.jpg');
   background-size: cover; /* Ensure it covers the entire screen */
   background-position: center; /* Center the image */
+  filter: none; /* Start with natural color */
+  animation: backgroundEffect 10s ease-out forwards; /* Scaling + grayscale */
+}
+
+/* Background Animation for Scaling and Grayscale */
+@keyframes backgroundEffect {
+  0% {
+    background-size: 190%; /* Start zoomed-in */
+    filter: none; /* Natural color */
+  }
+  100% {
+    background-size: 170%; /* Zoom out slightly */
+    filter: grayscale(100%); /* Fully grayscale */
+  }
 }
 
 /* Mobile Background Scaling Animation */
 @media (max-width: 768px) {
   .background {
-    background-size: 190%; /* Start at 150% on mobile */
+    background-size: 150%; /* Start at 150% on mobile */
     animation: backgroundScaleMobile 10s ease-out forwards;
   }
 
   @keyframes backgroundScaleMobile {
-    from {
-      background-size: 190%; /* Initial zoomed in for mobile */
+    0% {
+      background-size: 150%;
+      filter: none;
     }
-    to {
-      background-size: 170%; /* Gradually zoom out to normal */
+    100% {
+      background-size: 110%;
+      filter: grayscale(100%);
     }
   }
 }
@@ -63,9 +79,9 @@ body, html {
 
 /* Motto Container */
 .motto {
-  width: 80%;
+  width: 80%; /* Adjusted width for better spacing */
   color: #fff;
-  text-align: justify;
+  text-align: center; /* Center-align text */
 }
 
 .motto p {
@@ -94,12 +110,12 @@ body, html {
 /* Join Button */
 .join-button {
   position: absolute;
-  bottom: 80px;
+  bottom: 80px; /* Adjusted position */
   left: 50%;
   transform: translateX(-50%);
-  font-size: 2rem;
+  font-size: 2rem; /* Larger font size */
   color: white;
-  background-color: #434c4e;
+  background-color: #434c4e; /* Darker button color */
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -107,6 +123,4 @@ body, html {
   transition: opacity 1s ease-in;
   padding: 10px 40px; /* Increased padding to make it wider */
   width: auto; /* Default width */
-
-
 }
