@@ -12,10 +12,8 @@ body, html {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  font-family: 'Quicksand', Arial, sans-serif; /* Apply Quicksand as the base font */
+  font-family: 'Quicksand', Arial, sans-serif;
 }
-
-
 
 .container {
   position: relative;
@@ -34,42 +32,19 @@ body, html {
   width: 100%;
   height: 100%;
   background-image: url('/images/IMG_2412.jpg');
-  background-size: cover; /* Ensure it covers the entire screen */
-  background-position: center; /* Center the image */
-  filter: none; /* Start with natural color */
-  animation: backgroundEffect 10s ease-out forwards; /* Scaling + grayscale */
+  background-size: cover;
+  background-position: center;
+  animation: backgroundEffect 10s ease-out forwards;
 }
 
-/* Background Animation for Scaling and Grayscale */
 @keyframes backgroundEffect {
   0% {
-    background-size: 220%; /* Start zoomed-in */
-    filter: none; /* Natural color */
+    background-size: 220%;
+    filter: none;
   }
   100% {
-    background-size: 190%; /* Zoom out slightly */
-    filter: grayscale(100%); /* Fully grayscale */
-    top: 20px;  /* Move down by 20px */
-    right: 50px; /* Move right by 50px */
-  }
-}
-
-/* Mobile Background Scaling Animation */
-@media (max-width: 768px) {
-  .background {
-    background-size: 150%; /* Start at 150% on mobile */
-    animation: backgroundScaleMobile 10s ease-out forwards;
-  }
-
-  @keyframes backgroundScaleMobile {
-    0% {
-      background-size: 150%;
-      filter: none;
-    }
-    100% {
-      background-size: 110%;
-      filter: grayscale(100%);
-    }
+    background-size: 190%;
+    filter: grayscale(100%);
   }
 }
 
@@ -81,35 +56,32 @@ body, html {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(0, 0, 0, 0.5); /* Overlay effect */
+  background: rgba(0, 0, 0, 0.5);
 }
 
-/* Motto Container */
+/* Motto */
 .motto {
-  width: 95%; /* Adjusted width for better spacing */
+  width: 95%;
   color: #fff;
-  text-align: center; /* Center-align text */
-  font-family: 'Quicksand', Arial, sans-serif; /* Apply calming font to the motto */
-
+  text-align: center;
 }
 
 .motto p {
-  font-size: 6.5vw; /* Responsive font size */
+  font-size: 6.5vw;
   line-height: 1.9;
-  font-weight: 600; /* Slightly bold for clarity */
-
+  font-weight: 600;
 }
 
 .motto .line1 {
   opacity: 0;
   animation: fadeInText 1s ease-in forwards;
-  animation-delay: 3s; /* Start after 3 seconds */
+  animation-delay: 3s;
 }
 
 .motto .line2 {
   opacity: 0;
   animation: fadeInText 1s ease-in forwards;
-  animation-delay: 8s; /* Start after 8 seconds (3s + 4s delay) */
+  animation-delay: 8s;
 }
 
 @keyframes fadeInText {
@@ -118,20 +90,64 @@ body, html {
   }
 }
 
+/* Moving Objects */
+.moving-object {
+  position: absolute;
+  width: 100px;
+  height: auto;
+}
+
+.cat {
+  animation: moveCat 5s ease-in-out forwards;
+}
+
+.dog {
+  animation: moveDog 2s ease-in-out forwards;
+}
+
+.dolphin {
+  animation: moveDolphin 1s ease-in-out forwards;
+}
+
+/* Keyframes for Each Object */
+@keyframes moveCat {
+  0% { transform: translate(10vw, 30vh) rotate(0deg); }
+  3.33% { transform: translate(13vw, 28vh) rotate(12deg); }
+  6.66% { transform: translate(16vw, 26vh) rotate(24deg); }
+  10% { transform: translate(19vw, 24vh) rotate(36deg); }
+  ...
+  96.67% { transform: translate(85vw, 32vh) rotate(348deg); }
+  100% { transform: translate(90vw, 30vh) rotate(360deg); }
+}
+
+@keyframes moveDog {
+  0% { transform: translate(20vw, 50vh) rotate(0deg); }
+  10% { transform: translate(30vw, 45vh) rotate(15deg); }
+  20% { transform: translate(40vw, 55vh) rotate(-15deg); }
+  ...
+  96.67% { transform: translate(75vw, 52vh) rotate(345deg); }
+  100% { transform: translate(80vw, 50vh) rotate(360deg); }
+}
+
+@keyframes moveDolphin {
+  0% { transform: translate(30vw, 80vh) rotate(0deg); }
+  50% { transform: translate(65vw, 70vh) rotate(180deg); }
+  100% { transform: translate(100vw, 80vh) rotate(360deg); }
+}
+
 /* Join Button */
 .join-button {
   position: absolute;
-  bottom: 80px; /* Adjusted position */
+  bottom: 80px;
   left: 50%;
   transform: translateX(-50%);
-  font-size: 2rem; /* Larger font size */
+  font-size: 2rem;
   color: white;
-  background-color: #434c4e; /* Darker button color */
+  background-color: #434c4e;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   opacity: 0;
   transition: opacity 1s ease-in;
-  padding: 10px 40px; /* Increased padding to make it wider */
-  width: auto; /* Default width */
+  padding: 10px 40px;
 }
