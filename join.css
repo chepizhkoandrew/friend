@@ -73,8 +73,8 @@ body, html {
   text-align: center;
   color: white; /* Initial font color */
   text-shadow: none; /* No shadow initially */
-  animation: shineOnceshort 1s ease-in forwards;
-  animation-delay: 13s;
+  animation: shineOnce 2s ease-in 12s forwards;
+  
 }
 
 /* Animation for short glowing effect */
@@ -230,7 +230,7 @@ body, html {
   padding: 0; /* Remove padding */
   background: none; /* Remove background */
   border: none; /* Remove border */
-  animation: fadeInButton 1s ease-in 7s forwards, shineOnce 2s ease-in 12s forwards;
+  animation: fadeInButton 1s ease-in 6s forwards, shineOnce 3s ease-in 11s infinite;
 }
 
 @keyframes shinePulse {
