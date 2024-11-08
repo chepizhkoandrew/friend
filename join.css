@@ -21,7 +21,7 @@ body, html {
   justify-content: center;
 }
 
-/* Background Image with Scaling Animation */
+/* Background Image */
 .background {
   position: absolute;
   top: 0;
@@ -29,18 +29,24 @@ body, html {
   width: 100%;
   height: 100%;
   background-image: url('/images/IMG_2412.jpg');
-  background-size: 110%; /* Start with 10% scaled-up size */
+  background-size: 110%; /* Default for non-mobile */
   background-position: calc(50% - 100px) center;
-  animation: backgroundScale 10s ease-out forwards;
 }
 
-/* Background Scale Animation */
-@keyframes backgroundScale {
-  from {
-    background-size: 120%; /* Initial zoomed in */
+/* Mobile Background Scaling Animation */
+@media (max-width: 768px) {
+  .background {
+    background-size: 150%; /* Start at 150% on mobile */
+    animation: backgroundScaleMobile 10s ease-out forwards;
   }
-  to {
-    background-size: 110%; /* Gradual scale back */
+
+  @keyframes backgroundScaleMobile {
+    from {
+      background-size: 150%; /* Initial zoomed in for mobile */
+    }
+    to {
+      background-size: 110%; /* Gradually zoom out to normal */
+    }
   }
 }
 
@@ -52,29 +58,32 @@ body, html {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(0, 0, 0, 0.5); /* Overlay effect for filtering */
+  background: rgba(0, 0, 0, 0.5); /* Overlay effect */
 }
 
-/* Motto Content */
+/* Motto Container */
 .motto {
-  width: 60%;
-  margin: 0 50px;
+  width: 70%;
+  margin: 0 10px;
   color: #fff;
-  text-align: center;
-  opacity: 0; /* Start hidden */
-  transition: opacity 1s ease-in;
+  text-align: justify;
 }
 
-/* Fading in animations for the motto parts */
+.motto p {
+  font-size: 5vw; /* Responsive font size */
+  line-height: 1.2;
+}
+
 .motto .line1 {
+  opacity: 0;
   animation: fadeInText 1s ease-in forwards;
-  animation-delay: 3s;
+  animation-delay: 3s; /* Start after 3 seconds */
 }
 
 .motto .line2 {
-  opacity: 0; /* Start hidden */
+  opacity: 0;
   animation: fadeInText 1s ease-in forwards;
-  animation-delay: 8s; /* 4 seconds after the first line appears */
+  animation-delay: 8s; /* Start after 8 seconds (3s + 4s delay) */
 }
 
 @keyframes fadeInText {
