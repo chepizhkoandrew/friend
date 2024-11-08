@@ -30,12 +30,13 @@ body, html {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-image: url('/images/view-textured-fur-fabric_23-2149600304.jpeg');
-    background-size: cover; /* Ensures the image always covers the viewport */
-    background-position: center center; /* Centers the image */
-    background-repeat: no-repeat; /* Prevents repeating of the image */
-    animation: backgroundMotion 12s ease-in-out infinite; /* Smooth scaling motion */
-    z-index: -1; /* Ensures it stays behind other elements */
+    background-image: url('/images/view-textured-fur-fabric_23-2149600304.jpg');
+    background-size: cover; /* Ensures the image covers the viewport */
+    background-position: center center;
+    background-repeat: no-repeat;
+    animation: backgroundMotion 12s ease-in-out infinite;
+    z-index: 0; /* Bring it to the front for testing */
+    border: 5px solid red; /* Debug: Check if it renders */
   }
   
   /* Scaling Animation */
