@@ -1,4 +1,4 @@
-/* Reset and Basic Styles */
+/* Basic Reset */
 * {
   margin: 0;
   padding: 0;
@@ -31,7 +31,6 @@ body, html {
   background-image: url('/images/IMG_2412.jpg');
   background-size: cover;
   background-position: center;
-  filter: brightness(0.7); /* Optional filter effect */
 }
 
 /* Frame Layer */
@@ -42,30 +41,25 @@ body, html {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(0, 0, 0, 0.5); /* Overlay effect */
-  padding: 0 50px; /* Side margin */
+  background: rgba(0, 0, 0, 0.5); /* Overlay effect for filtering */
 }
 
-/* Text Content */
-.text-content {
+/* Motto Content */
+.motto {
   width: 60%;
-  max-width: 100%; /* Ensure it doesn't overflow */
+  margin: 0 50px;
   color: #fff;
   text-align: center;
-  opacity: 1;
-  transition: opacity 0.5s ease-in-out;
 }
 
-/* Responsive Font Size */
-.text {
-  font-size: 5vw; /* Responsive size based on viewport width */
+.motto p {
+  font-size: 5vw; /* Scales with viewport */
   line-height: 1.2;
 }
 
-/* Larger font size for desktop */
 @media (min-width: 768px) {
-  .text {
-    font-size: 60px; /* Base font size for larger screens */
+  .motto p {
+    font-size: 60px; /* Desktop font size */
   }
 }
 
@@ -82,10 +76,4 @@ body, html {
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  display: none;
-}
-
-/* Hidden class for animations */
-.hidden {
-  display: none;
 }
