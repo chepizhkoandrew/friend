@@ -231,8 +231,32 @@ body, html {
   padding: 0; /* Remove padding */
   background: none; /* Remove background */
   border: none; /* Remove border */
-  animation: shineOnce 2s ease-in 7s forwards; fadeInButton 1s ease-in 7s forwards
+  animation: shineOnce 2s ease-in 7s forwards; fadeInButton 1s ease-in 7s forwards; shinePulse 4s infinite; /* Repetitive animation */
+
 }
+
+@keyframes shinePulse {
+  0% {
+    color: #e29be2; /* Shiny purple color */
+    text-shadow: 0 0 10px #8399ce, 0 0 20px #ff77ff, 0 0 30px #ff77ff, 
+                 0 0 40px #ff77ff, 0 0 50px #ff77ff, 0 0 60px #ff77ff;
+  }
+  50% {
+    color: white; /* Transition to white */
+    text-shadow: none; /* No glow */
+  }
+  70% {
+    color: #e29be2; /* Back to shiny purple color */
+    text-shadow: 0 0 10px #8399ce, 0 0 20px #ff77ff, 0 0 30px #ff77ff, 
+                 0 0 40px #ff77ff, 0 0 50px #ff77ff, 0 0 60px #ff77ff;
+  }
+  100% {
+    color: #e29be2; /* Reset to shiny purple color */
+    text-shadow: 0 0 10px #8399ce, 0 0 20px #ff77ff, 0 0 30px #ff77ff, 
+                 0 0 40px #ff77ff, 0 0 50px #ff77ff, 0 0 60px #ff77ff;
+  }
+}
+
 
 /* Animation for glowing effect */
 @keyframes shineOnce {
