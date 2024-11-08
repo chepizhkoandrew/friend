@@ -114,6 +114,8 @@ body, html {
 
 
 /* Desktop Keyframes */
+
+/* Desktop Keyframes */
 @keyframes moveCatDesktop {
   0.00% { transform: translate(30.00vw, 100.00vh) scale(2.00) rotate(0.00deg); }
   1.01% { transform: translate(29.55vw, 99.14vh) scale(1.99) rotate(3.03deg); }
