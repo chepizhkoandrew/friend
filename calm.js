@@ -1,32 +1,31 @@
 document.addEventListener("DOMContentLoaded", () => {
     const carouselInner = document.querySelector(".carousel-inner");
-    const items = document.querySelectorAll(".carousel-item");
+    const items = Array.from(document.querySelectorAll(".carousel-item"));
     const nextButton = document.querySelector(".nav.next");
     const prevButton = document.querySelector(".nav.prev");
     let currentIndex = 0;
   
     function updateCarousel() {
-      carouselInner.style.transform = `translateX(-${currentIndex * 50}%)`; // Adjust for partial view
-    }
-  
-    function handleClick(event) {
-      const target = event.target.closest(".carousel-item");
-      if (target) {
-        const environment = target.dataset.environment;
-        window.location.href = `/${environment}`;
-      }
+      const offset = (currentIndex * -33.3) % 100; // 33.3% for each item
+      carouselInner.style.transform = `translateX(${offset}%)`;
+      items.forEach((item, index) => {
+        item.classList.toggle(
+          "active",
+          index === (currentIndex % items.length + items.length) % items.length
+        );
+      });
     }
   
     nextButton.addEventListener("click", () => {
-      currentIndex = (currentIndex + 1) % items.length;
+      currentIndex++;
       updateCarousel();
     });
   
     prevButton.addEventListener("click", () => {
-      currentIndex = (currentIndex - 1 + items.length) % items.length;
+      currentIndex--;
       updateCarousel();
     });
   
-    items.forEach((item) => item.addEventListener("click", handleClick));
+    updateCarousel();
   });
   
