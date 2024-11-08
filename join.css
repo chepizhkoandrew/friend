@@ -93,31 +93,40 @@ body, html {
 /* Moving Objects */
 .moving-object {
   position: absolute;
-  width: 100px;
-  height: auto;
 }
 
 .cat {
-  animation: moveCat 10s linear infinite;
+  position: absolute;
+  top: -800px; left: 40px;;
+  animation: moveCat 10s ease-in-out forwards;
+  width: 15vw; /* Default size for desktop */
 }
 
 .dog {
-  animation: moveDog 7s linear infinite;
+  position: absolute;
+  top: -800px; left: 1000px;;
+  animation: moveDog 7s ease-in-out forwards;
+  width: 10vw; /* Default size for desktop */
 }
 
 .dolphin {
-  animation: moveDolphin 4s linear infinite;
+  position: absolute;
+  top: -800px; left: 1000px;;
+  animation: moveDolphin 5s ease-in-out forwards;
+  width: 10vw; /* Default size for desktop */
 }
 
-/* Keyframes for Cat Motion */
-/* Keyframes for Cat Motion (Desktop View) */
+@media (max-width: 768px) {
+  .cat,
+  .dog,
+  .dolphin {
+    width: 20vw; /* Larger size for mobile */
+  }
+}
 
+/* Keyframes for Each Object */
 
-/* Desktop Keyframes */
-
-/* Desktop Keyframes */
-
-/* Desktop Keyframes */
+/* Cat Motion */
 @keyframes moveCat {
   0% { transform: translate(-10.0vw, 70.0vh) rotate(0.0deg) scale(1.0); }
   1% { transform: translate(-9.375vw, 69.375vh) rotate(2.25deg) scale(1.0125); }
@@ -396,29 +405,29 @@ body, html {
   88% { transform: translate(113.75vw, 21.25vh) rotate(237.0deg) scale(1.0125); }
   89% { transform: translate(115.0vw, 20.0vh) rotate(240.0deg) scale(1.0); }
 }
-  
+
   /* Media Queries */
   @media (min-width: 768px) {
     .cat {
-      animation: moveCatDesktop 10s linear infinite;
+      animation: moveCat 10s linear infinite;
     }
     .dog {
-      animation: moveDogDesktop 7s linear infinite;
+      animation: moveDog 7s linear infinite;
     }
     .dolphin {
-      animation: moveDolphinDesktop 4s linear infinite;
+      animation: moveDolphin 4s linear infinite;
     }
   }
   
   @media (max-width: 768px) {
     .cat {
-      animation: moveCatMobile 10s linear infinite;
+      animation: moveCat 10s linear infinite;
     }
     .dog {
-      animation: moveDogMobile 7s linear infinite;
+      animation: moveDog 7s linear infinite;
     }
     .dolphin {
-      animation: moveDolphinMobile 4s linear infinite;
+      animation: moveDolphin 4s linear infinite;
     }
   }
 
