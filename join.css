@@ -98,119 +98,49 @@ body, html {
 }
 
 .cat {
-  animation: moveCat 5s ease-in-out forwards;
+  animation: moveCat 10s linear infinite;
 }
 
 .dog {
-  animation: moveDog 2s ease-in-out forwards;
+  animation: moveDog 7s linear infinite;
 }
 
 .dolphin {
-  animation: moveDolphin 1s ease-in-out forwards;
+  animation: moveDolphin 4s linear infinite;
 }
 
-/* Keyframes for Each Object */
+/* Keyframes for Cat Motion */
 @keyframes moveCat {
-  0.00% { transform: translate(5.00vw, 50.00vh) rotate(0.00deg) scale(1.00); }
-  1.01% { transform: translate(6.79vw, 50.63vh) rotate(12.81deg) scale(1.00); }
-  2.02% { transform: translate(8.58vw, 51.27vh) rotate(25.59deg) scale(1.00); }
-  3.03% { transform: translate(10.34vw, 51.89vh) rotate(38.30deg) scale(1.01); }
-  4.04% { transform: translate(12.08vw, 52.51vh) rotate(50.93deg) scale(1.01); }
-  5.05% { transform: translate(13.77vw, 53.12vh) rotate(63.44deg) scale(1.01); }
-  6.06% { transform: translate(15.42vw, 53.72vh) rotate(75.81deg) scale(1.01); }
-  7.07% { transform: translate(17.01vw, 54.30vh) rotate(88.01deg) scale(1.01); }
-  8.08% { transform: translate(18.54vw, 54.86vh) rotate(100.02deg) scale(1.02); }
-  9.09% { transform: translate(20.00vw, 55.41vh) rotate(111.83deg) scale(1.02); }
-  10.10% { transform: translate(21.39vw, 55.93vh) rotate(123.41deg) scale(1.02); }
-  11.11% { transform: translate(22.70vw, 56.43vh) rotate(134.77deg) scale(1.02); }
-  12.12% { transform: translate(23.93vw, 56.90vh) rotate(145.89deg) scale(1.02); }
-  13.13% { transform: translate(25.09vw, 57.35vh) rotate(156.77deg) scale(1.03); }
-  14.14% { transform: translate(26.16vw, 57.76vh) rotate(167.41deg) scale(1.03); }
-  15.15% { transform: translate(27.15vw, 58.15vh) rotate(177.81deg) scale(1.03); }
-  16.16% { transform: translate(28.07vw, 58.50vh) rotate(187.99deg) scale(1.03); }
-  17.17% { transform: translate(28.91vw, 58.81vh) rotate(197.94deg) scale(1.03); }
-  18.18% { transform: translate(29.69vw, 59.10vh) rotate(207.70deg) scale(1.04); }
-  19.19% { transform: translate(30.40vw, 59.34vh) rotate(217.27deg) scale(1.04); }
-  20.20% { transform: translate(31.07vw, 59.55vh) rotate(226.69deg) scale(1.04); }
-  21.21% { transform: translate(31.69vw, 59.72vh) rotate(235.96deg) scale(1.04); }
-  22.22% { transform: translate(32.27vw, 59.85vh) rotate(245.13deg) scale(1.04); }
-  23.23% { transform: translate(32.82vw, 59.94vh) rotate(254.21deg) scale(1.05); }
-  24.24% { transform: translate(33.35vw, 59.99vh) rotate(263.24deg) scale(1.05); }
-  25.25% { transform: translate(33.88vw, 60.00vh) rotate(272.25deg) scale(1.05); }
-  26.26% { transform: translate(34.41vw, 59.97vh) rotate(281.27deg) scale(1.05); }
-  27.27% { transform: translate(34.95vw, 59.90vh) rotate(290.32deg) scale(1.05); }
-  28.28% { transform: translate(35.52vw, 59.79vh) rotate(299.44deg) scale(1.06); }
-  29.29% { transform: translate(36.12vw, 59.64vh) rotate(308.66deg) scale(1.06); }
-  30.30% { transform: translate(36.76vw, 59.45vh) rotate(318.00deg) scale(1.06); }
-  31.31% { transform: translate(37.45vw, 59.22vh) rotate(327.49deg) scale(1.06); }
-  32.32% { transform: translate(38.19vw, 58.96vh) rotate(337.15deg) scale(1.06); }
-  33.33% { transform: translate(39.00vw, 58.66vh) rotate(347.01deg) scale(1.07); }
-  34.34% { transform: translate(39.88vw, 58.33vh) rotate(357.07deg) scale(1.07); }
-  35.35% { transform: translate(40.84vw, 57.96vh) rotate(367.36deg) scale(1.07); }
-  36.36% { transform: translate(41.87vw, 57.56vh) rotate(377.88deg) scale(1.07); }
-  37.37% { transform: translate(42.98vw, 57.13vh) rotate(388.64deg) scale(1.07); }
-  38.38% { transform: translate(44.17vw, 56.67vh) rotate(399.64deg) scale(1.08); }
-  39.39% { transform: translate(45.44vw, 56.18vh) rotate(410.88deg) scale(1.08); }
-  40.40% { transform: translate(46.79vw, 55.67vh) rotate(422.35deg) scale(1.08); }
-  41.41% { transform: translate(48.22vw, 55.14vh) rotate(434.05deg) scale(1.08); }
-  42.42% { transform: translate(49.71vw, 54.58vh) rotate(445.96deg) scale(1.08); }
-  43.43% { transform: translate(51.28vw, 54.01vh) rotate(458.07deg) scale(1.09); }
-  44.44% { transform: translate(52.90vw, 53.42vh) rotate(470.36deg) scale(1.09); }
-  45.45% { transform: translate(54.57vw, 52.82vh) rotate(482.80deg) scale(1.09); }
-  46.46% { transform: translate(56.29vw, 52.20vh) rotate(495.37deg) scale(1.09); }
-  47.47% { transform: translate(58.04vw, 51.58vh) rotate(508.05deg) scale(1.09); }
-  48.48% { transform: translate(59.81vw, 50.95vh) rotate(520.80deg) scale(1.10); }
-  49.49% { transform: translate(61.60vw, 50.32vh) rotate(533.59deg) scale(1.10); }
-  50.51% { transform: translate(63.40vw, 49.68vh) rotate(546.41deg) scale(1.10); }
-  51.52% { transform: translate(65.19vw, 49.05vh) rotate(559.20deg) scale(1.10); }
-  52.53% { transform: translate(66.96vw, 48.42vh) rotate(571.95deg) scale(1.09); }
-  53.54% { transform: translate(68.71vw, 47.80vh) rotate(584.63deg) scale(1.09); }
-  54.55% { transform: translate(70.43vw, 47.18vh) rotate(597.20deg) scale(1.09); }
-  55.56% { transform: translate(72.10vw, 46.58vh) rotate(609.64deg) scale(1.09); }
-  56.57% { transform: translate(73.72vw, 45.99vh) rotate(621.93deg) scale(1.09); }
-  57.58% { transform: translate(75.29vw, 45.42vh) rotate(634.04deg) scale(1.08); }
-  58.59% { transform: translate(76.78vw, 44.86vh) rotate(645.95deg) scale(1.08); }
-  59.60% { transform: translate(78.21vw, 44.33vh) rotate(657.65deg) scale(1.08); }
-  60.61% { transform: translate(79.56vw, 43.82vh) rotate(669.12deg) scale(1.08); }
-  61.62% { transform: translate(80.83vw, 43.33vh) rotate(680.36deg) scale(1.08); }
-  62.63% { transform: translate(82.02vw, 42.87vh) rotate(691.36deg) scale(1.07); }
-  63.64% { transform: translate(83.13vw, 42.44vh) rotate(702.12deg) scale(1.07); }
-  64.65% { transform: translate(84.16vw, 42.04vh) rotate(712.64deg) scale(1.07); }
-  65.66% { transform: translate(85.12vw, 41.67vh) rotate(722.93deg) scale(1.07); }
-  66.67% { transform: translate(86.00vw, 41.34vh) rotate(732.99deg) scale(1.07); }
-  67.68% { transform: translate(86.81vw, 41.04vh) rotate(742.85deg) scale(1.06); }
-  68.69% { transform: translate(87.55vw, 40.78vh) rotate(752.51deg) scale(1.06); }
-  69.70% { transform: translate(88.24vw, 40.55vh) rotate(762.00deg) scale(1.06); }
-  70.71% { transform: translate(88.88vw, 40.36vh) rotate(771.34deg) scale(1.06); }
-  71.72% { transform: translate(89.48vw, 40.21vh) rotate(780.56deg) scale(1.06); }
-  72.73% { transform: translate(90.05vw, 40.10vh) rotate(789.68deg) scale(1.05); }
-  73.74% { transform: translate(90.59vw, 40.03vh) rotate(798.73deg) scale(1.05); }
-  74.75% { transform: translate(91.12vw, 40.00vh) rotate(807.75deg) scale(1.05); }
-  75.76% { transform: translate(91.65vw, 40.01vh) rotate(816.76deg) scale(1.05); }
-  76.77% { transform: translate(92.18vw, 40.06vh) rotate(825.79deg) scale(1.05); }
-  77.78% { transform: translate(92.73vw, 40.15vh) rotate(834.87deg) scale(1.04); }
-  78.79% { transform: translate(93.31vw, 40.28vh) rotate(844.04deg) scale(1.04); }
-  79.80% { transform: translate(93.93vw, 40.45vh) rotate(853.31deg) scale(1.04); }
-  80.81% { transform: translate(94.60vw, 40.66vh) rotate(862.73deg) scale(1.04); }
-  81.82% { transform: translate(95.31vw, 40.90vh) rotate(872.30deg) scale(1.04); }
-  82.83% { transform: translate(96.09vw, 41.19vh) rotate(882.06deg) scale(1.03); }
-  83.84% { transform: translate(96.93vw, 41.50vh) rotate(892.01deg) scale(1.03); }
-  84.85% { transform: translate(97.85vw, 41.85vh) rotate(902.19deg) scale(1.03); }
-  85.86% { transform: translate(98.84vw, 42.24vh) rotate(912.59deg) scale(1.03); }
-  86.87% { transform: translate(99.91vw, 42.65vh) rotate(923.23deg) scale(1.03); }
-  87.88% { transform: translate(101.07vw, 43.10vh) rotate(934.11deg) scale(1.02); }
-  88.89% { transform: translate(102.30vw, 43.57vh) rotate(945.23deg) scale(1.02); }
-  89.90% { transform: translate(103.61vw, 44.07vh) rotate(956.59deg) scale(1.02); }
-  90.91% { transform: translate(105.00vw, 44.59vh) rotate(968.17deg) scale(1.02); }
-  91.92% { transform: translate(106.46vw, 45.14vh) rotate(979.98deg) scale(1.02); }
-  92.93% { transform: translate(107.99vw, 45.70vh) rotate(991.99deg) scale(1.01); }
-  93.94% { transform: translate(109.58vw, 46.28vh) rotate(1004.19deg) scale(1.01); }
-  94.95% { transform: translate(111.23vw, 46.88vh) rotate(1016.56deg) scale(1.01); }
-  95.96% { transform: translate(112.92vw, 47.49vh) rotate(1029.07deg) scale(1.01); }
-  96.97% { transform: translate(114.66vw, 48.11vh) rotate(1041.70deg) scale(1.01); }
-  97.98% { transform: translate(116.42vw, 48.73vh) rotate(1054.41deg) scale(1.00); }
-  98.99% { transform: translate(118.21vw, 49.37vh) rotate(1067.19deg) scale(1.00); }
-  100.00% { transform: translate(120.00vw, 50.00vh) rotate(1080.00deg) scale(1.00); }
+  0.00% { transform: translate(-10.00vw, 50.00vh) rotate(0.00deg) scale(1.00); }
+  10.00% { transform: translate(10.00vw, 48.00vh) rotate(36.00deg) scale(1.10); }
+  20.00% { transform: translate(30.00vw, 52.00vh) rotate(72.00deg) scale(1.20); }
+  30.00% { transform: translate(50.00vw, 50.00vh) rotate(108.00deg) scale(1.30); }
+  40.00% { transform: translate(70.00vw, 54.00vh) rotate(144.00deg) scale(1.40); }
+  50.00% { transform: translate(90.00vw, 50.00vh) rotate(180.00deg) scale(1.50); }
+  60.00% { transform: translate(110.00vw, 48.00vh) rotate(216.00deg) scale(1.40); }
+  70.00% { transform: translate(130.00vw, 52.00vh) rotate(252.00deg) scale(1.30); }
+  80.00% { transform: translate(150.00vw, 50.00vh) rotate(288.00deg) scale(1.20); }
+  90.00% { transform: translate(170.00vw, 54.00vh) rotate(324.00deg) scale(1.10); }
+  100.00% { transform: translate(190.00vw, 50.00vh) rotate(360.00deg) scale(1.00); }
+}
+
+/* Keyframes for Dog Motion */
+@keyframes moveDog {
+  0.00% { transform: translate(-20.00vw, 40.00vh) rotate(0.00deg) scale(1.00); }
+  20.00% { transform: translate(10.00vw, 42.00vh) rotate(90.00deg) scale(1.20); }
+  40.00% { transform: translate(40.00vw, 38.00vh) rotate(180.00deg) scale(1.40); }
+  60.00% { transform: translate(70.00vw, 44.00vh) rotate(270.00deg) scale(1.20); }
+  80.00% { transform: translate(100.00vw, 40.00vh) rotate(360.00deg) scale(1.00); }
+  100.00% { transform: translate(130.00vw, 42.00vh) rotate(450.00deg) scale(1.20); }
+}
+
+/* Keyframes for Dolphin Motion */
+@keyframes moveDolphin {
+  0.00% { transform: translate(-15.00vw, 70.00vh) rotate(0.00deg) scale(1.00); }
+  25.00% { transform: translate(10.00vw, 72.00vh) rotate(90.00deg) scale(1.10); }
+  50.00% { transform: translate(35.00vw, 68.00vh) rotate(180.00deg) scale(1.20); }
+  75.00% { transform: translate(60.00vw, 70.00vh) rotate(270.00deg) scale(1.10); }
+  100.00% { transform: translate(85.00vw, 72.00vh) rotate(360.00deg) scale(1.00); }
 }
 
 /* Join Button */
