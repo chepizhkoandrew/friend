@@ -66,7 +66,7 @@ body, html {
 }
 
 .activity-item {
-  font-size: 2rem;
+  font-size: 4rem; /* Same size as the question */
   color: white;
   text-align: center;
   cursor: pointer;
@@ -75,6 +75,7 @@ body, html {
   align-items: center;
   justify-content: center;
   position: relative;
+  padding: 20px; /* Add padding for better spacing */
 }
 
 .activity-item:hover {
@@ -125,17 +126,19 @@ body, html {
 /* Activity Items */
 .activity-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-template-columns: repeat(3, 1fr); /* 3 columns */
+  grid-template-rows: repeat(2, 1fr); /* 2 rows */
   gap: 20px;
   padding: 20px;
   text-align: center;
   margin-top: auto;
-  margin-bottom: 10%;
-  width: 90%;
+  margin-bottom: 5%; /* Move the container up */
+  width: 80%; /* Use 80% width for better centering */
+  max-width: 1200px; /* Reasonably centered for desktop */
 }
 
 .activity-item {
-  font-size: 2rem;
+  font-size: 4rem; /* Same size as the question */
   color: white;
   text-align: center;
   cursor: pointer;
@@ -144,10 +147,20 @@ body, html {
   align-items: center;
   justify-content: center;
   position: relative;
+  padding: 20px; /* Add padding for better spacing */
 }
 
 .activity-item.blink {
-  animation: shinePulse 3s ease-in-out infinite;
+  animation: blinkColor 1s infinite;
+}
+
+@keyframes blinkColor {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
 }
 
 @keyframes shinePulse {
@@ -171,5 +184,27 @@ body, html {
   }
   50% {
     box-shadow: 0 0 15px #ff77ff, 0 0 30px #ff77ff, 0 0 45px #ff77ff, 0 0 60px #ff77ff;
+  }
+}
+
+/* Next Button */
+#next-button {
+  display: none;
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 1.5rem;
+  color: white;
+  background-color: #e29be2;
+  border: none;
+  cursor: pointer;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
   }
 }
