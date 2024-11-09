@@ -97,14 +97,14 @@ body, html {
 
 /* Responsive Grid Layout */
 @media (min-width: 768px) {
-  .third-grid {
+  .activity-grid {
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(2, 1fr);
   }
 }
 
 @media (max-width: 767px) {
-  .third-grid {
+  .activity-grid {
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(3, 1fr);
   }
@@ -113,12 +113,12 @@ body, html {
 /* Question Animation */
 .question {
   position: absolute;
-  top: 10%;
+  top: 5%; /* Adjusted to move higher */
   width: 100%;
   text-align: center;
   color: white;
   font-size: 4rem;
-  line-height: 1.5;
+  line-height: 1.2; /* Reduced line height */
 }
 
 .question span {
@@ -134,7 +134,6 @@ body, html {
 
 /* Styled Options */
 .activity-item {
-  font-size: 2.8rem; /* 70% of 4rem */
   color: white;
   font-family: 'Monoton', cursive;
   text-align: center;
@@ -144,6 +143,8 @@ body, html {
   border: none;
   animation: fadeInButton 1s ease-in forwards, shinePulse 3s ease-in-out infinite;
   transition: text-shadow 0.3s, transform 0.3s ease;
+  max-width: 15ch; /* Ensure content does not exceed 15 characters per line */
+  margin-bottom: 10px; /* Adjusted margin to reduce space between items */
 }
 
 .activity-item a {
@@ -179,13 +180,19 @@ body, html {
 
 .activity-grid {
   display: grid;
-  gap: 20px;
+  gap: 10px; /* Reduced gap between items */
   padding: 20px;
   text-align: center;
-  margin-top: auto;
+  margin-top: 10%; /* Adjusted to move higher */
   margin-bottom: 5%;
-  width: 80%;
+  width: 100%; /* Full width */
   max-width: 1200px;
+  align-content: start; /* Align items to the start */
+}
+
+.activity-item {
+  font-size: calc(5vw + 1.5vh); /* Responsive font size */
+  max-width: 15ch; /* Ensure content does not exceed 15 characters per line */
 }
 
 /* Video Screen */
@@ -207,12 +214,12 @@ body, html {
   object-fit: cover;
 }
 
-/* Next Button Container */
 .next-button-container {
+  position: absolute;
+  bottom: 20px; /* Adjusted margin for the button */
+  width: 100%;
   display: flex;
   justify-content: center;
-  width: 100%;
-  margin-top: 20px;
 }
 
 /* Next Button */
@@ -222,7 +229,7 @@ body, html {
   font-family: 'Monoton', cursive;
   text-align: center;
   cursor: pointer;
-  opacity: 0;
+  opacity: 1;
   background: none;
   border: none;
   animation: fadeInButton 1s ease-in forwards, shinePulse 3s ease-in-out infinite;

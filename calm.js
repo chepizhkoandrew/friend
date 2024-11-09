@@ -72,7 +72,7 @@ document.addEventListener("DOMContentLoaded", () => {
             document.querySelector('.question').style.display = 'none';
             document.querySelector('.activity-grid').style.display = 'none';
             document.querySelector('.second-question').style.display = 'block';
-            nextButton.style.display = 'block';
+            nextButton.style.display = 'none'; // Hide the next button initially
 
             // Change background for the second screen
             background.classList.add('second');
@@ -83,35 +83,36 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // Handle transition to video screen
       document.querySelector('.see-example').addEventListener('click', () => {
-        document.querySelector('.third-question').style.display = 'none';
-        thirdGrid.style.display = 'none';
+        document.querySelector('.second-question').style.display = 'none';
+        secondGrid.style.display = 'none';
 
-        document.querySelector('.video-question').style.display = 'block';
         videoScreen.style.display = 'flex';
         video.play();
 
         nextButton.style.display = 'block'; // Show the next button
       });
 
-     // Handle transition to third screen
-nextButton.addEventListener('click', () => {
-  const thirdItems = Array.from(thirdGrid.children);
-  document.querySelector('.second-question').style.display = 'none';
-  secondGrid.style.display = 'none';
-  videoScreen.style.display = 'none';
-  video.pause();
+      // Handle transition to third screen
+      nextButton.addEventListener('click', () => {
+        const thirdItems = Array.from(thirdGrid.children);
+        videoScreen.style.display = 'none';
+        video.pause();
 
-  document.querySelector('.third-question').style.display = 'block';
-  thirdGrid.style.display = 'grid';
-  showElementsSequentially(thirdItems, 500);
+        document.querySelector('.third-question').style.display = 'block';
+        thirdGrid.style.display = 'grid';
+        showElementsSequentially(thirdItems, 500);
 
-  nextButton.style.display = 'none'; // Hide the next button
+        nextButton.style.display = 'none'; // Hide the next button
 
-  // Change background for the third screen
-  background.classList.add('third');
-  background.classList.remove('second');
-});
+        // Change background for the third screen
+        background.classList.add('third');
+        background.classList.remove('second');
+      });
+
+      // Show the next button only when an option is picked on the third screen
+      thirdGrid.addEventListener('click', () => {
+        nextButton.style.display = 'block';
+      });
     })
     .catch(error => console.error('Error loading options:', error));
 });
-
