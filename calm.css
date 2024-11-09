@@ -115,7 +115,8 @@ body, html {
 .carousel {
   position: relative;
   width: 100%;
-  margin-top: 20%; /* Adjust this value to center the carousel */
+  scale: 80%;
+  margin-top: 30%; /* Adjust this value to center the carousel */
   overflow: hidden;
 }
 
@@ -134,7 +135,10 @@ body, html {
 
 .carousel-item img {
   width: 100%;
-  border-radius: 20px;
+  scale: 80%;
+  border-radius: 50%;
+  -webkit-mask-image:-webkit-gradient(linear, to border-box, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)));
+      mask-image: linear-gradient(to ease-in, rgba(0,0,0,1), rgba(0,0,0,0));
   transition: transform 0.3s, opacity 0.3s;
 }
 
