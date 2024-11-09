@@ -38,6 +38,14 @@ body, html {
   animation: backgroundEffect 6s ease-in forwards;
 }
 
+.background.second {
+  background-image: url('/images/furmacro2.jpeg');
+}
+
+.background.third {
+  background-image: url('/images/furmacro3.jpeg');
+}
+
 @keyframes backgroundEffect {
   0% {
     background-size: 220%;
