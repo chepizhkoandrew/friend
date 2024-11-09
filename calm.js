@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
             rows[index].style.opacity = "1";
           }
         }
-      }, i * 1000);
+      }, i * 2000); // 2 seconds pause between rows
     }
   }, 8000);
 
@@ -50,6 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const secondGrid = document.querySelector('.second-grid');
       const thirdGrid = document.querySelector('.third-grid');
       const nextButton = document.getElementById('next-button');
+      const background = document.querySelector('.background');
 
       // Handle first screen activity selection
       document.querySelectorAll('.activity-grid .activity-item').forEach(item => {
@@ -70,6 +71,10 @@ document.addEventListener("DOMContentLoaded", () => {
             document.querySelector('.activity-grid').style.display = 'none';
             document.querySelector('.second-question').style.display = 'block';
             nextButton.style.display = 'block';
+
+            // Change background for the second screen
+            background.classList.add('second');
+            background.classList.remove('third');
           }
         });
       });
@@ -85,6 +90,10 @@ document.addEventListener("DOMContentLoaded", () => {
         showElementsSequentially(thirdItems, 500);
 
         nextButton.style.display = 'none'; // Hide the next button
+
+        // Change background for the third screen
+        background.classList.add('third');
+        background.classList.remove('second');
       });
     })
     .catch(error => console.error('Error loading options:', error));

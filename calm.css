@@ -112,6 +112,11 @@ body, html {
   transition: text-shadow 0.3s, transform 0.3s ease;
 }
 
+.activity-item a {
+  color: inherit;
+  text-decoration: none;
+}
+
 .activity-item:hover {
   color: #fff;
   text-shadow: 0 0 10px rgb(252, 210, 187);
@@ -149,4 +154,32 @@ body, html {
   margin-bottom: 5%;
   width: 80%;
   max-width: 1200px;
+}
+
+/* Next Button Container */
+.next-button-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 20px;
+}
+
+/* Next Button */
+#next-button {
+  font-size: 2rem; /* 70% of 2.8rem */
+  color: white;
+  font-family: 'Monoton', cursive;
+  text-align: center;
+  cursor: pointer;
+  opacity: 0;
+  background: none;
+  border: none;
+  animation: fadeInButton 1s ease-in forwards, shinePulse 3s ease-in-out infinite;
+  transition: text-shadow 0.3s, transform 0.3s ease;
+}
+
+#next-button:hover {
+  color: #fff;
+  text-shadow: 0 0 10px rgb(252, 210, 187);
+  transform: scale(1.05);
 }
