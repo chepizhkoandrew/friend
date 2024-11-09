@@ -109,6 +109,11 @@ document.addEventListener("DOMContentLoaded", () => {
         background.classList.remove('second');
       });
 
+      // Show the next button only when an option is picked on the second screen
+      secondGrid.addEventListener('click', () => {
+        nextButton.style.display = 'block';
+      });
+
       // Show the next button only when an option is picked on the third screen
       thirdGrid.addEventListener('click', () => {
         nextButton.style.display = 'block';

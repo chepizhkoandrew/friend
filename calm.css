@@ -134,6 +134,7 @@ body, html {
 
 /* Styled Options */
 .activity-item {
+  font-size: calc(1.5vw + 1.5vh); /* Responsive font size */
   color: white;
   font-family: 'Monoton', cursive;
   text-align: center;
@@ -188,11 +189,6 @@ body, html {
   width: 100%; /* Full width */
   max-width: 1200px;
   align-content: start; /* Align items to the start */
-}
-
-.activity-item {
-  font-size: calc(5vw + 1.5vh); /* Responsive font size */
-  max-width: 15ch; /* Ensure content does not exceed 15 characters per line */
 }
 
 /* Video Screen */
