@@ -59,28 +59,22 @@ body, html {
   justify-content: center;
   background: rgba(0, 0, 0, 0.5);
   flex-direction: column;
+  padding: 0 10px; /* Optional: Add padding to the sides */
+
 }
 
-.question-line, .activity-item {
-  opacity: 0;
-}
-
-.activity-item {
-  font-size: 4rem; /* Same size as the question */
-  color: white;
-  text-align: center;
-  cursor: pointer;
-  transition: opacity 0.3s, transform 0.3s ease;
-  display: flex;
+.third-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px;
+  justify-items: center;
   align-items: center;
-  justify-content: center;
-  position: relative;
-  padding: 20px; /* Add padding for better spacing */
-}
-
-.activity-item:hover {
-  opacity: 0.8; /* Slightly fades out the text */
-  transform: scale(1.1); /* Slightly enlarges the container */
+  margin-top: auto;
+  margin-bottom: 5%;
+  width: 100%;
+  max-width: 1200px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 /* Question Animation */
@@ -97,88 +91,37 @@ body, html {
 .question span {
   display: inline-block;
   opacity: 0;
-  animation: fadeInWords 1s ease-in forwards;
+  animation: fadeInText 1s ease-in forwards;
 }
 
-.question .word1 {
-  animation-delay: 0.5s;
+@keyframes fadeInText {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
 }
 
-.question .word2 {
-  animation-delay: 2s;
-}
-
-.question .word3 {
-  animation-delay: 3.5s;
-}
-
-@keyframes fadeInWords {
-  0% {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Activity Items */
-.activity-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 columns */
-  grid-template-rows: repeat(2, 1fr); /* 2 rows */
-  gap: 20px;
-  padding: 20px;
-  text-align: center;
-  margin-top: auto;
-  margin-bottom: 5%; /* Move the container up */
-  width: 80%; /* Use 80% width for better centering */
-  max-width: 1200px; /* Reasonably centered for desktop */
-}
-
+/* Styled Options */
 .activity-item {
-  font-size: 4rem; /* Same size as the question */
+  font-size: 4rem;
   color: white;
+  font-family: 'Monoton', cursive;
   text-align: center;
   cursor: pointer;
-  transition: opacity 0.3s, transform 0.3s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  padding: 20px; /* Add padding for better spacing */
+  opacity: 0;
+  background: none;
+  border: none;
+  animation: fadeInButton 1s ease-in forwards, shinePulse 3s ease-in-out infinite;
+  transition: text-shadow 0.3s, transform 0.3s ease;
 }
 
-.activity-item.blink {
-  animation: blink 1s infinite;
+.activity-item:hover {
+  color: #fff;
+  text-shadow: 0 0 10px rgb(252, 210, 187);
+  transform: scale(1.05);
 }
 
-.activity-item.blink-color {
-  animation: blinkColor 1s infinite;
-}
-
-@keyframes blink {
-  0%, 100% {
-    opacity: 1;
-    color: white;
-    text-shadow: 0 0 10px #8399ce, 0 0 20px #ff77ff, 0 0 30px #ff77ff, 0 0 40px #ff77ff;
-  }
-  50% {
-    opacity: 0.5;
-    color: #e29be2;
-    text-shadow: none;
-  }
-}
-
-@keyframes blinkColor {
-  0%, 100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.5;
-    color: var(--blink-color);
-  }
+@keyframes fadeInButton {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
 }
 
 @keyframes shinePulse {
@@ -196,31 +139,15 @@ body, html {
   }
 }
 
-@keyframes neonGlow {
-  0%, 100% {
-    box-shadow: 0 0 10px #e29be2, 0 0 20px #ff77ff, 0 0 30px #ff77ff, 0 0 40px #ff77ff;
-  }
-  50% {
-    box-shadow: 0 0 15px #ff77ff, 0 0 30px #ff77ff, 0 0 45px #ff77ff, 0 0 60px #ff77ff;
-  }
-}
-
-/* Next Button */
-#next-button {
-  display: none;
-  margin-top: 20px;
-  padding: 10px 20px;
-  font-size: 1.5rem;
-  color: white;
-  background-color: #e29be2;
-  border: none;
-  cursor: pointer;
-  animation: blink 1s infinite;
-}
-
-/* Fix for third-grid alignment */
-.third-grid {
+.activity-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 10px;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 20px;
+  padding: 20px;
+  text-align: center;
+  margin-top: auto;
+  margin-bottom: 5%;
+  width: 80%;
+  max-width: 1200px;
 }
