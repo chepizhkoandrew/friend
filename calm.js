@@ -1,18 +1,43 @@
 
 document.addEventListener("DOMContentLoaded", () => {
-  const buttons = document.querySelectorAll(".activity-button");
+  const items = Array.from(document.querySelectorAll(".activity-item"));
+  const totalDuration = 3000; // 3 seconds for all items to appear
+  const startDelay = 6000; // Start after 6 seconds
+  const pauseBeforeBlink = 1000; // 1 second pause before blinking
+
+  // Generate randomized delays for each item
+  const delays = items.map(() => Math.random()).sort(); // Random delays sorted to ensure slowing effect
+  const maxDelay = Math.max(...delays);
   
-  // Stagger the animations for rows (2 items at a time)
-  let delay = 4; // Start after the question text
-  buttons.forEach((button, index) => {
-    const rowDelay = Math.floor(index / 2) * 2; // Delay per row
+  // Normalize delays to fit within totalDuration
+  items.forEach(item => {
+    const text = item.textContent.trim(); // Get the item's text
+    if (imagePaths[text]) {
+      item.style.setProperty("--image-path", `url('${imagePaths[text]}')`);
+      item.style.backgroundImage = `var(--image-path)`; // Apply as background image
+    }
+  });
+  const normalizedDelays = delays.map(d => (d / maxDelay) * totalDuration);
+
+  // Set appearance animations for each item
+  items.forEach((item, index) => {
     setTimeout(() => {
-      button.style.animation = `fadeInItems 1s ease-in ${delay + rowDelay}s forwards`;
-    }, (delay + rowDelay) * 1000);
+      item.style.opacity = "1";
+      item.style.transition = `opacity 0.5s ease-in`;
+    }, startDelay + normalizedDelays[index]);
   });
 
-  // Blink effect for all items together
+  // Add blink effect after all items are visible
   setTimeout(() => {
-    buttons.forEach(button => button.classList.add("blink"));
-  }, (delay + (buttons.length / 2) * 2) * 1000); // Blink after all items appear
+    items.forEach(item => item.classList.add("blink"));
+  }, startDelay + totalDuration + pauseBeforeBlink);
 });
+
+const imagePaths = {
+  "Walk in Park": "images/park.jpg",
+  "Go Home": "images/home.jpg",
+  "Explore Nature": "images/nature.jpg",
+  "Visit Cafe": "images/cafe.jpg",
+  "Read a Book": "images/book.jpg",
+  "Call a Friend": "images/call.jpg"
+};

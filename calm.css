@@ -1,28 +1,95 @@
 
-/* Items styled as text */
-.activity-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: repeat(3, auto);
-  gap: 10px;
+@import url('https://fonts.googleapis.com/css2?family=Monoton&display=swap');
+
+/* Basic Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  width: 100%;
+  height: 100%;
+  font-family: 'Monoton', cursive;
+  overflow: hidden;
+}
+
+.container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Background */
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-image: url('/images/view-textured-fur-fabric_23-2149600304.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  animation: backgroundEffect 6s ease-in forwards;
+}
+
+@keyframes backgroundEffect {
+  0% {
+    background-size: 220%;
+    filter: grayscale(0%);
+  }
+  100% {
+    background-size: 190%;
+    filter: grayscale(100%);
+  }
+}
+
+/* Frame */
+.frame {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+/* Question Animation */
+.question {
+  position: absolute;
+  top: 10%;
+  width: 100%;
   text-align: center;
-  margin-top: 50px;
-}
-
-.activity-button {
-  font-family: 'Monoton', cursive; /* Same font as the question */
-  font-size: 2rem; /* Slightly smaller than the question */
   color: white;
-  opacity: 0; /* Initially hidden */
-  transition: opacity 1s ease-in, color 0.5s ease-in;
+  font-size: 4rem;
+  line-height: 1.5;
 }
 
-.activity-button.blink {
-  animation: blinkEffect 1s ease-in-out infinite;
+.question span {
+  display: inline-block;
+  opacity: 0;
+  animation: fadeInWords 1s ease-in forwards;
 }
 
-/* Keyframes for text appearance */
-@keyframes fadeInItems {
+.question .word1 {
+  animation-delay: 0.5s;
+}
+
+.question .word2 {
+  animation-delay: 2s;
+}
+
+.question .word3 {
+  animation-delay: 3.5s;
+}
+
+@keyframes fadeInWords {
   0% {
     opacity: 0;
     transform: translateY(10px);
@@ -33,7 +100,65 @@
   }
 }
 
-@keyframes blinkEffect {
+/* Activity Items */
+.activity-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 20px;
+  padding: 20px;
+  text-align: center;
+  margin-top: 100px;
+}
+
+.activity-item {
+  font-size: 2rem;
+  color: white;
+  opacity: 1;
+  text-align: center;
+  cursor: pointer;
+  transition: opacity 0.3s, transform 0.3s ease;
+}
+
+.activity-item:hover {
+  opacity: 0; /* Fades out the text */
+  transform: scale(1.1); /* Slightly enlarges the container */
+}
+}
+
+.activity-item:hover::after {
+  content: ''; /* Ensures the pseudo-element appears */
+  position: absolute;
+  top: 50%; /* Positions the pseudo-element vertically */
+  left: 50%; /* Positions the pseudo-element horizontally */
+  transform: translate(-50%, -50%) scale(1.2); /* Centers and scales the image */
+  width: 150px; /* Adjusted size of the image container */
+  height: 150px;
+  background-image: var(--image-path); /* Uses the dynamically set image path */
+  background-size: cover;
+  background-position: center;
+  border-radius: 50%; /* Makes the image circular */
+  filter: grayscale(100%); /* Applies grayscale */
+  opacity: 1;
+  z-index: 10; /* Places the pseudo-element above other elements */
+  animation: neonGlow 1s infinite ease-in-out; /* Pulsing glow animation */
+  box-shadow: 0 0 10px #e29be2, 0 0 20px #ff77ff, 0 0 30px #ff77ff, 0 0 40px #ff77ff; /* Neon glow effect */
+}
+
+@keyframes neonGlow {
+  0%, 100% {
+    box-shadow: 0 0 10px #e29be2, 0 0 20px #ff77ff, 0 0 30px #ff77ff, 0 0 40px #ff77ff;
+  }
+  50% {
+    box-shadow: 0 0 15px #ff77ff, 0 0 30px #ff77ff, 0 0 45px #ff77ff, 0 0 60px #ff77ff;
+  }
+}
+
+.activity-item.blink {
+  animation: shinePulse 3s ease-in-out infinite;
+}
+
+@keyframes shinePulse {
   0% {
     color: #e29be2;
     text-shadow: 0 0 10px #8399ce, 0 0 20px #ff77ff, 0 0 30px #ff77ff, 0 0 40px #ff77ff;
