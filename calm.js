@@ -43,14 +43,16 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }, 8000);
 
-  // Handle dynamic loading and sequencing for second and third grids
+  // Handle dynamic loading and sequencing for second, video, and third grids
   fetch('options.json')
     .then(response => response.json())
     .then(data => {
       const secondGrid = document.querySelector('.second-grid');
       const thirdGrid = document.querySelector('.third-grid');
+      const videoScreen = document.querySelector('.video-screen');
       const nextButton = document.getElementById('next-button');
       const background = document.querySelector('.background');
+      const video = document.getElementById('background-video');
 
       // Handle first screen activity selection
       document.querySelectorAll('.activity-grid .activity-item').forEach(item => {
@@ -79,11 +81,25 @@ document.addEventListener("DOMContentLoaded", () => {
         });
       });
 
+      // Handle transition to video screen
+      document.querySelector('.see-example').addEventListener('click', () => {
+        document.querySelector('.third-question').style.display = 'none';
+        thirdGrid.style.display = 'none';
+
+        document.querySelector('.video-question').style.display = 'block';
+        videoScreen.style.display = 'flex';
+        video.play();
+
+        nextButton.style.display = 'block'; // Show the next button
+      });
+
       // Handle transition to third screen
       nextButton.addEventListener('click', () => {
         const thirdItems = Array.from(thirdGrid.children);
         document.querySelector('.second-question').style.display = 'none';
         secondGrid.style.display = 'none';
+        videoScreen.style.display = 'none';
+        video.pause();
 
         document.querySelector('.third-question').style.display = 'block';
         thirdGrid.style.display = 'grid';
