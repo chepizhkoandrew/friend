@@ -1,24 +1,21 @@
 document.addEventListener("DOMContentLoaded", () => {
   const questionLines = Array.from(document.querySelectorAll(".question-line"));
-  const items = Array.from(document.querySelectorAll(".activity-item"));
-  const totalDuration = 3000; // 3 seconds for all items to appear
-  const startDelay = 6000; // Start after 6 seconds
+  const items = Array.from(document.querySelectorAll(".activity-grid .activity-item"));
+  const totalDuration = 2000; // 2 seconds for all items to appear
+  const startDelay = 3000; // Start after 3 seconds
   const pauseBeforeBlink = 1000; // 1 second pause before blinking
 
-  // Generate randomized delays for each item
-  const delays = items.map(() => Math.random()).sort(); // Random delays sorted to ensure slowing effect
-  const maxDelay = Math.max(...delays);
+  // Function to show elements sequentially with random delays
+  const showElementsSequentially = (elements, totalDuration) => {
+    const delays = elements.map(() => Math.random()).sort();
+    const maxDelay = Math.max(...delays);
+    const normalizedDelays = delays.map(d => (d / maxDelay) * totalDuration);
 
-  // Normalize delays to fit within totalDuration
-  const normalizedDelays = delays.map(d => (d / maxDelay) * totalDuration);
-
-  // Function to show elements sequentially
-  const showElementsSequentially = (elements, delayBetween) => {
     elements.forEach((element, index) => {
       setTimeout(() => {
         element.style.opacity = "1";
         element.style.transition = `opacity 0.5s ease-in`;
-      }, index * delayBetween);
+      }, normalizedDelays[index]);
     });
   };
 
@@ -27,21 +24,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Show activity items after question lines are displayed
   setTimeout(() => {
-    items.forEach(item => {
-      const text = item.textContent.trim(); // Get the item's text
-      if (imagePaths[text]) {
-        item.style.setProperty("--image-path", `url('${imagePaths[text]}')`);
-        item.style.backgroundImage = `var(--image-path)`; // Apply as background image
-      }
-    });
-
-    showElementsSequentially(items, 500);
+    showElementsSequentially(items, totalDuration);
+    setTimeout(() => items.forEach(item => item.classList.add("blink")), pauseBeforeBlink);
   }, questionLines.length * 1000);
-
-  // Add blink effect after all items are visible
-  setTimeout(() => {
-    items.forEach(item => item.classList.add("blink"));
-  }, startDelay + totalDuration + pauseBeforeBlink);
 
   // Load options from JSON
   fetch('options.json')
@@ -58,12 +43,12 @@ document.addEventListener("DOMContentLoaded", () => {
           const category = item.textContent.trim();
           console.log('Category selected:', category); // Debugging log
           if (data[category]) {
-            secondGrid.innerHTML = data[category].map(option => `<div class="activity-item" style="--blink-color: ${option.color};">${option.name}</div>`).join('');
+            secondGrid.innerHTML = data[category].map(option => `<div class="activity-item blink-color" style="--blink-color: ${option.color};">${option.name}</div>`).join('');
             document.querySelector('.question').style.display = 'none';
             document.querySelector('.activity-grid').style.display = 'none';
             document.querySelector('.second-question').style.display = 'block';
             secondGrid.style.display = 'grid';
-            showElementsSequentially(Array.from(secondGrid.children), 500);
+            showElementsSequentially(Array.from(secondGrid.children), totalDuration);
             nextButton.style.display = 'block';
 
             // Add event listeners to the new items
@@ -82,7 +67,7 @@ document.addEventListener("DOMContentLoaded", () => {
         secondGrid.style.display = 'none';
         document.querySelector('.third-question').style.display = 'block';
         thirdGrid.style.display = 'grid';
-        showElementsSequentially(Array.from(thirdGrid.children), 500);
+        showElementsSequentially(Array.from(thirdGrid.children), totalDuration);
         nextButton.style.display = 'none';
       });
     })

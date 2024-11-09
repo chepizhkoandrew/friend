@@ -151,7 +151,24 @@ body, html {
 }
 
 .activity-item.blink {
+  animation: blink 1s infinite;
+}
+
+.activity-item.blink-color {
   animation: blinkColor 1s infinite;
+}
+
+@keyframes blink {
+  0%, 100% {
+    opacity: 1;
+    color: white;
+    text-shadow: 0 0 10px #8399ce, 0 0 20px #ff77ff, 0 0 30px #ff77ff, 0 0 40px #ff77ff;
+  }
+  50% {
+    opacity: 0.5;
+    color: #e29be2;
+    text-shadow: none;
+  }
 }
 
 @keyframes blinkColor {
@@ -160,6 +177,7 @@ body, html {
   }
   50% {
     opacity: 0.5;
+    color: var(--blink-color);
   }
 }
 
@@ -200,11 +218,9 @@ body, html {
   animation: blink 1s infinite;
 }
 
-@keyframes blink {
-  0%, 100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.5;
-  }
+/* Fix for third-grid alignment */
+.third-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px;
 }
