@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const questionLines = Array.from(document.querySelectorAll(".question-line"));
+  const questionLines = Array.from(document.querySelectorAll(".question span"));
   const items = Array.from(document.querySelectorAll(".activity-grid .activity-item"));
   const totalDuration = 2000; // 2 seconds for all items to appear
   const startDelay = 3000; // Start after 3 seconds
@@ -15,13 +15,33 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   // Show question lines sequentially
-  showElementsSequentially(questionLines, 1000);
+  setTimeout(() => {
+    questionLines[0].style.opacity = "1";
+  }, 1000);
+
+  setTimeout(() => {
+    questionLines[1].style.opacity = "1";
+  }, 4000);
+
+  setTimeout(() => {
+    questionLines[2].style.opacity = "1";
+  }, 6000);
 
   // Show activity items after question lines are displayed
   setTimeout(() => {
-    showElementsSequentially(items, 500);
-    setTimeout(() => items.forEach(item => item.classList.add("activity-item")), totalDuration);
-  }, startDelay);
+    const rows = document.querySelectorAll(".activity-grid .activity-item");
+    const rowCount = Math.ceil(rows.length / 3);
+    for (let i = 0; i < rowCount; i++) {
+      setTimeout(() => {
+        for (let j = 0; j < 3; j++) {
+          const index = i * 3 + j;
+          if (rows[index]) {
+            rows[index].style.opacity = "1";
+          }
+        }
+      }, i * 1000);
+    }
+  }, 8000);
 
   // Handle dynamic loading and sequencing for second and third grids
   fetch('options.json')

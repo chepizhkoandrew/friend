@@ -60,7 +60,6 @@ body, html {
   background: rgba(0, 0, 0, 0.5);
   flex-direction: column;
   padding: 0 10px; /* Optional: Add padding to the sides */
-
 }
 
 .third-grid {
@@ -101,7 +100,7 @@ body, html {
 
 /* Styled Options */
 .activity-item {
-  font-size: 4rem;
+  font-size: 2.8rem; /* 70% of 4rem */
   color: white;
   font-family: 'Monoton', cursive;
   text-align: center;
