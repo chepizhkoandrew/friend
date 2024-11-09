@@ -70,25 +70,28 @@ body, html {
   text-align: center;
 }
 
+.motto .block1,
+.motto .block2 {
+  opacity: 0;
+  animation: fadeInText 1s ease-in forwards;
+}
+
+.motto .block1 {
+  animation-delay: 2s;
+}
+
+.motto .block2 {
+  animation-delay: 4s;
+}
+
 .motto p {
-  font-size: 6vw; /* Adjusted size for mobile */
-  line-height: 1.5;
+  font-size: 4vw; /* Adjusted size for mobile */
+  line-height: 1.4;
   font-weight: 600;
   text-align: center;
   font-family: 'Monoton', cursive;
   color: white;
   text-shadow: none;
-  animation: fadeInText 1s ease-in forwards;
-}
-
-.motto .line1 {
-  opacity: 1; /* Ensure visibility */
-  animation: fadeInText 1s ease-in forwards;
-}
-
-.motto .line2 {
-  opacity: 1; /* Ensure visibility */
-  animation: fadeInText 1s ease-in forwards;
 }
 
 @keyframes fadeInText {
@@ -98,7 +101,7 @@ body, html {
 
 @media (min-width: 768px) {
   .motto p {
-    font-size: 5vw; /* Adjusted size for larger screens */
+    font-size: 4vw; /* Adjusted size for larger screens */
   }
 }
 
@@ -153,7 +156,7 @@ body, html {
 /* Join Button */
 .join-button {
   position: absolute;
-  bottom: 180px;
+  bottom: 150px; /* Adjusted from 180px to 150px */
   left: 50%;
   transform: translateX(-50%);
   font-size: 4rem;
