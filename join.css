@@ -38,7 +38,7 @@ body, html {
   background-image: url('/images/IMG_2412.jpg');
   background-size: cover;
   background-position: center;
-  animation: backgroundEffect 12s ease-out;
+  animation: backgroundEffect 6s ease-in forwards; /* Use forwards to retain the final state */
 }
 
 @keyframes backgroundEffect {
@@ -46,13 +46,9 @@ body, html {
     background-size: 220%;
     filter: grayscale(0%);
   }
-  50% {
-    background-size: 190%;
-    filter: grayscale(100%);
-  }
   100% {
-    background-size: 220%;
-    filter: grayscale(0%);
+    background-size: 190%; /* Final scale */
+    filter: grayscale(100%); /* Final grayscale */
   }
 }
 
@@ -75,7 +71,7 @@ body, html {
 }
 
 .motto p {
-  font-size: 5vw; /* Adjusted size for mobile */
+  font-size: 6vw; /* Adjusted size for mobile */
   line-height: 1.5;
   font-weight: 600;
   text-align: center;
@@ -102,7 +98,7 @@ body, html {
 
 @media (min-width: 768px) {
   .motto p {
-    font-size: 3vw; /* Adjusted size for larger screens */
+    font-size: 5vw; /* Adjusted size for larger screens */
   }
 }
 
@@ -160,7 +156,7 @@ body, html {
   bottom: 180px;
   left: 50%;
   transform: translateX(-50%);
-  font-size: 2rem;
+  font-size: 4rem;
   color: white;
   font-family: 'Monoton', cursive;
   text-decoration: none;
