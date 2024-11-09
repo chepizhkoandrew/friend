@@ -84,7 +84,6 @@ body, html {
 
 .third-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 10px;
   justify-items: center;
   align-items: center;
@@ -94,6 +93,21 @@ body, html {
   max-width: 1200px;
   margin-left: 10px;
   margin-right: 10px;
+}
+
+/* Responsive Grid Layout */
+@media (min-width: 768px) {
+  .third-grid {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 767px) {
+  .third-grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+  }
 }
 
 /* Question Animation */
@@ -165,8 +179,6 @@ body, html {
 
 .activity-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(2, 1fr);
   gap: 20px;
   padding: 20px;
   text-align: center;

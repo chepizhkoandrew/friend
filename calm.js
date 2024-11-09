@@ -93,24 +93,25 @@ document.addEventListener("DOMContentLoaded", () => {
         nextButton.style.display = 'block'; // Show the next button
       });
 
-      // Handle transition to third screen
-      nextButton.addEventListener('click', () => {
-        const thirdItems = Array.from(thirdGrid.children);
-        document.querySelector('.second-question').style.display = 'none';
-        secondGrid.style.display = 'none';
-        videoScreen.style.display = 'none';
-        video.pause();
+     // Handle transition to third screen
+nextButton.addEventListener('click', () => {
+  const thirdItems = Array.from(thirdGrid.children);
+  document.querySelector('.second-question').style.display = 'none';
+  secondGrid.style.display = 'none';
+  videoScreen.style.display = 'none';
+  video.pause();
 
-        document.querySelector('.third-question').style.display = 'block';
-        thirdGrid.style.display = 'grid';
-        showElementsSequentially(thirdItems, 500);
+  document.querySelector('.third-question').style.display = 'block';
+  thirdGrid.style.display = 'grid';
+  showElementsSequentially(thirdItems, 500);
 
-        nextButton.style.display = 'none'; // Hide the next button
+  nextButton.style.display = 'none'; // Hide the next button
 
-        // Change background for the third screen
-        background.classList.add('third');
-        background.classList.remove('second');
-      });
+  // Change background for the third screen
+  background.classList.add('third');
+  background.classList.remove('second');
+});
     })
     .catch(error => console.error('Error loading options:', error));
 });
+
