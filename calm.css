@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Monoton&display=swap');
 
 /* Basic Reset */
@@ -60,6 +59,42 @@ body, html {
   background: rgba(0, 0, 0, 0.5);
 }
 
+.question-line, .activity-item {
+  opacity: 0;
+}
+
+.activity-item {
+  font-size: 2rem;
+  color: white;
+  text-align: center;
+  cursor: pointer;
+  transition: opacity 0.3s, transform 0.3s ease;
+}
+
+.activity-item:hover {
+  opacity: 0; /* Fades out the text */
+  transform: scale(1.1); /* Slightly enlarges the container */
+}
+
+.activity-item:hover::after {
+  content: ''; /* Ensures the pseudo-element appears */
+  position: absolute;
+  top: 50%; /* Positions the pseudo-element vertically */
+  left: 50%; /* Positions the pseudo-element horizontally */
+  transform: translate(-50%, -50%) scale(1.2); /* Centers and scales the image */
+  width: 150px; /* Adjusted size of the image container */
+  height: 150px;
+  background-image: var(--image-path); /* Uses the dynamically set image path */
+  background-size: cover;
+  background-position: center;
+  border-radius: 50%; /* Makes the image circular */
+  filter: grayscale(100%); /* Applies grayscale */
+  opacity: 1;
+  z-index: 10; /* Places the pseudo-element above other elements */
+  animation: neonGlow 1s infinite ease-in-out; /* Pulsing glow animation */
+  box-shadow: 0 0 10px #e29be2, 0 0 20px #ff77ff, 0 0 30px #ff77ff, 0 0 40px #ff77ff; /* Neon glow effect */
+}
+
 /* Question Animation */
 .question {
   position: absolute;
@@ -114,44 +149,9 @@ body, html {
 .activity-item {
   font-size: 2rem;
   color: white;
-  opacity: 1;
   text-align: center;
   cursor: pointer;
   transition: opacity 0.3s, transform 0.3s ease;
-}
-
-.activity-item:hover {
-  opacity: 0; /* Fades out the text */
-  transform: scale(1.1); /* Slightly enlarges the container */
-}
-}
-
-.activity-item:hover::after {
-  content: ''; /* Ensures the pseudo-element appears */
-  position: absolute;
-  top: 50%; /* Positions the pseudo-element vertically */
-  left: 50%; /* Positions the pseudo-element horizontally */
-  transform: translate(-50%, -50%) scale(1.2); /* Centers and scales the image */
-  width: 150px; /* Adjusted size of the image container */
-  height: 150px;
-  background-image: var(--image-path); /* Uses the dynamically set image path */
-  background-size: cover;
-  background-position: center;
-  border-radius: 50%; /* Makes the image circular */
-  filter: grayscale(100%); /* Applies grayscale */
-  opacity: 1;
-  z-index: 10; /* Places the pseudo-element above other elements */
-  animation: neonGlow 1s infinite ease-in-out; /* Pulsing glow animation */
-  box-shadow: 0 0 10px #e29be2, 0 0 20px #ff77ff, 0 0 30px #ff77ff, 0 0 40px #ff77ff; /* Neon glow effect */
-}
-
-@keyframes neonGlow {
-  0%, 100% {
-    box-shadow: 0 0 10px #e29be2, 0 0 20px #ff77ff, 0 0 30px #ff77ff, 0 0 40px #ff77ff;
-  }
-  50% {
-    box-shadow: 0 0 15px #ff77ff, 0 0 30px #ff77ff, 0 0 45px #ff77ff, 0 0 60px #ff77ff;
-  }
 }
 
 .activity-item.blink {
@@ -170,5 +170,14 @@ body, html {
   100% {
     color: #e29be2;
     text-shadow: 0 0 10px #8399ce, 0 0 20px #ff77ff, 0 0 30px #ff77ff, 0 0 40px #ff77ff;
+  }
+}
+
+@keyframes neonGlow {
+  0%, 100% {
+    box-shadow: 0 0 10px #e29be2, 0 0 20px #ff77ff, 0 0 30px #ff77ff, 0 0 40px #ff77ff;
+  }
+  50% {
+    box-shadow: 0 0 15px #ff77ff, 0 0 30px #ff77ff, 0 0 45px #ff77ff, 0 0 60px #ff77ff;
   }
 }
