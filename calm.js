@@ -98,6 +98,10 @@ document.addEventListener("DOMContentLoaded", () => {
         videoScreen.style.display = 'none';
         video.pause();
 
+        document.querySelector('.second-question').style.display = 'none'; // Hide the second question
+        secondGrid.style.display = 'none'; // Hide the second grid
+        document.querySelector('.video-screen').style.display = 'none'; // Hide the video screen
+
         document.querySelector('.third-question').style.display = 'block';
         thirdGrid.style.display = 'grid';
         showElementsSequentially(thirdItems, 500);
@@ -117,6 +121,13 @@ document.addEventListener("DOMContentLoaded", () => {
       // Show the next button only when an option is picked on the third screen
       thirdGrid.addEventListener('click', () => {
         nextButton.style.display = 'block';
+      });
+
+      // Redirect to the third screen regardless of the choice
+      secondGrid.addEventListener('click', () => {
+        // Comment: Here we will implement the logic to redirect to different scenarios based on the choice
+        // For now, we hardcode the redirection to the third screen
+        nextButton.click();
       });
     })
     .catch(error => console.error('Error loading options:', error));
