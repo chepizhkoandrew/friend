@@ -32,7 +32,34 @@ body, html {
   border-radius: 10px;
   color: white;
   max-width: 800px;
-  margin: 20px;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.scrollable-content {
+  overflow-y: auto;
+  flex-grow: 1;
+}
+
+.button-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+button {
+  font-size: 1rem;
+  padding: 10px 20px;
+  background-color: #e29be2;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #d18bd1;
 }
 
 h1, h2 {
