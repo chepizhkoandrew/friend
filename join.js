@@ -8,6 +8,7 @@ function initializeGoogleSignIn() {
     document.getElementById("joinButton"),
     { theme: "outline", size: "large" } // customization attributes
   );
+  console.log("Google Sign-In initialized");
 }
 
 // Handle the credential response from Google Sign-In
@@ -26,12 +27,16 @@ function checkIfAuthenticated() {
   const isAuthenticated = false; // Replace with actual authentication check
 
   if (isAuthenticated) {
+    console.log("User is already authenticated");
     window.location.href = "/calm";
+  } else {
+    console.log("User is not authenticated");
   }
 }
 
 // Redirect to /calm on clicking Join button
 document.getElementById("joinButton").addEventListener("click", () => {
+  console.log("Join button clicked, triggering Google Sign-In");
   // Trigger Google Sign-In
   google.accounts.id.prompt();
 });
@@ -40,10 +45,12 @@ document.getElementById("joinButton").addEventListener("click", () => {
 setTimeout(() => {
   const joinButton = document.getElementById("joinButton");
   joinButton.style.opacity = 1; // Fade in the join button
+  console.log("Join button displayed");
 }, 9000); // 3s delay + 1s fade-in for line1 + 4s delay for line2 + 1s fade-in for button
 
 // Initialize Google Sign-In and check authentication on page load
 window.onload = function() {
+  console.log("Page loaded, initializing Google Sign-In and checking authentication");
   initializeGoogleSignIn();
   checkIfAuthenticated();
 };
