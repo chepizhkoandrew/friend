@@ -29,11 +29,18 @@ function initializeGoogleSignIn() {
     joinButton.textContent = "JOIN";
     joinButton.className = "join-button";
     joinButton.onclick = () => {
+      console.log("JOIN button clicked, signing in with Google...");
       // Use signInWithRedirect
       signInWithRedirect(auth, provider);
     };
 
-    document.getElementById("joinButtonContainer").appendChild(joinButton);
+    const container = document.getElementById("joinButtonContainer");
+    if (container) {
+      console.log("Appending JOIN button to the container...");
+      container.appendChild(joinButton);
+    } else {
+      console.error("joinButtonContainer not found!");
+    }
   }, 6000); // 6-second delay
 }
 
