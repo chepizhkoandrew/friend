@@ -1,4 +1,9 @@
 // Initialize Google Sign-In
+app.use((req, res, next) => {
+  res.setHeader('Cross-Origin-Opener-Policy', 'same-origin');
+  next();
+});
+
 function initializeGoogleSignIn() {
   google.accounts.id.initialize({
     client_id: "515649551791-2m70cejboi72ct3cileeii6ntn6jmis7.apps.googleusercontent.com",
@@ -40,6 +45,8 @@ document.getElementById("joinButton").addEventListener("click", () => {
   // Trigger Google Sign-In
   google.accounts.id.prompt();
 });
+
+
 
 // Display the join button after all animations complete
 setTimeout(() => {
