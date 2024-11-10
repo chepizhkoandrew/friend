@@ -1,5 +1,9 @@
 // Initialize Google Sign-In
 function initializeGoogleSignIn() {
+  app.use((req, res, next) => {
+    res.setHeader('Cross-Origin-Opener-Policy', 'same-origin');
+    next();
+  });
   google.accounts.id.initialize({
     client_id: "515649551791-2m70cejboi72ct3cileeii6ntn6jmis7.apps.googleusercontent.com",
     callback: handleCredentialResponse
