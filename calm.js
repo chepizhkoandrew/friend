@@ -74,10 +74,7 @@ document.addEventListener("DOMContentLoaded", () => {
             document.querySelector('.second-question').style.display = 'block';
             nextButton.style.display = 'none'; // Hide the next button initially
 
-            // Change background for the second screen
-            background.classList.add('second');
-            background.classList.remove('third');
-          } else if (category === 'MOVE') {
+       
             // Handle the MOVE option specifically
             document.querySelector('.question').style.display = 'none';
             document.querySelector('.activity-grid').style.display = 'none';
@@ -104,7 +101,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         videoScreen.style.display = 'flex';
         video.play();
-
         nextButton.style.display = 'block'; // Show the next button
       });
 
@@ -129,15 +125,7 @@ document.addEventListener("DOMContentLoaded", () => {
         background.classList.remove('second');
       });
 
-      // Show the next button only when an option is picked on the second screen
-      secondGrid.addEventListener('click', () => {
-        nextButton.style.display = 'block';
-      });
-
-      // Show the next button only when an option is picked on the third screen
-      thirdGrid.addEventListener('click', () => {
-        nextButton.style.display = 'block';
-      });
+      
 
       // Redirect to the third screen regardless of the choice
       secondGrid.addEventListener('click', () => {
