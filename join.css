@@ -86,7 +86,12 @@ body, html {
 .motto .block1,
 .motto .block2 {
   opacity: 0;
-  animation: fadeInText 1s ease-in forwards;
+  animation: fadeInText 2.1s ease-in forwards;
+}
+
+.motto .block2 {
+  opacity: 0;
+  animation: fadeInText 2.4s ease-in forwards;
 }
 
 .motto .block1 {
@@ -94,7 +99,7 @@ body, html {
 }
 
 .motto .block2 {
-  animation-delay: 6s;
+  animation-delay: 4.2s;
 }
 
 .motto p {
@@ -120,7 +125,7 @@ body, html {
 
 @media (min-width: 768px) {
   #joinButtonContainer {
-    top: calc(79% + 4em); /* Slightly larger spacing for bigger screens */
+    top: calc(100% + 4em); /* Slightly larger spacing for bigger screens */
   }
 }
 
