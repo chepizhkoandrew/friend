@@ -1,7 +1,7 @@
 // Initialize Google Sign-In
 function initializeGoogleSignIn() {
   google.accounts.id.initialize({
-    client_id: "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", // Ensure this is the correct client ID
+    client_id: "515649551791-s295ecne6f8srac5gf3gitidmgee3st8.apps.googleusercontent.com", // Ensure this is the correct client ID
     callback: handleCredentialResponse
   });
   google.accounts.id.renderButton(
