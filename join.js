@@ -10,7 +10,7 @@ function initializeGoogleSignIn() {
 
   // Show the "JOIN" button after a delay
   setTimeout(() => {
-    const joinButton = document.createElement("join-button");
+    const joinButton = document.createElement("button");
     joinButton.textContent = "JOIN";
     joinButton.className = "join-button";
     joinButton.onclick = () => {
