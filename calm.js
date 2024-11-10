@@ -77,6 +77,22 @@ document.addEventListener("DOMContentLoaded", () => {
             // Change background for the second screen
             background.classList.add('second');
             background.classList.remove('third');
+          } else if (category === 'MOVE') {
+            // Handle the MOVE option specifically
+            document.querySelector('.question').style.display = 'none';
+            document.querySelector('.activity-grid').style.display = 'none';
+            document.querySelector('.second-question').style.display = 'none';
+            document.querySelector('.video-screen').style.display = 'none';
+
+            document.querySelector('.third-question').style.display = 'block';
+            thirdGrid.style.display = 'grid';
+            showElementsSequentially(Array.from(thirdGrid.children), 500);
+
+            nextButton.style.display = 'none'; // Hide the next button
+
+            // Change background for the third screen
+            background.classList.add('third');
+            background.classList.remove('second');
           }
         });
       });
@@ -128,6 +144,12 @@ document.addEventListener("DOMContentLoaded", () => {
         // Comment: Here we will implement the logic to redirect to different scenarios based on the choice
         // For now, we hardcode the redirection to the third screen
         nextButton.click();
+      });
+
+      // Apply random animation delay to each activity item
+      document.querySelectorAll('.activity-item').forEach(item => {
+        const randomDelay = Math.random() * (5 - 2) + 2; // Random delay between 2 and 5 seconds
+        item.style.animationDelay = `${randomDelay}s`;
       });
     })
     .catch(error => console.error('Error loading options:', error));
