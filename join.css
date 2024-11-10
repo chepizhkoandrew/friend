@@ -39,8 +39,9 @@ body, html {
   height: 100%;
   background-image: url('/images/IMG_2412.jpg');
   background-size: cover;
+  filter: grayscale(100%); /* mostly grayscale */
+  animation: flashlightEffect 10s infinite;
   background-position: center;
-  animation: flashlightEffect 10s infinite; /* Reuse the animation from calm.css */
   z-index: -1; /* Keep it behind other content */
 }
 
@@ -58,17 +59,26 @@ body, html {
 
 /* Keyframes for Blinking Effect */
 @keyframes neonBlink {
-  0%, 100% {
-    background: rgba(128, 0, 128, 0.2); /* Light purple */
+  0% {
+    box-shadow: 0 0 20px 20px rgba(128, 0, 128, 0.2);
   }
-  25% {
-    background: rgba(255, 0, 255, 0.5); /* Bright magenta */
+  20% {
+    box-shadow: 0 0 40px 40px rgba(255, 0, 255, 0.4);
+  }
+  40% {
+    box-shadow: 0 0 60px 60px rgba(128, 0, 128, 0.6);
   }
   50% {
-    background: rgba(128, 0, 128, 0.7); /* Deep purple flash */
+    box-shadow: 0 0 100px 100px rgba(255, 0, 255, 1); /* Sudden flash of bright purple */
   }
-  75% {
-    background: hsla(300, 100%, 50%, 0.9); /* Bright purple flash */
+  60% {
+    box-shadow: 0 0 60px 60px rgba(128, 0, 128, 0.6);
+  }
+  80% {
+    box-shadow: 0 0 40px 40px rgba(255, 0, 255, 0.4);
+  }
+  100% {
+    box-shadow: 0 0 20px 20px rgba(128, 0, 128, 0.2);
   }
 }
 
@@ -77,10 +87,72 @@ body, html {
     box-shadow: 0 0 50px 50px rgba(255, 255, 255, 0.2);
   }
   50% {
-    box-shadow: 0 0 100px 100px rgba(255, 255, 255, 0.4);
+    box-shadow: 0 0 100px 100px rgba(255, 255, 255, 0.34);
+    scale: 1.1;
   }
+  70% {
+    box-shadow: 0 0 100px 100px rgba(255, 255, 255, 0.34); filter:grayscale(75%);
+  } 
+  90% {
+    box-shadow: 0 0 100px 100px rgba(255, 255, 255, 0.34);filter:grayscale(100%); scale 1;
+  } 
   100% {
     box-shadow: 0 0 50px 50px rgba(255, 255, 255, 0.2);
+  }
+}
+
+/* Enhanced Neonpunk Animation */
+@keyframes neonPsychoEffect {
+  0%, 100% {
+    transform: translate(0, 0);
+    filter: brightness(100%);
+  }
+  10% {
+    transform: translate(-1px, 0);
+    filter: brightness(150%);
+  }
+  20% {
+    transform: translate(1px, 0);
+    filter: brightness(90%);
+  }
+  30% {
+    transform: translate(-1px, 0);
+    filter: brightness(200%);
+  }
+  40% {
+    transform: translate(1px, 0);
+    filter: brightness(120%);
+  }
+  50% {
+    transform: translate(-1px, 0);
+    filter: brightness(80%);
+  }
+  60% {
+    transform: translate(1px, 0);
+    filter: brightness(150%);
+  }
+  70% {
+    transform: translate(-1px, 0);
+    filter: brightness(100%);
+  }
+  80% {
+    transform: translate(1px, 0);
+    filter: brightness(200%);
+  }
+  90% {
+    transform: translate(-1px, 0);
+    filter: brightness(90%);
+  }
+}
+
+@keyframes calmGravity {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: translate(20px, -20px) scale(0.9);
+    opacity: 0.8;
   }
 }
 
