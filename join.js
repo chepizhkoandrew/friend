@@ -22,7 +22,7 @@ function initializeGoogleSignIn() {
     } else {
       console.error("joinButtonContainer not found!");
     }
-  }, 6000); // Show button after 6 seconds
+  }, 8000); // Show button after 6 seconds
 }
 
 // Handle Google Sign-In Response
