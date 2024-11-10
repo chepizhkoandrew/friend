@@ -113,57 +113,25 @@ body, html {
 }
 
 #joinButtonContainer {
-  position: absolute;         /* Position within the parent */
-  top: calc(100% + 1.5em);    /* 1.5em below the bottom of the motto block */
-  left: 50%;                  /* Center horizontally */
-  transform: translateX(-50%); /* Adjust for proper centering */
-  text-align: center;
-}
-
-
-
-
-
-
-/* Join Button */
-
-/* JOIN Button Styling */
-.join-button-container {
-  opacity: 1;
-  animation: fadeInContainer ease-in forwards;
   position: relative;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  position: absolute; /* Ensure the motto is positioned relative to the container */
-  top: 50%;           /* Center vertically */
-  left: 50%;          /* Center horizontally */
-  transform: translate(-50%, -50%); /* Adjust for perfect centering */
-  width: 60%;         /* Adjust width to match the scaling */
-  text-align: center; /* Center align the text */
+  top: calc(70% + 1.5em); /* Below motto */
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  opacity: 0; /* Initially hidden */
+  animation: fadeInContainer 1s ease-in 3s forwards; /* Fade in after 6 seconds */
 }
+
 
 .join-button {
-  font-family: 'Monoton', cursive; /* Match the motto font */
-  font-size: 4vw;                 /* Adjust font size for responsiveness */
+  font-family: 'Monoton', cursive; /* Match motto font */
+  font-size: 4vw; /* Responsive size */
   color: white;
   background: none;
   border: none;
   cursor: pointer;
   text-shadow: 2px 2px 5px #000;
-  animation: fadeInButton 1s ease-in forwards;
-}
-
-@keyframes fadeInButton {
-  0% {
-    opacity: 0.5;
-    transform: translateY(20px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  animation: fadeInButton 1s ease-in forwards, shinePulse 3s ease-in-out infinite;
 }
 
 @keyframes fadeInContainer {
@@ -171,15 +139,17 @@ body, html {
   100% { opacity: 1; }
 }
 
+@keyframes fadeInButton {
+  0% { opacity: 0.5; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
 @keyframes shinePulse {
   0% {
     color: #e29be2;
     text-shadow: 0 0 10px #8399ce, 0 0 20px #ff77ff, 0 0 30px #ff77ff, 0 0 40px #ff77ff;
   }
-  50% {
-    color: white;
-    text-shadow: none;
-  }
+  50% { color: white; text-shadow: none; }
   100% {
     color: #e29be2;
     text-shadow: 0 0 10px #8399ce, 0 0 20px #ff77ff, 0 0 30px #ff77ff, 0 0 40px #ff77ff;

@@ -1,4 +1,4 @@
-// Initialize Firebase
+// Firebase Configuration
 const firebaseConfig = {
   apiKey: "AIzaSyDSIf09w_pEiv2pCS3aVr2EshjUUBQxy0o",
   authDomain: "tailtrail-ce7bf.firebaseapp.com",
@@ -9,61 +9,69 @@ const firebaseConfig = {
   measurementId: "G-4QE0HDP22K"
 };
 
-// Initialize Firebase App
+
+// Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
 // Firebase Authentication and Firestore
 const auth = firebase.auth();
 const db = firebase.firestore();
-
-// Google Sign-In Provider
 const provider = new firebase.auth.GoogleAuthProvider();
 
-// Initialize Google Sign-In with Redirect
-function initializeGoogleSignIn() {
+
+// Show "JOIN" Button After Delay
+function showJoinButton() {
   setTimeout(() => {
     const joinButton = document.createElement("button");
-    const container = document.getElementById("joinButtonContainer"); // Correct container
+    joinButton.textContent = "JOIN";
+    joinButton.className = "join-button";
+    joinButton.onclick = () => {
+      console.log("Redirecting to Google Sign-In...");
+      auth.signInWithRedirect(provider);
+    };
+
+    const container = document.getElementById("joinButtonContainer");
     if (container) {
-      joinButton.textContent = "JOIN";
-      joinButton.className = "join-button";
-      joinButton.onclick = () => {
-        auth.signInWithRedirect(provider);
-      };
-      container.appendChild(joinButton); // Append to correct container
+      container.appendChild(joinButton);
     } else {
       console.error("joinButtonContainer not found!");
     }
-  }, 6000);
+  }, 6000); // Display button after 6 seconds
 }
 
-// Handle Redirect Result
+// Handle Google Redirect Result
 function handleRedirectResult() {
   auth.getRedirectResult()
-    .then((result) => {
+    .then(async (result) => {
       if (result.user) {
         const user = result.user;
+        console.log("User signed in:", user);
 
         // Save user data to Firestore
         const userRef = db.collection("users").doc(user.uid);
-        userRef.set({
+        await userRef.set({
           email: user.email,
           name: user.displayName,
           registrationTime: new Date().toISOString(),
         });
 
         console.log("User data saved to Firestore");
+
         // Redirect to the /calm page
         window.location.href = "/calm";
+      } else {
+        console.log("No user found in the redirect result.");
       }
     })
     .catch((error) => {
-      console.error("Error during redirect sign-in:", error);
+      console.error("Error during redirect sign-in:", error.message);
     });
 }
 
-// Initialize authentication on page load
+
+// Initialize the App on Page Load
 window.onload = function () {
-  initializeGoogleSignIn();
+  console.log("Initializing Firebase Authentication...");
+  showJoinButton();
   handleRedirectResult();
 };
