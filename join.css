@@ -38,7 +38,7 @@ body, html {
   background-image: url('/images/IMG_2412.jpg');
   background-size: cover;
   background-position: center;
-  animation: flashlightEffect 5s infinite; /* Use forwards to retain the final state */
+  animation: backgroundEffect 6s ease-in forwards, neonBlink 3s infinite; /* Use forwards to retain the final state */
 }
 
 @keyframes backgroundEffect {
@@ -52,15 +52,27 @@ body, html {
   }
 }
 
-@keyframes flashlightEffect {
+@keyframes neonBlink {
   0% {
-    box-shadow: 0 0 50px 50px rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 20px 20px rgba(128, 0, 128, 0.2);
+  }
+  20% {
+    box-shadow: 0 0 40px 40px rgba(255, 0, 255, 0.4);
+  }
+  40% {
+    box-shadow: 0 0 60px 60px rgba(128, 0, 128, 0.6);
   }
   50% {
-    box-shadow: 0 0 100px 100px rgba(255, 255, 255, 0.4);
+    box-shadow: 0 0 100px 100px rgba(255, 0, 255, 1); /* Sudden flash of bright purple */
+  }
+  60% {
+    box-shadow: 0 0 60px 60px rgba(128, 0, 128, 0.6);
+  }
+  80% {
+    box-shadow: 0 0 40px 40px rgba(255, 0, 255, 0.4);
   }
   100% {
-    box-shadow: 0 0 50px 50px rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 20px 20px rgba(128, 0, 128, 0.2);
   }
 }
 
@@ -86,12 +98,7 @@ body, html {
 .motto .block1,
 .motto .block2 {
   opacity: 0;
-  animation: fadeInText 2.1s ease-in forwards;
-}
-
-.motto .block2 {
-  opacity: 0;
-  animation: fadeInText 2.4s ease-in forwards;
+  animation: fadeInText 1s ease-in forwards;
 }
 
 .motto .block1 {
@@ -99,7 +106,7 @@ body, html {
 }
 
 .motto .block2 {
-  animation-delay: 4.2s;
+  animation-delay: 6s;
 }
 
 .motto p {
@@ -125,7 +132,7 @@ body, html {
 
 @media (min-width: 768px) {
   #joinButtonContainer {
-    top: calc(100% + 4em); /* Slightly larger spacing for bigger screens */
+    top: calc(79% + 4em); /* Slightly larger spacing for bigger screens */
   }
 }
 
