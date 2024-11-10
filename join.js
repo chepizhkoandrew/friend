@@ -39,6 +39,9 @@ function showJoinButton() {
   }, 6000); // Display button after 6 seconds
 }
 
+
+
+
 // Handle Google Redirect Result
 function handleRedirectResult() {
   auth.getRedirectResult()

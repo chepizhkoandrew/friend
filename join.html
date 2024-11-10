@@ -5,12 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Join - Tailtrail</title>
   <link rel="stylesheet" href="join.css">
-  <script src="https://accounts.google.com/gsi/client" async defer></script>
-  <script src="https://cdn.jsdelivr.net/npm/jwt-decode/build/jwt-decode.min.js"></script> <!-- Include jwt-decode library -->
-  <script src="https://www.gstatic.com/firebasejs/9.16.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.16.0/firebase-auth-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.16.0/firebase-firestore-compat.js"></script>
+  
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=YOUR_GA4_MEASUREMENT_ID"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'YOUR_GA4_MEASUREMENT_ID'); // Replace with your GA4 Measurement ID
+  </script>
 
+  <!-- Google Sign-In -->
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/jwt-decode/build/jwt-decode.min.js"></script>
+  
+  <script src="join.js" defer></script>
 </head>
 <body>
   <div class="container">
@@ -27,13 +36,10 @@
           <p class="line5"> </p>
         </div>
         <div class="action">
-          <div id="joinButtonContainer" class="join-button-container">
+          <div id="joinButtonContainer" class="join-button-container"></div>
         </div>
       </div>
-
     </div>
   </div>
-  <script type="module" src="join.js"></script>
-
 </body>
 </html>
