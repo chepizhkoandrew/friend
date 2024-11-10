@@ -210,3 +210,30 @@ body, html {
   object-fit: cover;
 }
 
+.next-button-container {
+  position: absolute;
+  bottom: 20px; /* Adjusted margin for the button */
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+/* Next Button */
+#next-button {
+  font-size: 2rem; /* 70% of 2.8rem */
+  color: white;
+  font-family: 'Monoton', cursive;
+  text-align: center;
+  cursor: pointer;
+  opacity: 1;
+  background: none;
+  border: none;
+  animation: fadeInButton 1s ease-in forwards, shinePulse 3s ease-in-out infinite;
+  transition: text-shadow 0.3s, transform 0.3s ease;
+}
+
+#next-button:hover {
+  color: #fff;
+  text-shadow: 0 0 10px rgb(252, 210, 187);
+  transform: scale(1.05);
+}

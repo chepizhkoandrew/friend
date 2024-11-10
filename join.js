@@ -16,7 +16,6 @@ function initializeGoogleSignIn() {
     joinButton.onclick = () => {
       google.accounts.id.prompt(); // Show the Google Sign-In popup
     };
-
     const container = document.getElementById("joinButtonContainer");
     if (container) {
       container.appendChild(joinButton);
