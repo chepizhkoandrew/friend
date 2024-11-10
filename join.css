@@ -154,6 +154,12 @@ body, html {
 }
 
 /* Join Button */
+
+.join-button-container {
+  opacity: 0;
+  animation: fadeInButton 1s ease-in 6s forwards; /* 6s to match delayed rendering */
+}
+
 .join-button {
   position: absolute;
   bottom: 150px; /* Adjusted from 180px to 150px */
