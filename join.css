@@ -157,8 +157,8 @@ body, html {
 
 /* JOIN Button Styling */
 .join-button-container {
-  opacity: 0;
-  animation: fadeInContainer 1s ease-in 6s forwards; /* Fades in the container at 6 seconds */
+  opacity: 1;
+  animation: fadeInContainer ease-in forwards;
 }
 
 .join-button {
@@ -169,14 +169,13 @@ body, html {
   background: none;
   border: none;
   cursor: pointer;
-  opacity: 0;
-  animation: fadeInButton 1s ease-in 6s forwards, shinePulse 3s ease-in-out 9s infinite;
-  transform: translateY(20px); /* Initial slight downward offset */
+  opacity: 1;
+  animation: fadeInButton ease-in forwards;
 }
 
 @keyframes fadeInButton {
   0% {
-    opacity: 0;
+    opacity: 0.5;
     transform: translateY(20px);
   }
   100% {
@@ -186,7 +185,7 @@ body, html {
 }
 
 @keyframes fadeInContainer {
-  0% { opacity: 0; }
+  0% { opacity: 0.5; }
   100% { opacity: 1; }
 }
 

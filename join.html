@@ -7,8 +7,10 @@
   <link rel="stylesheet" href="join.css">
   <script src="https://accounts.google.com/gsi/client" async defer></script>
   <script src="https://cdn.jsdelivr.net/npm/jwt-decode/build/jwt-decode.min.js"></script> <!-- Include jwt-decode library -->
-  <script src="https://www.gstatic.com/firebasejs/9.16.0/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.16.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.16.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.16.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.16.0/firebase-firestore-compat.js"></script>
+
 </head>
 <body>
   <div class="container">
@@ -24,7 +26,10 @@
           <p class="line4">SUFFER IT</p>
         </div>
       </div>
-      <div id="joinButtonContainer" class="join-button-container"></div>
+      <div id="joinButtonContainer" class="join-button-container">
+        <div id="joinButton" class="join-button"></div>
+      </div>
+
     </div>
   </div>
   <script type="module" src="join.js"></script>
