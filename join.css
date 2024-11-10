@@ -38,17 +38,29 @@ body, html {
   background-image: url('/images/IMG_2412.jpg');
   background-size: cover;
   background-position: center;
-  animation: backgroundEffect 6s ease-in forwards; /* Use forwards to retain the final state */
+  animation: backgroundEffect 6s ease-in forwards, flashlightEffect 10s infinite; /* Use forwards to retain the final state */
 }
 
 @keyframes backgroundEffect {
   0% {
     background-size: 220%;
-    filter: grayscale(0%);
+    filter: grayscale(70%);
   }
   100% {
     background-size: 190%; /* Final scale */
     filter: grayscale(100%); /* Final grayscale */
+  }
+}
+
+@keyframes flashlightEffect {
+  0% {
+    box-shadow: 0 0 50px 50px rgba(255, 255, 255, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 100px 100px rgba(255, 255, 255, 0.4);
+  }
+  100% {
+    box-shadow: 0 0 50px 50px rgba(255, 255, 255, 0.2);
   }
 }
 
@@ -121,7 +133,6 @@ body, html {
   opacity: 0; /* Initially hidden */
   animation: fadeInContainer 2s ease-in 3s forwards; /* Fade in after 6 seconds */
 }
-
 
 .join-button {
   font-family: 'Monoton', cursive; /* Match motto font */

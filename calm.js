@@ -74,7 +74,10 @@ document.addEventListener("DOMContentLoaded", () => {
             document.querySelector('.second-question').style.display = 'block';
             nextButton.style.display = 'none'; // Hide the next button initially
 
-       
+            // Change background for the second screen
+            background.classList.add('second');
+            background.classList.remove('third');
+          } else if (category === 'MOVE') {
             // Handle the MOVE option specifically
             document.querySelector('.question').style.display = 'none';
             document.querySelector('.activity-grid').style.display = 'none';
@@ -125,7 +128,27 @@ document.addEventListener("DOMContentLoaded", () => {
         background.classList.remove('second');
       });
 
-      
+      // Handle transition to fourth screen
+      nextButton.addEventListener('click', () => {
+        // Hide elements from the third screen
+        document.querySelector('.third-question').style.display = 'none';
+        thirdGrid.style.display = 'none';
+
+        // Show the fourth screen (implement your logic here)
+        // For example:
+        // document.querySelector('.fourth-question').style.display = 'block';
+        // document.querySelector('.fourth-grid').style.display = 'grid';
+      });
+
+      // Show the next button only when an option is picked on the second screen
+      secondGrid.addEventListener('click', () => {
+        nextButton.style.display = 'block';
+      });
+
+      // Show the next button only when an option is picked on the third screen
+      thirdGrid.addEventListener('click', () => {
+        nextButton.style.display = 'block';
+      });
 
       // Redirect to the third screen regardless of the choice
       secondGrid.addEventListener('click', () => {
@@ -134,10 +157,9 @@ document.addEventListener("DOMContentLoaded", () => {
         nextButton.click();
       });
 
-      // Apply random animation delay to each activity item
-      document.querySelectorAll('.activity-item').forEach(item => {
-        const randomDelay = Math.random() * (5 - 2) + 2; // Random delay between 2 and 5 seconds
-        item.style.animationDelay = `${randomDelay}s`;
+      // Handle clicks on the third screen options
+      thirdGrid.addEventListener('click', () => {
+        nextButton.click();
       });
     })
     .catch(error => console.error('Error loading options:', error));
