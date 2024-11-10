@@ -4,6 +4,10 @@ function initializeGoogleSignIn() {
     client_id: "515649551791-2m70cejboi72ct3cileeii6ntn6jmis7.apps.googleusercontent.com",
     callback: handleCredentialResponse
   });
+  google.accounts.id.renderButton(
+    document.getElementById("joinButton"),
+    { theme: "outline", size: "large" } // customization attributes
+  );
 }
 
 // Handle the credential response from Google Sign-In
