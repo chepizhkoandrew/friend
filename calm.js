@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   setTimeout(() => {
     questionLines[1].style.opacity = "1";
-  }, 4000);
+  }, 3500);
 
   setTimeout(() => {
     questionLines[2].style.opacity = "1";
