@@ -11,6 +11,7 @@ function initializeGoogleSignIn() {
   console.log("Google Sign-In initialized");
 }
 
+
 // Handle the credential response from Google Sign-In
 function handleCredentialResponse(response) {
   // Decode the ID token and get user information
