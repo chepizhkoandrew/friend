@@ -23,15 +23,16 @@ const provider = new firebase.auth.GoogleAuthProvider();
 function initializeGoogleSignIn() {
   setTimeout(() => {
     const joinButton = document.createElement("button");
-    joinButton.textContent = "JOIN";
-    joinButton.className = "join-button";
-    joinButton.onclick = () => {
-      auth.signInWithRedirect(provider);
-    };
-
-    const container = document.getElementById("joinButtonContainer");
+    const container = document.getElementById("joinButtonContainer"); // Correct container
     if (container) {
-      container.appendChild(joinButton);
+      joinButton.textContent = "JOIN";
+      joinButton.className = "join-button";
+      joinButton.onclick = () => {
+        auth.signInWithRedirect(provider);
+      };
+      container.appendChild(joinButton); // Append to correct container
+    } else {
+      console.error("joinButtonContainer not found!");
     }
   }, 6000);
 }
