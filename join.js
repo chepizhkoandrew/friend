@@ -10,7 +10,7 @@ function initializeGoogleSignIn() {
 
   // Show the "JOIN" button after a delay
   setTimeout(() => {
-    const joinButton = document.createElement("button");
+    const joinButton = document.createElement("join-button");
     joinButton.textContent = "JOIN";
     joinButton.className = "join-button";
     joinButton.onclick = () => {
@@ -30,7 +30,6 @@ function handleCredentialResponse(response) {
   // Decode the credential token to get user info
   const user = jwt_decode(response.credential);
 
-  console.log("User signed in:", user);
 
   // Send event to Google Analytics
   gtag('event', 'user_authentication', {
