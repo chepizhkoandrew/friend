@@ -125,7 +125,12 @@ body, html {
     color: #e29be2;
     text-shadow: 0 0 10px #8399ce, 0 0 20px #ff77ff, 0 0 30px #ff77ff, 0 0 40px #ff77ff;
   }
-  50% { color: white; text-shadow: none; }
+  20% { color: white; text-shadow: none; scale:0.95}
+30% {
+    color: #e29be2;
+    text-shadow: 0 0 10px #8399ce, 0 0 20px #ff77ff, 0 0 30px #ff77ff, 0 0 40px #ff77ff;
+  }
+  20% { color: white; text-shadow: none; scale:0.95}
   100% {
     color: #e29be2;
     text-shadow: 0 0 10px #8399ce, 0 0 20px #ff77ff, 0 0 30px #ff77ff, 0 0 40px #ff77ff;

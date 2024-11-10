@@ -52,7 +52,7 @@ function startEqualizerEffect(selector) {
     setInterval(() => {
       const randomIndex = Math.floor(Math.random() * letters.length);
       const letter = letters[randomIndex];
-      letter.style.animation = "scaleLetter 0.6s ease-in-out";
+      letter.style.animation = "scaleLetter 3s ease-in-out";
       letter.addEventListener(
         "animationend",
         () => {
