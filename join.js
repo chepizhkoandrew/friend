@@ -58,7 +58,7 @@ function handleRedirectResult() {
         console.log("User data saved to Firestore");
 
         // Redirect to the /calm page
-        window.location.href = "/calm";
+        window.location.href = "https://tailtrail.club/calm";
       } else {
         console.log("No user found in the redirect result.");
       }
