@@ -5,7 +5,7 @@ function initializeGoogleSignIn() {
     callback: handleCredentialResponse
   });
   google.accounts.id.renderButton(
-    document.getElementById("joinButton"),
+    document.getElementById("joinButtonContainer"),
     { theme: "outline", size: "large" } // customization attributes
   );
   console.log("Google Sign-In initialized");
@@ -33,20 +33,6 @@ function checkIfAuthenticated() {
     console.log("User is not authenticated");
   }
 }
-
-// Redirect to /calm on clicking Join button
-document.getElementById("joinButton").addEventListener("click", () => {
-  console.log("Join button clicked, triggering Google Sign-In");
-  // Trigger Google Sign-In
-  google.accounts.id.prompt();
-});
-
-// Display the join button after all animations complete
-setTimeout(() => {
-  const joinButton = document.getElementById("joinButton");
-  joinButton.style.opacity = 1; // Fade in the join button
-  console.log("Join button displayed");
-}, 9000); // 3s delay + 1s fade-in for line1 + 4s delay for line2 + 1s fade-in for button
 
 // Initialize Google Sign-In and check authentication on page load
 window.onload = function() {
