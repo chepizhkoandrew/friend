@@ -1,43 +1,80 @@
-// Initialize Google Sign-In
+// Import Firebase SDKs
+import { initializeApp } from "firebase/app";
+import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyDSIf09w_pEiv2pCS3aVr2EshjUUBQxy0o",
+  authDomain: "tailtrail-ce7bf.firebaseapp.com",
+  projectId: "tailtrail-ce7bf",
+  storageBucket: "tailtrail-ce7bf.appspot.com",
+  messagingSenderId: "200107764514",
+  appId: "1:200107764514:web:3883ab5328039ddc81137b",
+  measurementId: "G-4QE0HDP22K"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+// Initialize Google Sign-In and Firebase Authentication
 function initializeGoogleSignIn() {
-  google.accounts.id.initialize({
-    client_id: "515649551791-s295ecne6f8srac5gf3gitidmgee3st8.apps.googleusercontent.com", // Ensure this is the correct client ID
-    callback: handleCredentialResponse
-  });
-  google.accounts.id.renderButton(
-    document.getElementById("joinButtonContainer"),
-    { theme: "outline", size: "large" } // customization attributes
-  );
-  console.log("Google Sign-In initialized");
-}
+  const provider = new GoogleAuthProvider();
 
+  // Display "JOIN" button after 5 seconds
+  setTimeout(() => {
+    const joinButton = document.createElement("button");
+    joinButton.textContent = "JOIN";
+    joinButton.className = "join-button";
+    joinButton.onclick = () => {
+      signInWithPopup(auth, provider)
+        .then((result) => {
+          const user = result.user;
+          console.log("User signed in:", user);
 
-// Handle the credential response from Google Sign-In
-function handleCredentialResponse(response) {
-  // Decode the ID token and get user information
-  const user = jwt_decode(response.credential);
-  console.log("User signed in:", user);
+          // Send user details to the backend
+          fetch('/api/register', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              email: user.email,
+              name: user.displayName,
+              registrationTime: new Date().toISOString(),
+            }),
+          }).then((res) => {
+            if (res.ok) {
+              console.log("User data logged successfully");
+            } else {
+              console.error("Failed to log user data");
+            }
+          });
 
-  // Redirect to /calm after successful sign-in
-  window.location.href = "/calm";
+          // Redirect to /calm page
+          window.location.href = "/calm";
+        })
+        .catch((error) => {
+          console.error("Error during sign-in:", error);
+        });
+    };
+
+    document.getElementById("joinButtonContainer").appendChild(joinButton);
+  }, 5000); // 5-second delay
 }
 
 // Check if the user is already authenticated
 function checkIfAuthenticated() {
-  // Check if the user is already authenticated (this is a placeholder, implement your own logic)
-  const isAuthenticated = false; // Replace with actual authentication check
-
-  if (isAuthenticated) {
-    console.log("User is already authenticated");
+  const user = auth.currentUser;
+  if (user) {
+    console.log("User is already authenticated:", user);
     window.location.href = "/calm";
   } else {
-    console.log("User is not authenticated");
+    console.log("No authenticated user found");
   }
 }
 
-// Initialize Google Sign-In and check authentication on page load
-window.onload = function() {
-  console.log("Page loaded, initializing Google Sign-In and checking authentication");
+// Initialize authentication on page load
+window.onload = function () {
+  console.log("Page loaded, initializing Firebase and Google Sign-In");
   initializeGoogleSignIn();
   checkIfAuthenticated();
 };
