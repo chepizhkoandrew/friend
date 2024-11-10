@@ -68,7 +68,7 @@ body, html {
     background: rgba(128, 0, 128, 0.7); /* Deep purple flash */
   }
   75% {
-    background: rgba(255, 0, 255, 0.9); /* Bright purple flash */
+    background: hsla(300, 100%, 50%, 0.9); /* Bright purple flash */
   }
 }
 
@@ -117,6 +117,26 @@ body, html {
 .motto .block2 {
   animation-delay: 6s;
 }
+
+
+/* Equalizer Animation */
+@keyframes scaleLetter {
+  0% {
+    color: #e29be2;
+    text-shadow: 0 0 10px #8399ce, 0 0 20px #ff77ff, 0 0 30px #ff77ff, 0 0 40px #ff77ff;
+  }
+  50% { color: white; text-shadow: none; }
+  100% {
+    color: #e29be2;
+    text-shadow: 0 0 10px #8399ce, 0 0 20px #ff77ff, 0 0 30px #ff77ff, 0 0 40px #ff77ff;
+  }
+}
+/* Motto Text Style */
+.motto span {
+  display: inline-block;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
 
 .motto p {
   font-size: 6.5vw; /* Adjusted size for mobile */
