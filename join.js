@@ -1,12 +1,7 @@
 // Initialize Google Sign-In
-app.use((req, res, next) => {
-  res.setHeader('Cross-Origin-Opener-Policy', 'same-origin');
-  next();
-});
 function initializeGoogleSignIn() {
-
   google.accounts.id.initialize({
-    client_id: "515649551791-2m70cejboi72ct3cileeii6ntn6jmis7.apps.googleusercontent.com",
+    client_id: "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",
     callback: handleCredentialResponse
   });
   google.accounts.id.renderButton(
