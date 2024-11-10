@@ -155,28 +155,37 @@ body, html {
 
 /* Join Button */
 
+/* JOIN Button Styling */
 .join-button-container {
   opacity: 0;
-  animation: fadeInButton 1s ease-in 6s forwards; /* 6s to match delayed rendering */
+  animation: fadeInContainer 1s ease-in 6s forwards; /* Fades in the container at 6 seconds */
 }
 
 .join-button {
-  position: absolute;
-  bottom: 150px; /* Adjusted from 180px to 150px */
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 4rem;
+  font-family: 'Monoton', cursive; /* Match motto font */
+  font-size: 4vw; /* Adjust for responsive size */
   color: white;
-  font-family: 'Monoton', cursive;
-  text-decoration: none;
-  cursor: pointer;
-  opacity: 0;
+  text-shadow: 2px 2px 5px #000;
   background: none;
   border: none;
-  animation: fadeInButton 1s ease-in 6s forwards, shinePulse 3s ease-in-out 11s infinite;
+  cursor: pointer;
+  opacity: 0;
+  animation: fadeInButton 1s ease-in 6s forwards, shinePulse 3s ease-in-out 9s infinite;
+  transform: translateY(20px); /* Initial slight downward offset */
 }
 
 @keyframes fadeInButton {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInContainer {
   0% { opacity: 0; }
   100% { opacity: 1; }
 }
