@@ -1,8 +1,8 @@
 // Import Firebase SDKs
 import { initializeApp } from "firebase/app";
-import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { getAuth, GoogleAuthProvider, signInWithRedirect, getRedirectResult } from "firebase/auth";
 
-// Your web app's Firebase configuration
+// Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyDSIf09w_pEiv2pCS3aVr2EshjUUBQxy0o",
   authDomain: "tailtrail-ce7bf.firebaseapp.com",
@@ -17,48 +17,56 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-// Initialize Google Sign-In and Firebase Authentication
+// Initialize Google Sign-In with Redirect
 function initializeGoogleSignIn() {
   const provider = new GoogleAuthProvider();
 
-  // Display "JOIN" button after 5 seconds
+  // Show the "JOIN" button after 5 seconds
   setTimeout(() => {
     const joinButton = document.createElement("button");
     joinButton.textContent = "JOIN";
     joinButton.className = "join-button";
     joinButton.onclick = () => {
-      signInWithPopup(auth, provider)
-        .then((result) => {
-          const user = result.user;
-          console.log("User signed in:", user);
-
-          // Send user details to the backend
-          fetch('/api/register', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              email: user.email,
-              name: user.displayName,
-              registrationTime: new Date().toISOString(),
-            }),
-          }).then((res) => {
-            if (res.ok) {
-              console.log("User data logged successfully");
-            } else {
-              console.error("Failed to log user data");
-            }
-          });
-
-          // Redirect to /calm page
-          window.location.href = "/calm";
-        })
-        .catch((error) => {
-          console.error("Error during sign-in:", error);
-        });
+      // Use signInWithRedirect instead of signInWithPopup
+      signInWithRedirect(auth, provider);
     };
 
     document.getElementById("joinButtonContainer").appendChild(joinButton);
   }, 5000); // 5-second delay
+}
+
+// Handle Redirect Result
+function handleRedirectResult() {
+  getRedirectResult(auth)
+    .then((result) => {
+      if (result) {
+        const user = result.user;
+        console.log("User signed in via redirect:", user);
+
+        // Send user details to the backend
+        fetch('/api/register', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            email: user.email,
+            name: user.displayName,
+            registrationTime: new Date().toISOString(),
+          }),
+        }).then((res) => {
+          if (res.ok) {
+            console.log("User data logged successfully");
+          } else {
+            console.error("Failed to log user data");
+          }
+        });
+
+        // Redirect to /calm page
+        window.location.href = "/calm";
+      }
+    })
+    .catch((error) => {
+      console.error("Error during redirect sign-in:", error);
+    });
 }
 
 // Check if the user is already authenticated
@@ -76,5 +84,6 @@ function checkIfAuthenticated() {
 window.onload = function () {
   console.log("Page loaded, initializing Firebase and Google Sign-In");
   initializeGoogleSignIn();
+  handleRedirectResult();
   checkIfAuthenticated();
 };
