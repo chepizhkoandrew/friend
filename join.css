@@ -39,7 +39,7 @@ body, html {
   height: 100%;
   background-image: url('/images/IMG_2412.jpg');
   background-size: cover;
-  filter: grayscale(100%); /* mostly grayscale */
+  filter: grayscale(80%) brightness(120%) contrast(110%); /* mostly grayscale */
   animation: flashlightEffect 10s infinite;
   background-position: center;
   z-index: -1; /* Keep it behind other content */
@@ -88,7 +88,7 @@ body, html {
   }
   50% {
     box-shadow: 0 0 100px 100px rgba(255, 255, 255, 0.34);
-    scale: 1.1;
+    
   }
   70% {
     box-shadow: 0 0 100px 100px rgba(255, 255, 255, 0.34); filter:grayscale(75%);
@@ -97,7 +97,7 @@ body, html {
     box-shadow: 0 0 100px 100px rgba(255, 255, 255, 0.34);filter:grayscale(100%); scale 1;
   } 
   100% {
-    box-shadow: 0 0 50px 50px rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 50px 50px rgba(255, 255, 255, 0.2); scale: 1.02em;
   }
 }
 
@@ -109,7 +109,7 @@ body, html {
   }
   10% {
     transform: translate(-1px, 0);
-    filter: brightness(150%);
+    filter: brightness(120%);
   }
   20% {
     transform: translate(1px, 0);
@@ -117,7 +117,7 @@ body, html {
   }
   30% {
     transform: translate(-1px, 0);
-    filter: brightness(200%);
+    filter: brightness(100%);
   }
   40% {
     transform: translate(1px, 0);
@@ -129,7 +129,7 @@ body, html {
   }
   60% {
     transform: translate(1px, 0);
-    filter: brightness(150%);
+    filter: brightness(120%);
   }
   70% {
     transform: translate(-1px, 0);
@@ -137,7 +137,7 @@ body, html {
   }
   80% {
     transform: translate(1px, 0);
-    filter: brightness(200%);
+    filter: brightness(100%);
   }
   90% {
     transform: translate(-1px, 0);
