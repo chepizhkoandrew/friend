@@ -136,10 +136,17 @@ function fetchDogWisdom() {
   console.log('Fetching dog wisdom...'); // Debugging log
   fetch('https://friend-4mph.onrender.com/api/gpt', {
     method: 'POST',
+    "model": "gpt-4",
+
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({ prompt: 'Give me some dog wisdom' })
+    
+    
+    
+    
+    
+    body: JSON.stringify({ model: "gpt-4", prompt: 'Give me some dog wisdom' })
   })
   .then(response => {
     if (!response.ok) {
@@ -158,23 +165,25 @@ function fetchDogWisdom() {
 
 
 
-  // Transition to the fourth screen (Dog Wisdom)
-  const goToFourthScreen = async () => {
-    const fourthQuestion = document.querySelector('.fourth-question');
-    const wisdomElement = document.getElementById('dog-wisdom');
   
-    fourthQuestion.style.display = 'block';
-  
-    try {
-      await fetchDogWisdom(); // Ensure fetchDogWisdom runs correctly
-      wisdomElement.style.opacity = '1'; // Smooth fade-in
-    } catch (error) {
-      console.error('Error in goToFourthScreen:', error.message);
-    }
-  };
   
 // Call fetchDogWisdom when needed
 fetchDogWisdom();
+
+// Transition to the fourth screen (Dog Wisdom)
+const goToFourthScreen = async () => {
+  const fourthQuestion = document.querySelector('.fourth-question');
+  const wisdomElement = document.getElementById('dog-wisdom');
+
+  fourthQuestion.style.display = 'block';
+
+  try {
+    await fetchDogWisdom(); // Ensure fetchDogWisdom runs correctly
+    wisdomElement.style.opacity = '1'; // Smooth fade-in
+  } catch (error) {
+    console.error('Error in goToFourthScreen:', error.message);
+  }
+};
 
 
   // Handle activity selection and transitions
