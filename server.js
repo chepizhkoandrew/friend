@@ -3,7 +3,8 @@ const axios = require('axios');
 const dotenv = require('dotenv');
 const cors = require('cors');
 
-dotenv.config();
+// Load environment variables from gpt.env
+dotenv.config({ path: 'gpt.env' });
 
 const app = express();
 const port = process.env.PORT || 3000;
