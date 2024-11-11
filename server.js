@@ -32,22 +32,22 @@ app.use(express.json());
 
 
 app.post('/api/gpt', async (req, res) => {
-  try {
-    const apiKey = process.env.OPENAI_API_KEY;
-    if (!apiKey) {
-      throw new Error('OPENAI_API_KEY is not set');
-    }
-
-    console.log('Received request:', req.body);
-
-    const response = await openai.createChatCompletion({
-      model: 'gpt-3.5-turbo',
-      messages: [
-        { role: 'system', content: 'You are a helpful assistant.' },
-        { role: 'user', content: req.body.prompt }
-      ],
-      max_tokens: 50,
-    });
+    const { prompt } = req.body;
+  
+    try {
+      const response = await axios.post('https://api.openai.com/v1/chat/completions', {
+        model: "gpt-4",
+        messages: [
+          { role: "assistant", content: prompt }
+        ],
+        max_tokens: 100,
+        temperature: 0.9
+      }, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${process.env.OPENAI_API_KEY}`
+        }
+      });
 
     console.log('OpenAI API response:', response.data);
 
