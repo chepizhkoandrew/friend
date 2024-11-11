@@ -1,10 +1,10 @@
 const express = require('express');
-const axios = require('axios');
+const { Configuration, OpenAIApi } = require('openai');
 const dotenv = require('dotenv');
 const cors = require('cors');
 
-// Load environment variables from gpt.env
-dotenv.config({ path: 'gpt.env' });
+// Load environment variables from .env
+dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -13,6 +13,12 @@ const port = process.env.PORT || 3000;
 app.use(cors());
 
 app.use(express.json());
+
+// Configure OpenAI API
+const configuration = new Configuration({
+  apiKey: process.env.OPENAI_API_KEY,
+});
+const openai = new OpenAIApi(configuration);
 
 app.post('/api/gpt', async (req, res) => {
   try {
@@ -23,28 +29,11 @@ app.post('/api/gpt', async (req, res) => {
 
     console.log('Received request:', req.body);
 
-// Prepare the request payload
-const payload = {
-    model: 'gpt-4',
-    messages: [
-      { role: 'wise dog with extraordinary talent to phycology, bery sarcasmic but alvays gives practical spiritual and fun support', content: 'req.body.prompt' },
-    ],
-    max_tokens: 50,
-    temperature: 1.0,
-  };
-
-
-// Send the request to OpenAI API
-const response = await axios.post(
-    'https://api.openai.com/v1/chat/completions',
-    payload,
-    {
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${apiKey}`,
-      },
-    }
-  );
+    const response = await openai.createCompletion({
+      model: 'text-davinci-003',
+      prompt: req.body.prompt,
+      max_tokens: 50,
+    });
 
     console.log('OpenAI API response:', response.data);
 
@@ -55,6 +44,10 @@ const response = await axios.post(
       console.error('Error response data:', error.response.data);
       console.error('Error response status:', error.response.status);
       console.error('Error response headers:', error.response.headers);
+      if (error.response.status === 429 || error.response.data.error.code === 'insufficient_quota') {
+        res.status(429).json({ error: 'Quota Exceeded', message: 'You have exceeded your current quota. Please check your plan and billing details.' });
+        return;
+      }
     } else {
       console.error('Error details:', error);
     }
