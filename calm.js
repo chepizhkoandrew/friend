@@ -1,21 +1,21 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const questionLines = Array.from(document.querySelectorAll(".question span"));
-  const items = Array.from(document.querySelectorAll(".activity-grid .activity-item"));
-  const totalDuration = 2000; // 2 seconds for all items to appear
-  const startDelay = 3000; // Start after 3 seconds
-  let userChoices = { option1: "", option2: "" }; // To store user choices
+  const userChoices = { option1: "", option2: "" }; // Store user selections
 
-  // Function to show elements sequentially
-  const showElementsSequentially = (elements, delayBetween) => {
-    elements.forEach((element, index) => {
+  // Function to show elements sequentially with random delays and durations
+  const showElementsSequentially = (elements, minDelay, maxDelay, minDuration, maxDuration) => {
+    elements.forEach(element => {
+      const delay = Math.random() * (maxDelay - minDelay) + minDelay;
+      const duration = Math.random() * (maxDuration - minDuration) + minDuration;
+
       setTimeout(() => {
         element.style.opacity = "1";
-        element.style.transition = `opacity 0.5s ease-in, transform 0.5s ease-in`;
-      }, index * delayBetween);
+        element.style.transition = `opacity ${duration}ms ease-in`;
+      }, delay);
     });
   };
 
   // Show question lines sequentially
+  const questionLines = Array.from(document.querySelectorAll(".question span"));
   setTimeout(() => {
     questionLines[0].style.opacity = "1";
   }, 1000);
@@ -29,25 +29,70 @@ document.addEventListener("DOMContentLoaded", () => {
   }, 6000);
 
   // Show activity items after question lines are displayed
-setTimeout(() => {
-  const rows = Array.from(document.querySelectorAll(".activity-grid .activity-item"));
-  const minDelay = 4000; // Minimum delay (4 seconds)
-  const maxDelay = 8000; // Maximum delay (8 seconds)
-  const minDuration = 1000; // Minimum duration (1 second)
-  const maxDuration = 4000; // Maximum duration (4 seconds)
+  setTimeout(() => {
+    const rows = Array.from(document.querySelectorAll(".activity-grid .activity-item"));
+    const minDelay = 4000; // Minimum delay (4 seconds)
+    const maxDelay = 8000; // Maximum delay (8 seconds)
+    const minDuration = 1000; // Minimum duration (1 second)
+    const maxDuration = 4000; // Maximum duration (4 seconds)
 
-  rows.forEach(row => {
-    const delay = Math.random() * (maxDelay - minDelay) + minDelay;
-    const duration = Math.random() * (maxDuration - minDuration) + minDuration;
+    showElementsSequentially(rows, minDelay, maxDelay, minDuration, maxDuration);
+  }, 4000); // Start after 4 seconds
 
-    setTimeout(() => {
-      row.style.opacity = "1";
-      row.style.transition = `opacity ${duration}ms ease-in`;
-    }, delay);
-  });
-}, 4000); // Start after 4 seconds
+  // Fetch GPT response
+  const fetchDogWisdom = async (option1, option2) => {
+    const prompt = `If you were a dog psychologist loving Bill Murray and Monty Python and being the smartest person in the dog world, what advice would you give to a stranger who is now at ${option1} feeling ${option2} inside? The advice should be creative, sarcastic, sexy, rough, and bohemian but very smart and funny. Make it sound like it's from the dog's perspective.`;
+    console.log(`Sending GPT request with choices: ${option1}, ${option2}`);
+    try {
+      const response = await fetch('https://friend-4mph.onrender.com/api/gpt', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ prompt })
+      });
+      const data = await response.json();
+      return data.choices[0].text.trim();
+    } catch (error) {
+      console.error("Error fetching dog wisdom:", error);
+      return "Sorry, wisdom is unavailable.";
+    }
+  };
 
-  
+  // Transition to the fourth screen (Dog Wisdom)
+  const goToFourthScreen = async () => {
+    const fourthQuestion = document.querySelector('.fourth-question');
+    const wisdomElement = document.getElementById('dog-wisdom');
+
+    fourthQuestion.style.display = 'block';
+
+    try {
+      const wisdomText = await fetchDogWisdom(userChoices.option1, userChoices.option2);
+      const wisdomParts = wisdomText.split(' ').reduce((acc, word, index) => {
+        const partIndex = Math.floor(index / 10);
+        if (!acc[partIndex]) acc[partIndex] = [];
+        acc[partIndex].push(word);
+        return acc;
+      }, []).map(part => part.join(' '));
+
+      wisdomParts.forEach((part, index) => {
+        const span = document.createElement('span');
+        span.textContent = part;
+        span.style.opacity = '0';
+        wisdomElement.appendChild(span);
+      });
+
+      const spans = Array.from(wisdomElement.children);
+      const minDelay = 4000; // Minimum delay (4 seconds)
+      const maxDelay = 7000; // Maximum delay (7 seconds)
+      const minDuration = 1000; // Minimum duration (1 second)
+      const maxDuration = 4000; // Maximum duration (4 seconds)
+
+      showElementsSequentially(spans, minDelay, maxDelay, minDuration, maxDuration);
+    } catch (error) {
+      console.error('Error in goToFourthScreen:', error.message);
+    }
+  };
 
   // Handle activity selection and transitions
   fetch('options.json')
@@ -74,7 +119,7 @@ setTimeout(() => {
             secondGrid.style.display = 'grid';
 
             // Show second screen
-            showElementsSequentially(Array.from(secondGrid.children), 500);
+            showElementsSequentially(Array.from(secondGrid.children), 4000, 8000, 1000, 4000);
             document.querySelector('.question').style.display = 'none';
             document.querySelector('.activity-grid').style.display = 'none';
             document.querySelector('.second-question').style.display = 'block';
@@ -83,143 +128,24 @@ setTimeout(() => {
         });
       });
 
-      // questionwhat
+      // Handle second screen activity selection
       secondGrid.addEventListener('click', event => {
         const selectedOption = event.target.textContent.trim();
         if (selectedOption) {
           userChoices.option2 = selectedOption; // Store second choice
 
-          // Transition to answer screen
+          // Transition to third screen
           secondGrid.style.display = 'none';
           document.querySelector('.second-question').style.display = 'none';
-          document.querySelector('.question fourth-question').style.display = 'block';
-          showElementsSequentially(Array.from(thirdGrid.children), 500);
-          background.classList.add('third');
+          document.querySelector('.third-grid').style.display = 'grid';
+          document.querySelector('.third-question').style.display = 'block';
+          showElementsSequentially(Array.from(document.querySelector('.third-grid').children), 4000, 8000, 1000, 4000);
         }
       });
 
-      // endmenu screen activity selection
+      // Handle third screen activity selection
       thirdGrid.addEventListener('click', () => {
         goToFourthScreen();
-      });
-    })
-    .catch(error => console.error('Error loading options:', error));
-});
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-document.addEventListener("DOMContentLoaded", () => {
-  const userChoices = { option1: "", option2: "" }; // Store user selections
-
-  // Function to show elements sequentially
-  const showElementsSequentially = (elements, delayBetween) => {
-    elements.forEach((element, index) => {
-      setTimeout(() => {
-        element.style.opacity = "1";
-        element.style.transition = `opacity 0.5s ease-in, transform 0.5s ease-in`;
-      }, index * delayBetween);
-    });
-  };
-
-
-// Function to fetch dog wisdom from the server
-function fetchDogWisdom() {
-  console.log('Fetching dog wisdom...'); // Debugging log
-  fetch('https://friend-4mph.onrender.com/api/gpt', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ prompt: 'Give me some dog wisdom' })
-  })
-  .then(response => {
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
-    }
-    return response.json();
-  })
-  .then(data => {
-    console.log('Dog wisdom:', data);
-    document.getElementById('dog-wisdom').textContent = data.choices[0].text.trim();
-  })
-  .catch(error => console.error('Error fetching dog wisdom:', error));
-}
-
-
-
-
-  
-
-// Transition to the fourth screen (Dog Wisdom)
-const goToFourthScreen = async () => {
-  const fourthQuestion = document.querySelector('.fourth-question');
-  const wisdomElement = document.getElementById('dog-wisdom');
-
-  fourthQuestion.style.display = 'block';
-
-  try {
-    await fetchDogWisdom(); // Ensure fetchDogWisdom runs correctly
-    wisdomElement.style.opacity = '1'; // Smooth fade-in
-  } catch (error) {
-    console.error('Error in goToFourthScreen:', error.message);
-  }
-};
-
-
-  // Handle activity selection and transitions
-  fetch('options.json')
-    .then(response => response.json())
-    .then(data => {
-      const secondGrid = document.querySelector('.second-grid');
-      const background = document.querySelector('.background');
-
-      // Handle first screen: "Where?"
-      document.querySelectorAll('.activity-grid .activity-item').forEach(item => {
-        item.addEventListener('click', () => {
-          const category = item.textContent.trim();
-          console.log(`First choice (Where?): ${category}`);
-          userChoices.option1 = category; // Store first choice
-
-          if (data[category]) {
-            // Populate the second grid dynamically
-            secondGrid.innerHTML = data[category]
-              .map(option => `<div class="activity-item">${option.name}</div>`)
-              .join('');
-            secondGrid.style.display = 'grid';
-
-            // Transition to the second screen
-            showElementsSequentially(Array.from(secondGrid.children), 500);
-            document.querySelector('.question').style.display = 'none';
-            document.querySelector('.activity-grid').style.display = 'none';
-            document.querySelector('.second-question').style.display = 'block';
-            background.classList.add('second');
-          }
-        });
-      });
-
-      // Handle second screen: "What?"
-      secondGrid.addEventListener('click', event => {
-        const selectedOption = event.target.textContent.trim();
-        if (selectedOption) {
-          console.log(`Second choice (What?): ${selectedOption}`);
-          userChoices.option2 = selectedOption; // Store second choice
-
-          // Transition to Dog Wisdom screen and fetch GPT advice
-          secondGrid.style.display = 'none';
-          document.querySelector('.second-question').style.display = 'none';
-          goToFourthScreen();
-        }
       });
     })
     .catch(error => console.error('Error loading options:', error));
