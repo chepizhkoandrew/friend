@@ -29,20 +29,23 @@ document.addEventListener("DOMContentLoaded", () => {
   }, 6000);
 
   // Show activity items after question lines are displayed
-  setTimeout(() => {
-    const rows = document.querySelectorAll(".activity-grid .activity-item");
-    const rowCount = Math.ceil(rows.length / 3);
-    for (let i = 0; i < rowCount; i++) {
-      setTimeout(() => {
-        for (let j = 0; j < 3; j++) {
-          const index = i * 3 + j;
-          if (rows[index]) {
-            rows[index].style.opacity = "1";
-          }
-        }
-      }, i * 2000); // 2 seconds pause between rows
-    }
-  }, 8000);
+setTimeout(() => {
+  const rows = Array.from(document.querySelectorAll(".activity-grid .activity-item"));
+  const minDelay = 4000; // Minimum delay (4 seconds)
+  const maxDelay = 8000; // Maximum delay (8 seconds)
+  const minDuration = 1000; // Minimum duration (1 second)
+  const maxDuration = 4000; // Maximum duration (4 seconds)
+
+  rows.forEach(row => {
+    const delay = Math.random() * (maxDelay - minDelay) + minDelay;
+    const duration = Math.random() * (maxDuration - minDuration) + minDuration;
+
+    setTimeout(() => {
+      row.style.opacity = "1";
+      row.style.transition = `opacity ${duration}ms ease-in`;
+    }, delay);
+  });
+}, 4000); // Start after 4 seconds
 
   
 
@@ -90,7 +93,7 @@ document.addEventListener("DOMContentLoaded", () => {
           secondGrid.style.display = 'none';
           document.querySelector('.second-question').style.display = 'none';
           thirdGrid.style.display = 'grid';
-          document.querySelector('.third-question').style.display = 'block';
+          document.querySelector('.question fourth-question').style.display = 'block';
           showElementsSequentially(Array.from(thirdGrid.children), 500);
           background.classList.add('third');
         }
