@@ -1,13 +1,19 @@
+// Load environment variables from .env
+const port = process.env.PORT || 3000;
+dotenv.config();
+
+const openai = new OpenAIApi(configuration);
+
 const express = require('express');
+const app = express();
 const { Configuration, OpenAIApi } = require('openai');
 const dotenv = require('dotenv');
 const cors = require('cors');
 
-// Load environment variables from .env
-dotenv.config();
 
-const app = express();
-const port = process.env.PORT || 3000;
+
+
+
 
 // Enable CORS for all routes
 app.use(cors());
@@ -16,7 +22,6 @@ app.use(express.json());
 
 // Configure OpenAI API
 
-const openai = new OpenAIApi(configuration);
 
 app.post('/api/gpt', async (req, res) => {
   try {
