@@ -133,7 +133,7 @@ document.addEventListener("DOMContentLoaded", () => {
 // Function to fetch dog wisdom from the server
 function fetchDogWisdom() {
   console.log('Fetching dog wisdom...'); // Debugging log
-  fetch('https://tailtrail.club/api/gpt', {
+fetch('https://friend-4mph.onrender.com/api/gpt', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -159,13 +159,15 @@ function fetchDogWisdom() {
   const goToFourthScreen = async () => {
     const fourthQuestion = document.querySelector('.fourth-question');
     const wisdomElement = document.getElementById('dog-wisdom');
-
+  
     fourthQuestion.style.display = 'block';
-    setTimeout(async () => {
-      const wisdom = await fetchDogWisdom(userChoices.option1, userChoices.option2);
-      wisdomElement.textContent = wisdom;
+  
+    try {
+      await fetchDogWisdom(); // Ensure fetchDogWisdom runs correctly
       wisdomElement.style.opacity = '1'; // Smooth fade-in
-    }, 15000);
+    } catch (error) {
+      console.error('Error in goToFourthScreen:', error.message);
+    }
   };
   
 // Call fetchDogWisdom when needed
