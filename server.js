@@ -24,7 +24,6 @@ app.use(express.json());
 // Configure OpenAI API
 
 
-const express = require('express');
 const { Configuration, OpenAIApi } = require('openai');
 const dotenv = require('dotenv');
 const cors = require('cors');
