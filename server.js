@@ -41,26 +41,24 @@ app.post('/api/gpt', async (req, res) => {
           'Authorization': `Bearer ${process.env.OPENAI_API_KEY}`
         }
       });
-
-    console.log('OpenAI API response:', response.data);
-
-    res.json(response.data);
-  } catch (error) {
-    console.error('Error fetching dog wisdom:', error.message);
-    if (error.response) {
-      console.error('Error response data:', error.response.data);
-      console.error('Error response status:', error.response.status);
-      console.error('Error response headers:', error.response.headers);
-      if (error.response.status === 429 || error.response.data.error.code === 'insufficient_quota') {
-        res.status(429).json({ error: 'Quota Exceeded', message: 'You have exceeded your current quota. Please check your plan and billing details.' });
-        return;
+  
+      console.log('OpenAI API response:', response.data);
+  
+      if (response.data && response.data.choices && response.data.choices.length > 0) {
+        res.json(response.data.choices[0].message.content.trim());
+      } else {
+        throw new Error('Invalid response structure from OpenAI API');
       }
-    } else {
-      console.error('Error details:', error);
+    } catch (error) {
+      console.error('Error fetching dog wisdom:', error.message);
+      if (error.response) {
+        console.error('Error response data:', error.response.data);
+        console.error('Error response status:', error.response.status);
+        console.error('Error response headers:', error.response.headers);
+      }
+      res.status(500).json({ error: "Error fetching dog wisdom" });
     }
-    res.status(500).json({ error: 'Internal Server Error', message: error.message });
-  }
-});
+  });
 
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
