@@ -83,23 +83,22 @@ setTimeout(() => {
         });
       });
 
-      // Second screen activity selection
+      // questionwhat
       secondGrid.addEventListener('click', event => {
         const selectedOption = event.target.textContent.trim();
         if (selectedOption) {
           userChoices.option2 = selectedOption; // Store second choice
 
-          // Transition to third screen
+          // Transition to answer screen
           secondGrid.style.display = 'none';
           document.querySelector('.second-question').style.display = 'none';
-          thirdGrid.style.display = 'grid';
           document.querySelector('.question fourth-question').style.display = 'block';
           showElementsSequentially(Array.from(thirdGrid.children), 500);
           background.classList.add('third');
         }
       });
 
-      // Third screen activity selection
+      // endmenu screen activity selection
       thirdGrid.addEventListener('click', () => {
         goToFourthScreen();
       });
