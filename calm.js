@@ -130,10 +130,11 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   };
 
+
 // Function to fetch dog wisdom from the server
 function fetchDogWisdom() {
   console.log('Fetching dog wisdom...'); // Debugging log
-fetch('https://friend-4mph.onrender.com/api/gpt', {
+  fetch('https://friend-4mph.onrender.com/api/gpt', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -152,6 +153,8 @@ fetch('https://friend-4mph.onrender.com/api/gpt', {
   })
   .catch(error => console.error('Error fetching dog wisdom:', error));
 }
+
+
 
 
 
