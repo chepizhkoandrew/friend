@@ -31,11 +31,6 @@ dotenv.config();
 app.use(cors());
 app.use(express.json());
 
-// Configure OpenAI API
-const configuration = new Configuration({
-  apiKey: process.env.OPENAI_API_KEY,
-});
-const openai = new OpenAIApi(configuration);
 
 app.post('/api/gpt', async (req, res) => {
   try {
