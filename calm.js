@@ -130,31 +130,23 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   };
 
-  // Fetch GPT response
-  const fetchDogWisdom = async (option1, option2) => {
-    const prompt = `If you were a dog psychologist loving Bill Murray and Monty Python and being the smartest person in the dog world, what advice would you give to a stranger who is now at ${option1} feeling ${option2} inside? The advice should be creative, sarcastic, sexy, rough, and bohemian but very smart and funny. Make it sound like it's from the dog's perspective.`;
-    console.log(`Sending GPT request with choices: ${option1}, ${option2}`);
-    try {
-      const response = await fetch('https://api.openai.com/v1/completions', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': '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' // Replace with actual API key
-        },
-        body: JSON.stringify({
-          model: "text-davinci-003",
-          prompt,
-          max_tokens: 100,
-          temperature: 0.9
-        })
-      });
-      const data = await response.json();
-      return data.choices[0].text.trim();
-    } catch (error) {
-      console.error("Error fetching dog wisdom:", error);
-      return "Sorry, wisdom is unavailable.";
-    }
-  };
+// Fetch GPT response
+const fetchDogWisdom = async (option1, option2) => {
+  const prompt = `If you were a dog psychologist loving Bill Murray and Monty Python and being the smartest person in the dog world, what advice would you give to a stranger who is now at ${option1} feeling ${option2} inside? The advice should be creative, sarcastic, sexy, rough, and bohemian but very smart and funny. Make it sound like it's from the dog's perspective.`;
+  console.log(`Sending GPT request with choices: ${option1}, ${option2}`);
+  try {
+    const response = await fetch('/api/gpt', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ prompt })
+    });
+    const data = await response.text();
+    return data.trim();
+  } catch (error) {
+    console.error("Error fetching dog wisdom:", error);
+    return "Sorry, wisdom is unavailable.";
+  }
+};
 
   // Transition to the fourth screen (Dog Wisdom)
   const goToFourthScreen = async () => {
