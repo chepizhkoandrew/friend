@@ -136,16 +136,10 @@ function fetchDogWisdom() {
   console.log('Fetching dog wisdom...'); // Debugging log
   fetch('https://friend-4mph.onrender.com/api/gpt', {
     method: 'POST',
-    "model": "gpt-4",
-
     headers: {
       'Content-Type': 'application/json'
     },
-    
-    
-    
-    
-body: JSON.stringify({prompt: 'Give me some dog wisdom' })
+    body: JSON.stringify({ prompt: 'Give me some dog wisdom' })
   })
   .then(response => {
     if (!response.ok) {
@@ -159,7 +153,6 @@ body: JSON.stringify({prompt: 'Give me some dog wisdom' })
   })
   .catch(error => console.error('Error fetching dog wisdom:', error));
 }
-
 
 
 
