@@ -23,15 +23,28 @@ app.post('/api/gpt', async (req, res) => {
 
     console.log('Received request:', req.body);
 
-    const response = await axios.post('https://api.openai.com/v1/engines/davinci-codex/completions', {
-      prompt: req.body.prompt,
-      max_tokens: 50
-    }, {
+// Prepare the request payload
+const payload = {
+    model: 'gpt-4',
+    messages: [
+      { role: 'wise dog with extraordinary talent to phycology, bery sarcasmic but alvays gives practical spiritual and fun support', content: 'req.body.prompt' },
+    ],
+    max_tokens: 50,
+    temperature: 1.0,
+  };
+
+
+// Send the request to OpenAI API
+const response = await axios.post(
+    'https://api.openai.com/v1/chat/completions',
+    payload,
+    {
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${apiKey}`
-      }
-    });
+        Authorization: `Bearer ${apiKey}`,
+      },
+    }
+  );
 
     console.log('OpenAI API response:', response.data);
 
