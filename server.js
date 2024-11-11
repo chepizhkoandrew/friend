@@ -1,7 +1,6 @@
 // Load environment variables from .env
 const port = process.env.PORT || 3000;
 
-const openai = new OpenAIApi(configuration);
 
 const express = require('express');
 const app = express();
