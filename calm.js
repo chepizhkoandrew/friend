@@ -158,9 +158,6 @@ function fetchDogWisdom() {
 
 
   
-  
-// Call fetchDogWisdom when needed
-fetchDogWisdom();
 
 // Transition to the fourth screen (Dog Wisdom)
 const goToFourthScreen = async () => {
