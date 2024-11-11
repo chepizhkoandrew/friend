@@ -19,10 +19,6 @@ app.use(express.json());
 
 
 
-// Load environment variables from .env
-dotenv.config();
-
-
 // Enable CORS for all routes
 app.use(cors());
 app.use(express.json());
