@@ -14,8 +14,6 @@ dotenv.config();
 
 
 
-
-
 // Enable CORS for all routes
 app.use(cors());
 
@@ -24,9 +22,6 @@ app.use(express.json());
 // Configure OpenAI API
 
 
-const { Configuration, OpenAIApi } = require('openai');
-const dotenv = require('dotenv');
-const cors = require('cors');
 
 // Load environment variables from .env
 dotenv.config();
