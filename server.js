@@ -1,8 +1,15 @@
 const express = require('express');
 const axios = require('axios');
+const dotenv = require('dotenv');
+const cors = require('cors');
+
+dotenv.config();
 
 const app = express();
-const port = process.env.PORT || 10000; // Use the PORT environment variable or default to 3000
+const port = process.env.PORT || 3000;
+
+// Enable CORS for all routes
+app.use(cors());
 
 app.use(express.json());
 
