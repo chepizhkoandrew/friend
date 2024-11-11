@@ -146,7 +146,7 @@ function fetchDogWisdom() {
     
     
     
-    body: JSON.stringify({ model: "gpt-4", prompt: 'Give me some dog wisdom' })
+    body: JSON.stringify({ model: "gpt-4", message: 'Give me some dog wisdom' })
   })
   .then(response => {
     if (!response.ok) {
