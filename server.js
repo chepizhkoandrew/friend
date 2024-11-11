@@ -1,6 +1,5 @@
 // Load environment variables from .env
 const port = process.env.PORT || 3000;
-dotenv.config();
 
 const openai = new OpenAIApi(configuration);
 
@@ -9,6 +8,8 @@ const app = express();
 const { Configuration, OpenAIApi } = require('openai');
 const dotenv = require('dotenv');
 const cors = require('cors');
+dotenv.config();
+
 
 
 
