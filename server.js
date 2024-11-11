@@ -24,6 +24,27 @@ app.use(express.json());
 // Configure OpenAI API
 
 
+const express = require('express');
+const { Configuration, OpenAIApi } = require('openai');
+const dotenv = require('dotenv');
+const cors = require('cors');
+
+// Load environment variables from .env
+dotenv.config();
+
+const app = express();
+const port = process.env.PORT || 3000;
+
+// Enable CORS for all routes
+app.use(cors());
+app.use(express.json());
+
+// Configure OpenAI API
+const configuration = new Configuration({
+  apiKey: process.env.OPENAI_API_KEY,
+});
+const openai = new OpenAIApi(configuration);
+
 app.post('/api/gpt', async (req, res) => {
   try {
     const apiKey = process.env.OPENAI_API_KEY;
@@ -33,9 +54,12 @@ app.post('/api/gpt', async (req, res) => {
 
     console.log('Received request:', req.body);
 
-    const response = await openai.createCompletion({
-      model: 'text-davinci-003',
-      prompt: req.body.prompt,
+    const response = await openai.createChatCompletion({
+      model: 'gpt-3.5-turbo',
+      messages: [
+        { role: 'system', content: 'You are a helpful assistant.' },
+        { role: 'user', content: req.body.prompt }
+      ],
       max_tokens: 50,
     });
 
