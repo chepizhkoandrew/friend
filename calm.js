@@ -137,6 +137,8 @@ document.addEventListener("DOMContentLoaded", () => {
         item.addEventListener('click', () => {
           const category = item.textContent.trim();
           userChoices.option1 = category; // Store first choice
+          console.log("Option1 set to:", userChoices.option1);
+
 
           if (data[category]) {
             // Populate second grid dynamically
@@ -157,13 +159,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // Handle second screen activity selection
       secondGrid.addEventListener("click", (event) => {
-    const selectedOption = event.target.textContent?.trim();
-    if (selectedOption) {
-        console.log(`Clicked option: ${selectedOption}`);
-        userChoices.option2 = selectedOption;
-        goToFourthScreen();
-    }
-});
+        const selectedOption = event.target.textContent?.trim();
+        if (selectedOption) {
+            console.log(`Option2 set to: ${selectedOption}`); // Debugging
+            userChoices.option2 = selectedOption; // Store second choice
+            goToFourthScreen(); // Trigger transition
+        }
+    });
 
       // Handle third screen activity selection
       thirdGrid.addEventListener('click', event => {
