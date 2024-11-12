@@ -7,8 +7,7 @@ const dotenv = import('dotenv');
 const PORT = process.env.PORT || 3000;
 
 // Enable CORS for all routes
-app.use(cors());
-app.use(express.json());
+
 
 // Environment variable for the OpenAI API key
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
