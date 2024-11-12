@@ -1,3 +1,39 @@
+import { Configuration, OpenAIApi } from "openai";
+
+// Initialize OpenAI API with your key
+const configuration = new Configuration({
+  apiKey: process.env.OPENAI_API_KEY, // Ensure this is set in your environment variables
+});
+const openai = new OpenAIApi(configuration);
+
+const userChoices = { option1: "", option2: "" }; // Store user selections
+
+
+// Function to fetch wisdom directly from OpenAI
+const fetchDogWisdom = async (option1, option2) => {
+  const prompt = `If you were a dog psychologist loving Bill Murray and Monty Python and being the smartest person in the dog world, what advice would you give to a stranger who is now at ${option1} feeling ${option2} inside?`;
+
+  try {
+      const response = await openai.createChatCompletion({
+          model: "gpt-4-0613",
+          messages: [{ role: "user", content: prompt }],
+      });
+
+      const wisdom = response.data.choices?.[0]?.message?.content;
+
+      if (!wisdom) {
+          throw new Error("No wisdom returned from OpenAI.");
+      }
+
+      return wisdom.trim();
+  } catch (error) {
+      console.error("Error fetching dog wisdom:", error.message);
+      return "Sorry, wisdom is unavailable.";
+  }
+};
+
+
+
 const wisdomElement = document.getElementById("dog-wisdom");
 wisdomElement.innerHTML = ""; // Clear previous content
 
