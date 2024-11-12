@@ -64,6 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const fourthQuestion = document.querySelector('.fourth-question');
     const wisdomElement = document.getElementById('dog-wisdom');
 
+
     fourthQuestion.style.display = 'block';
 
     try {
@@ -144,8 +145,11 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       // Handle third screen activity selection
-      thirdGrid.addEventListener('click', () => {
-        goToFourthScreen();
+      thirdGrid.addEventListener('click', event => {
+        const selectedOption = event.target.textContent.trim();
+        if (selectedOption) {
+          goToFourthScreen();
+        }
       });
     })
     .catch(error => console.error('Error loading options:', error));
