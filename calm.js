@@ -17,7 +17,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   };
 
-  console.log("OpenAI Response:", response.data);
 
   
 
@@ -49,24 +48,25 @@ document.addEventListener("DOMContentLoaded", () => {
   // Fetch GPT response
   const fetchDogWisdom = async (option1, option2) => {
     const prompt = `If you were a dog psychologist loving Bill Murray and Monty Python and being the smartest person in the dog world, what advice would you give to a stranger who is now at ${option1} feeling ${option2} inside?`;
-
+  
     try {
       const response = await fetch("https://friend-4mph.onrender.com/api/gpt", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ prompt }),
       });
-
+  
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
-
+  
       const data = await response.json();
-
+  
+      // Validate that text exists
       if (!data.text) {
         throw new Error("Invalid response format: text is missing");
       }
-
+  
       return data.text.trim();
     } catch (error) {
       console.error("Error fetching dog wisdom:", error.message);
