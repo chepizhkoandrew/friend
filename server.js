@@ -42,12 +42,14 @@ app.post("/api/gpt", async (req, res) => {
       }
     );
 
+    // Extract the content of the first choice
     const choice = response.data.choices?.[0]?.message?.content;
 
     if (!choice) {
       throw new Error("Invalid response format from OpenAI API");
     }
 
+    // Respond with the text content
     res.json({ text: choice.trim() });
   } catch (error) {
     console.error("Error fetching dog wisdom:", error.message);

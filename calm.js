@@ -17,6 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   };
 
+  console.log("OpenAI Response:", response.data);
 
   
 
