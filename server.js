@@ -18,13 +18,19 @@ app.use(express.json());
 // Environment variable for the OpenAI API key
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 
-app.post('/get-joke', async (req, res) => {
+
+app.post('/api/gpt', async (req, res) => {
+  const { exerciseoneprompt } = req.body;
+  if (!prompt) {
+    return res.status(400).json({ error: 'Prompt is missing from the request.' });
+  }
   try {
+     
     const response = await axios.post(
       'https://api.openai.com/v1/chat/completions',
       {
         model: 'gpt-4',
-        messages: [{ role: 'assistant', content: 'Tell me a short joke for not more than 1 sentence.' }],
+        messages: [{ role: 'assistant', content: exerciseoneprompt }],
         max_tokens: 50,
       },
       {

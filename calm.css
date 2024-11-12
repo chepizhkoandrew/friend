@@ -69,6 +69,10 @@ body, html {
   background-image: url('/images/furmacro3.jpeg');
 }
 
+.background.wisdom {
+  background-image: url('/images/furmacro2.jpeg');
+}
+
 @keyframes backgroundEffect {
   0% {
     background-size: 220%;

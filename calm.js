@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Fetch GPT response
   const fetchDogWisdom = async () => {
-    const prompt = `If you were a dog psychologist loving Bill Murray and Monty Python and being the smartest person in the dog world, what advice would you give to a stranger who is now at ${userChoices.option1} feeling ${userChoices.option2} inside? The advice should be creative, sarcastic, sexy, rough, and bohemian but very smart and funny. Make it sound like it's from the dog's perspective.`;
+    const exerciseoneprompt = `If you were a dog psychologist loving Bill Murray and Monty Python and being the smartest person in the dog world, what advice would you give to a stranger who is now at ${userChoices.option1} feeling ${userChoices.option2} inside? The advice should be creative, sarcastic, sexy, rough, and bohemian but very smart and funny. Make it sound like it's from the dog's perspective.`;
     console.log(`Sending GPT request with choices: ${userChoices.option1}, ${userChoices.option2}`);
     try {
       const response = await fetch('/api/gpt', {
@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ prompt })
+        body: JSON.stringify({ exerciseoneprompt })
       });
       const data = await response.json();
       if (data.text) {
