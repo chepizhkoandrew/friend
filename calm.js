@@ -43,29 +43,37 @@ document.addEventListener("DOMContentLoaded", () => {
   }, 4000); // Start after 4 seconds
 
   // Fetch GPT response
-  const fetchDogWisdom = async () => {
-    const prompt = `If you were a dog psychologist loving Bill Murray and Monty Python and being the smartest person in the dog world, what advice would you give to a stranger who is now at ${userChoices.option1} feeling ${userChoices.option2} inside? The advice should be creative, sarcastic, sexy, rough, and bohemian but very smart and funny. Make it sound like it's from the dog's perspective.`;
-    console.log(`Sending GPT request with choices: ${userChoices.option1}, ${userChoices.option2}`);
+  const fetchDogWisdom = async (option1, option2) => {
+    const prompt = `If you were a dog psychologist loving Bill Murray and Monty Python and being the smartest person in the dog world, what advice would you give to a stranger who is now at ${option1} feeling ${option2} inside? The advice should be creative, sarcastic, sexy, rough, and bohemian but very smart and funny. Make it sound like it's from the dog's perspective.`;
+
+    console.log(`Sending GPT request with choices: ${option1}, ${option2}`);
+
     try {
-      const response = await fetch('https://friend-4mph.onrender.com/api/gpt', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ prompt })
-      });
-      const data = await response.json();
-      if (data.choices && data.choices.length > 0) {
+        const response = await fetch("https://friend-4mph.onrender.com/api/gpt", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ prompt }),
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        console.log("Raw response:", data); // Log the entire response
+
+        if (!data.choices || !data.choices[0] || !data.choices[0].text) {
+            throw new Error("Invalid response format: choices array is missing or malformed");
+        }
+
         return data.choices[0].text.trim();
-      } else {
-        console.error("Unexpected response structure:", data);
-        return "Sorry, wisdom is unavailable.";
-      }
     } catch (error) {
-      console.error("Error fetching dog wisdom:", error);
-      return "Sorry, wisdom is unavailable.";
+        console.error("Error fetching dog wisdom:", error.message);
+        return "Sorry, wisdom is unavailable.";
     }
-  };
+};
 
 
   // Transition to the fourth screen (Dog Wisdom)
