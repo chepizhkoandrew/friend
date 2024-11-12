@@ -1,9 +1,9 @@
 // Import necessary modules
-import express from 'express';
-import axios from 'axios';
-import cors from 'cors';
-import dotenv from 'dotenv';
-import { Configuration, OpenAIApi } from 'openai';
+const express = require('express');
+const axios = require('axios');
+const cors = require('cors');
+const dotenv = require('dotenv');
+const { Configuration, OpenAIApi } = require('openai');
 
 const app = express();
 dotenv.config();
@@ -17,7 +17,11 @@ app.use(express.json());
 // Environment variable for the OpenAI API key
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 
-
+// Configure OpenAI API
+const configuration = new Configuration({
+  apiKey: OPENAI_API_KEY,
+});
+const openai = new OpenAIApi(configuration);
 
 app.post('/api/gpt', async (req, res) => {
   const { exerciseoneprompt } = req.body;
