@@ -4,7 +4,8 @@ const axios = import('axios');
 const cors = import('cors');
 const dotenv = import('dotenv');
 const OpenAI = import('openai-api');
-const express = import('express');
+const app = express()
+dotenv.config()
 
 const PORT = process.env.PORT || 3000;
 
