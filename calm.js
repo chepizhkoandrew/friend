@@ -34,6 +34,9 @@ document.addEventListener("DOMContentLoaded", () => {
     questionLines[2].style.opacity = "1";
   }, 6000);
 
+  const wisdomElement = document.getElementById("dog-wisdom");
+
+
   // Show activity items after question lines are displayed
   setTimeout(() => {
     const rows = Array.from(document.querySelectorAll(".activity-grid .activity-item"));

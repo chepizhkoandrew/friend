@@ -62,7 +62,6 @@ app.post("/api/gpt", async (req, res) => {
   }
 });
 
-wisdomElement.textContent = wisdomText;
 
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
