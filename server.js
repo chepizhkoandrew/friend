@@ -17,11 +17,7 @@ app.use(express.json());
 // Environment variable for the OpenAI API key
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 
-// Configure OpenAI API
-const configuration = new Configuration({
-  apiKey: OPENAI_API_KEY,
-});
-const openai = new OpenAIApi(configuration);
+
 
 app.post('/api/gpt', async (req, res) => {
   const { exerciseoneprompt } = req.body;
