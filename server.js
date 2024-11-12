@@ -1,51 +1,41 @@
-import express from 'express';
-import axios from 'axios';
-import cors from 'cors';
-import dotenv from 'dotenv';
-import { Configuration, OpenAIApi } from 'openai';
-
-dotenv.config();
-
+// Import necessary modules
+const express = require('express');
 const app = express();
-const port = process.env.PORT || 3000;
+const axios = require('axios');
 
-const configuration = new Configuration({
-  apiKey: process.env.OPENAI_API_KEY,
-});
-const openai = new OpenAIApi(configuration);
+const PORT = process.env.PORT || 3000;
 
-// Enable CORS for all routes
-app.use(cors());
+// Use body-parser middleware
 app.use(express.json());
 
-app.post("/api/gpt", async (req, res) => {
-  console.log("Received request:", req.body); // Log the incoming request
-  const { prompt } = req.body;
+// Environment variable for the OpenAI API key
+const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 
-  if (!prompt) {
-    return res.status(400).json({ error: "Prompt is missing from the request." });
-  }
-
+app.post('/get-joke', async (req, res) => {
   try {
-    const response = await openai.createChatCompletion({
-      model: "gpt-4-0613",
-      messages: [{ role: "user", content: prompt }],
-    });
+    const response = await axios.post(
+      'https://api.openai.com/v1/chat/completions',
+      {
+        model: 'gpt-4',
+        messages: [{ role: 'assistant', content: 'Tell me a short joke for not more than 1 sentence.' }],
+        max_tokens: 50,
+      },
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${OPENAI_API_KEY}`,
+        },
+      }
+    );
 
-    const choice = response.data.choices?.[0]?.message?.content;
-
-    res.json({ text: choice ? choice.trim() : "No wisdom available." });
+    const joke = response.data.choices?.[0]?.message?.content?.trim();
+    res.json({ joke });
   } catch (error) {
-    console.error("Error fetching dog wisdom:", error.message);
-
-    if (error.response) {
-      console.error("Error details:", error.response.data);
-    }
-
-    res.status(500).json({ error: "Error fetching dog wisdom" });
+    console.error('Error fetching joke:', error.response?.data || error.message);
+    res.status(500).json({ error: 'Failed to fetch joke' });
   }
 });
 
-app.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}`);
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
