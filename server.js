@@ -1,9 +1,12 @@
 // Import necessary modules
-const express = import('express');
-const axios = import('axios');
-const cors = import('cors');
-const dotenv = import('dotenv');
-const OpenAI = import('openai-api');
+
+import express from 'express';
+import axios from 'axios';
+import cors from 'cors';
+import dotenv from 'dotenv';
+import OpenAI from 'openai-api';
+
+
 const app = express()
 dotenv.config()
 
