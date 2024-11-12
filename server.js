@@ -2,21 +2,22 @@
 import express from 'express';
 import axios from 'axios';
 import cors from 'cors';
-import dotenv from 'dotenv';
-import { OpenAIApi } from 'openai'; // Correct for openai@4.x
+import { OpenAIApi } from 'openai';
 
 const app = express();
 dotenv.config();
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
 
-const PORT = process.env.PORT || 3000;
+const gptget = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY // This is also the default, can be omitted
+});
+
 
 // Enable CORS for all routes
 app.use(cors());
 app.use(express.json());
-
-// Environment variable for the OpenAI API key
-const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
-
 
 
 app.post('/api/gpt', async (req, res) => {
@@ -39,6 +40,3 @@ app.post('/api/gpt', async (req, res) => {
   }
 });
 
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
