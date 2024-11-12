@@ -1,11 +1,16 @@
 // Import necessary modules
 const express = require('express');
-const app = express();
 const axios = require('axios');
+const cors = require('cors');
+const dotenv = require('dotenv');
 
+dotenv.config();
+
+const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Use body-parser middleware
+// Enable CORS for all routes
+app.use(cors());
 app.use(express.json());
 
 // Environment variable for the OpenAI API key

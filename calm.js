@@ -156,6 +156,56 @@ const goToFourthScreen = async () => {
         }
       });
 
-     
+      // Handle second screen activity selection
+      secondGrid.addEventListener('click', event => {
+        const selectedOption = event.target.textContent.trim();
+        if (selectedOption) {
+          userChoices.option2 = selectedOption; // Store second choice
+
+          // Show fourth normal screen
+          // Transition to the fourth screen (Dog Wisdom)
+          const goToFourthScreen = async () => {
+            const fourthQuestion = document.querySelector('.fourth-question');
+            const wisdomElement = document.getElementById('dog-wisdom');
+
+            fourthQuestion.style.display = 'block';
+
+            try {
+              const wisdomText = await fetchDogWisdom();
+              const wisdomParts = wisdomText.split(' ').reduce((acc, word, index) => {
+                const partIndex = Math.floor(index / 10);
+                if (!acc[partIndex]) acc[partIndex] = [];
+                acc[partIndex].push(word);
+                return acc;
+              }, []).map(part => part.join(' '));
+
+              wisdomParts.forEach((part, index) => {
+                const span = document.createElement('span');
+                span.textContent = part;
+                span.style.opacity = '0';
+                wisdomElement.appendChild(span);
+              });
+
+              const spans = Array.from(wisdomElement.children);
+              const minDelay = 4000; // Minimum delay (4 seconds)
+              const maxDelay = 7000; // Maximum delay (7 seconds)
+              const minDuration = 1000; // Minimum duration (1 second)
+              const maxDuration = 4000; // Maximum duration (4 seconds)
+
+              showElementsSequentially(spans, minDelay, maxDelay, minDuration, maxDuration);
+            } catch (error) {
+              console.error('Error in goToFourthScreen:', error.message);
+            }
+          };
+
+          // Transition to last screen
+          thirdGrid.style.display = 'none';
+          document.querySelector('.second-question').style.display = 'none';
+          document.querySelector('.third-grid').style.display = 'grid';
+          document.querySelector('.third-question').style.display = 'block';
+          showElementsSequentially(Array.from(document.querySelector('.third-grid').children), 4000, 8000, 1000, 4000);
+        }
+      });
+    })
     .catch(error => console.error('Error loading options:', error));
 });
