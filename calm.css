@@ -15,7 +15,22 @@ body, html {
 }
 
 
+.new-gpt-screen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  flex-direction: column;
+  background: rgba(0, 0, 0, 0.8);
+}
 
+.gpt-response p {
+  font-size: calc(4vw + 2vh); /* Responsive font size */
+  font-family: 'Monoton', cursive;
+  color: white;
+  text-align: center;
+  animation: fadeInText 2s ease-in forwards;
+}
 
 
 .fourth-question {

@@ -17,6 +17,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   };
 
+
+  
+
   // Show question lines sequentially
   const questionLines = Array.from(document.querySelectorAll(".question span"));
   setTimeout(() => {
@@ -62,13 +65,14 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         const data = await response.json();
-        console.log("Raw response:", data); // Log the entire response
+        console.log("Raw response:", data);
 
-        if (!data.choices || !data.choices[0] || !data.choices[0].text) {
-            throw new Error("Invalid response format: choices array is missing or malformed");
+        // Check for the text key
+        if (!data.text) {
+            throw new Error("Invalid response format: text is missing");
         }
 
-        return data.choices[0].text.trim();
+        return data.text.trim();
     } catch (error) {
         console.error("Error fetching dog wisdom:", error.message);
         return "Sorry, wisdom is unavailable.";
@@ -174,3 +178,39 @@ document.addEventListener("DOMContentLoaded", () => {
     .catch(error => console.error('Error loading options:', error));
 });
 
+
+const goToNewGptScreen = async () => {
+  const gptScreen = document.querySelector('.new-gpt-screen');
+  const wisdomElement = document.getElementById('dog-wisdom');
+
+  // Ensure other screens are hidden
+  document.querySelectorAll('.container > div').forEach(screen => {
+      screen.style.display = 'none';
+  });
+
+  // Show the new GPT screen
+  gptScreen.style.display = 'flex';
+
+  // Clear the existing wisdom content
+  wisdomElement.innerHTML = "";
+
+  try {
+      // Fetch GPT response
+      const wisdomText = await fetchDogWisdom(userChoices.option1, userChoices.option2);
+      console.log("Fetched wisdom:", wisdomText); // Debugging
+
+      // Update the wisdom span with the response
+      wisdomElement.textContent = wisdomText;
+
+      // Optionally apply a fade-in effect
+      wisdomElement.style.opacity = '0';
+      wisdomElement.style.transition = 'opacity 2s ease-in';
+      setTimeout(() => {
+          wisdomElement.style.opacity = '1';
+      }, 100); // Slight delay to trigger the transition
+
+  } catch (error) {
+      console.error('Error in goToNewGptScreen:', error.message);
+      wisdomElement.textContent = "Sorry, wisdom is unavailable.";
+  }
+};
