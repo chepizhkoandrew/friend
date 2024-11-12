@@ -24,42 +24,38 @@ app.use(cors());
 app.use(express.json());
 
 
-app.post('/api/gpt', async (req, res) => {
+app.post("/api/gpt", async (req, res) => {
   const { prompt } = req.body;
 
   try {
-    const response = await axios.post('https://api.openai.com/v1/chat/completions', {
-      model: 'gpt-3.5-turbo',
-      messages: [{ role: 'user', content: prompt }]
-    }, {
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${process.env.OPENAI_API_KEY}`
+    const response = await axios.post(
+      "https://api.openai.com/v1/chat/completions",
+      {
+        model: "gpt-3.5-turbo",
+        messages: [{ role: "user", content: prompt }],
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
+        },
       }
-    });
+    );
 
-    console.log('OpenAI API response:', response.data);
+    const choice = response.data.choices?.[0]?.message?.content;
 
-    // Extract the content from the response
-    if (
-      response.data &&
-      response.data.choices &&
-      response.data.choices.length > 0 &&
-      response.data.choices[0].message &&
-      response.data.choices[0].message.content
-    ) {
-      const wisdomText = response.data.choices[0].message.content.trim();
-      res.json({ text: wisdomText }); // Send only the text value
-    } else {
-      throw new Error('Invalid response structure from OpenAI API');
+    if (!choice) {
+      throw new Error("Invalid response format from OpenAI API");
     }
+
+    res.json({ text: choice.trim() });
   } catch (error) {
-    console.error('Error fetching dog wisdom:', error.message);
+    console.error("Error fetching dog wisdom:", error.message);
+
     if (error.response) {
-      console.error('Error response data:', error.response.data);
-      console.error('Error response status:', error.response.status);
-      console.error('Error response headers:', error.response.headers);
+      console.error("Error details:", error.response.data);
     }
+
     res.status(500).json({ error: "Error fetching dog wisdom" });
   }
 });

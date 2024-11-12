@@ -47,37 +47,31 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Fetch GPT response
   const fetchDogWisdom = async (option1, option2) => {
-    const prompt = `If you were a dog psychologist loving Bill Murray and Monty Python and being the smartest person in the dog world, what advice would you give to a stranger who is now at ${option1} feeling ${option2} inside? The advice should be creative, sarcastic, sexy, rough, and bohemian but very smart and funny. Make it sound like it's from the dog's perspective.`;
-
-    console.log(`Sending GPT request with choices: ${option1}, ${option2}`);
+    const prompt = `If you were a dog psychologist loving Bill Murray and Monty Python and being the smartest person in the dog world, what advice would you give to a stranger who is now at ${option1} feeling ${option2} inside?`;
 
     try {
-        const response = await fetch("https://friend-4mph.onrender.com/api/gpt", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ prompt }),
-        });
+      const response = await fetch("https://friend-4mph.onrender.com/api/gpt", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ prompt }),
+      });
 
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
 
-        const data = await response.json();
-        console.log("Raw response:", data);
+      const data = await response.json();
 
-        // Check for the text key
-        if (!data.text) {
-            throw new Error("Invalid response format: text is missing");
-        }
+      if (!data.text) {
+        throw new Error("Invalid response format: text is missing");
+      }
 
-        return data.text.trim();
+      return data.text.trim();
     } catch (error) {
-        console.error("Error fetching dog wisdom:", error.message);
-        return "Sorry, wisdom is unavailable.";
+      console.error("Error fetching dog wisdom:", error.message);
+      return "Sorry, wisdom is unavailable.";
     }
-};
+  };
 
 
   // Transition to the fourth screen (Dog Wisdom)
