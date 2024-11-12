@@ -78,7 +78,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const video = document.getElementById('background-video');
 
       // First screen activity selection
-      document.querySelectorAll('.activity-grid .activity-item').forEach(item => {
+      document.querySelectorAll('.activity-grid.activity-item').forEach(item => {
         item.addEventListener('click', () => {
           const category = item.textContent.trim();
           userChoices.option1 = category; // Store first choice

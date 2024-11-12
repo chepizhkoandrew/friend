@@ -1,20 +1,24 @@
 // Import necessary modules
+import dotenv from 'dotenv';
+dotenv.config();
 import express from 'express';
 import axios from 'axios';
 import cors from 'cors';
 import OpenAI from "openai";
-import dotenv from 'dotenv';
 
 const app = express();
-dotenv.config();
+
+// Define your routes here
+app.get('/', (req, res) => {
+  res.send('Server is running!');
+});
 const PORT = process.env.PORT || 10000;
+
+
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
 
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY // This is also the default, can be omitted
-});
 
 
 // Enable CORS for all routes
