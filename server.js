@@ -1,14 +1,12 @@
 // Import necessary modules
-
 import express from 'express';
 import axios from 'axios';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import OpenAI from 'openai-api';
+import { Configuration, OpenAIApi } from 'openai';
 
-
-const app = express()
-dotenv.config()
+const app = express();
+dotenv.config();
 
 const PORT = process.env.PORT || 3000;
 
@@ -19,28 +17,23 @@ app.use(express.json());
 // Environment variable for the OpenAI API key
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 
+// Configure OpenAI API
+const configuration = new Configuration({
+  apiKey: OPENAI_API_KEY,
+});
+const openai = new OpenAIApi(configuration);
 
 app.post('/api/gpt', async (req, res) => {
   const { exerciseoneprompt } = req.body;
-  if (!prompt) {
+  if (!exerciseoneprompt) {
     return res.status(400).json({ error: 'Prompt is missing from the request.' });
   }
   try {
-     
-    const response = await axios.post(
-      'https://api.openai.com/v1/chat/completions',
-      {
-        model: 'gpt-4',
-        messages: [{ role: 'assistant', content: exerciseoneprompt }],
-        max_tokens: 50,
-      },
-      {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${OPENAI_API_KEY}`,
-        },
-      }
-    );
+    const response = await openai.createChatCompletion({
+      model: 'gpt-4',
+      messages: [{ role: 'assistant', content: exerciseoneprompt }],
+      max_tokens: 50,
+    });
 
     const joke = response.data.choices?.[0]?.message?.content?.trim();
     res.json({ joke });
