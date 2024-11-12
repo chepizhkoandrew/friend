@@ -1,3 +1,6 @@
+const wisdomElement = document.getElementById("dog-wisdom");
+wisdomElement.innerHTML = ""; // Clear previous content
+
 document.addEventListener("DOMContentLoaded", () => {
   const userChoices = { option1: "", option2: "" }; // Store user selections
 
@@ -42,7 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Fetch GPT response
   const fetchDogWisdom = async (option1, option2) => {
     const prompt = `If you were a dog psychologist loving Bill Murray and Monty Python and being the smartest person in the dog world, what advice would you give to a stranger who is now at ${option1} feeling ${option2} inside? The advice should be creative, sarcastic, sexy, rough, and bohemian but very smart and funny. Make it sound like it's from the dog's perspective.`;
-    console.log(`Sending GPT request with choices: ${option1}, ${option2}`);
+    console.log(`Sending GPT request with choices: ${userChoices.option1}, ${userChoices.option2}`);
     try {
       const response = await fetch('https://friend-4mph.onrender.com/api/gpt', {
         method: 'POST',
@@ -63,37 +66,44 @@ document.addEventListener("DOMContentLoaded", () => {
   const goToFourthScreen = async () => {
     const fourthQuestion = document.querySelector('.fourth-question');
     const wisdomElement = document.getElementById('dog-wisdom');
-
+    document.querySelector(".second-grid").style.display = "none";
+    document.querySelector(".second-question").style.display = "none";
+    document.querySelector(".third-grid").style.display = "none";
+    document.querySelector(".third-question").style.display = "none";
+    // Clear existing content in dog wisdom
+    wisdomElement.innerHTML = "";
 
     fourthQuestion.style.display = 'block';
 
     try {
-      const wisdomText = await fetchDogWisdom(userChoices.option1, userChoices.option2);
-      const wisdomParts = wisdomText.split(' ').reduce((acc, word, index) => {
-        const partIndex = Math.floor(index / 10);
-        if (!acc[partIndex]) acc[partIndex] = [];
-        acc[partIndex].push(word);
-        return acc;
-      }, []).map(part => part.join(' '));
+        const wisdomText = await fetchDogWisdom(userChoices.option1, userChoices.option2);
+        const wisdomParts = wisdomText.split(' ').reduce((acc, word, index) => {
+            const partIndex = Math.floor(index / 10);
+            if (!acc[partIndex]) acc[partIndex] = [];
+            acc[partIndex].push(word);
+            return acc;
+        }, []).map(part => part.join(' '));
 
-      wisdomParts.forEach((part, index) => {
-        const span = document.createElement('span');
-        span.textContent = part;
-        span.style.opacity = '0';
-        wisdomElement.appendChild(span);
-      });
+        wisdomParts.forEach((part, index) => {
+            const span = document.createElement('span');
+            span.textContent = part;
+            span.style.opacity = '0';
+            wisdomElement.appendChild(span);
+        });
 
-      const spans = Array.from(wisdomElement.children);
-      const minDelay = 4000; // Minimum delay (4 seconds)
-      const maxDelay = 7000; // Maximum delay (7 seconds)
-      const minDuration = 1000; // Minimum duration (1 second)
-      const maxDuration = 4000; // Maximum duration (4 seconds)
+        const spans = Array.from(wisdomElement.children);
+        const minDelay = 4000; // Minimum delay (4 seconds)
+        const maxDelay = 7000; // Maximum delay (7 seconds)
+        const minDuration = 1000; // Minimum duration (1 second)
+        const maxDuration = 4000; // Maximum duration (4 seconds)
 
-      showElementsSequentially(spans, minDelay, maxDelay, minDuration, maxDuration);
+        showElementsSequentially(spans, minDelay, maxDelay, minDuration, maxDuration);
     } catch (error) {
-      console.error('Error in goToFourthScreen:', error.message);
+        console.error('Error in goToFourthScreen:', error.message);
     }
-  };
+};
+
+
 
   // Handle activity selection and transitions
   fetch('options.json')
@@ -130,15 +140,14 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       // Handle second screen activity selection
-      secondGrid.addEventListener('click', event => {
-        const selectedOption = event.target.textContent.trim();
-        if (selectedOption) {
-            userChoices.option2 = selectedOption; // Store second choice
-    
-            // Directly transition to the fourth screen
-            goToFourthScreen();
-        }
-    });
+      secondGrid.addEventListener("click", (event) => {
+    const selectedOption = event.target.textContent?.trim();
+    if (selectedOption) {
+        console.log(`Clicked option: ${selectedOption}`);
+        userChoices.option2 = selectedOption;
+        goToFourthScreen();
+    }
+});
 
       // Handle third screen activity selection
       thirdGrid.addEventListener('click', event => {
@@ -150,3 +159,4 @@ document.addEventListener("DOMContentLoaded", () => {
     })
     .catch(error => console.error('Error loading options:', error));
 });
+
