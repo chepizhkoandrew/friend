@@ -6,8 +6,6 @@ const dotenv = import('dotenv');
 const OpenAI = import('openai-api');
 
 
-dotenv.config();
-
 const app = express();
 const PORT = process.env.PORT || 3000;
 
