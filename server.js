@@ -12,12 +12,12 @@ const openai = new OpenAI({
 
 
 const port = process.env.PORT || 3000;
-import axios = require('axios'); // Import axios
-import express = require('express');
-const cors = require('cors');
+const axios = require('axios'); // Import axios
+import express from 'express';
+import axios from 'axios';
 const app = express();
-const { Configuration, OpenAIApi } = require('openai');
-const dotenv = require('dotenv');
+import { Configuration, OpenAIApi } from 'openai';
+import dotenv from 'dotenv';
 dotenv.config();
 
 
