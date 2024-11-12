@@ -4,8 +4,6 @@ const axios = import('axios');
 const cors = import('cors');
 const dotenv = import('dotenv');
 
-
-const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Enable CORS for all routes
