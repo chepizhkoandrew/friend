@@ -1,7 +1,7 @@
 // Import necessary modules
-const express = require('express');
-const axios = require('axios');
-const cors = require('cors');
+const express = import('express');
+const axios = import('axios');
+const cors = import('cors');
 const dotenv = require('dotenv');
 const OpenAI = require('openai-api');
 
