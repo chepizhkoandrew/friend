@@ -2,8 +2,8 @@
 const express = import('express');
 const axios = import('axios');
 const cors = import('cors');
-const dotenv = require('dotenv');
-const OpenAI = require('openai-api');
+const dotenv = import('dotenv');
+const OpenAI = import('openai-api');
 
 
 dotenv.config();
