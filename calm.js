@@ -133,16 +133,12 @@ document.addEventListener("DOMContentLoaded", () => {
       secondGrid.addEventListener('click', event => {
         const selectedOption = event.target.textContent.trim();
         if (selectedOption) {
-          userChoices.option2 = selectedOption; // Store second choice
-
-          // Transition to third screen
-          secondGrid.style.display = 'none';
-          document.querySelector('.second-question').style.display = 'none';
-          document.querySelector('.third-grid').style.display = 'grid';
-          document.querySelector('.third-question').style.display = 'block';
-          showElementsSequentially(Array.from(document.querySelector('.third-grid').children), 4000, 8000, 1000, 4000);
+            userChoices.option2 = selectedOption; // Store second choice
+    
+            // Directly transition to the fourth screen
+            goToFourthScreen();
         }
-      });
+    });
 
       // Handle third screen activity selection
       thirdGrid.addEventListener('click', event => {
