@@ -12,8 +12,8 @@ const openai = new OpenAI({
 
 
 const port = process.env.PORT || 3000;
-const axios = require('axios'); // Import axios
-const express = require('express');
+import axios = require('axios'); // Import axios
+import express = require('express');
 const cors = require('cors');
 const app = express();
 const { Configuration, OpenAIApi } = require('openai');
