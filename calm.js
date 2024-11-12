@@ -179,6 +179,8 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
+
+
 const goToNewGptScreen = async () => {
   const gptScreen = document.querySelector('.new-gpt-screen');
   const wisdomElement = document.getElementById('dog-wisdom');
@@ -212,5 +214,32 @@ const goToNewGptScreen = async () => {
   } catch (error) {
       console.error('Error in goToNewGptScreen:', error.message);
       wisdomElement.textContent = "Sorry, wisdom is unavailable.";
+  }
+};
+
+
+
+const sendChoicesAndFetchWisdom = async (option1, option2) => {
+  try {
+      const response = await fetch("https://friend-4mph.onrender.com/first", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ option1, option2 }),
+      });
+
+      if (!response.ok) {
+          throw new Error(`Server error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+
+      if (!data.wisdom) {
+          throw new Error("Invalid response format: wisdom is missing");
+      }
+
+      return data.wisdom;
+  } catch (error) {
+      console.error("Error fetching wisdom:", error.message);
+      return "Sorry, wisdom is unavailable.";
   }
 };
