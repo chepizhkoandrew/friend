@@ -82,7 +82,7 @@ document.addEventListener("DOMContentLoaded", () => {
         item.addEventListener('click', () => {
           const category = item.textContent.trim();
           userChoices.option1 = category; // Store first choice
-
+        
           if (data[category]) {
             // Populate second grid dynamically
             secondGrid.innerHTML = data[category]

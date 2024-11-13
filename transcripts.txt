@@ -1,0 +1,184 @@
+memo 34
+
+Speaker 1 (94%), Speaker 2 (6%)
+Hmm, finally, I get the point of how we are going to position this app and what the end process is going to look like. So we will engage people with this very beautiful quizzes and different pictures, exercises and things where they can express themselves and tell more about their feelings, do the self checkups and etc. So basically, while playing and engaging people to stay longer and to make more quizzes and to actually interact with our content more and more, we will know more about the person, behavioral patterns, about the choices it does, about the things it is more interested about, and etc. And under the hood, we will have the algorithm which summarizes the profile of this person and and actually when many after many people will join. We will introduce the groundbreaking feature, and we will change this whole concept to the basically made matching app between like a social app to to connect people with similar interests. So once we are going to know more about this, our like players, our users of our application, the more we know, the more they play, the more we know about them, the more we can thoroughly connect them to the real, real person. So we're not going to provide them with long lists of candidates, like swipes and all that stuff. It's going to be a sudden, sudden thing for a person like at different moments in time, at different by different triggers, when we will be ready, we will provide our users with, let's say one or two people per month, like, Hey, have you do you know that this guy is also using this app, blah, blah, blah, and on the other end, for the guy, for example, we also will send them a Message like, Oh, we found the soulmate for you. So maybe we can, you know, make it happen, and blah, blah, blah, and on the both sides, we're going to to push these two people to come together and to
+connect and to start
+helping each other, to start being, being friends, because this is going to be, this the perfect match for them. It's not just, you know, like random, random people. So this is, this is the point. And while advertising this application, we may somehow also make a hint, but very, very gently, so that people will not understand what, what the main purpose is like the main mechanic is, but we can promise them some, you know, some statement, like,
+we will help you to find your Dog,
+or something like,
+yeah, like, we will, we will, no, not we, but you will find your dog,
+or something like that. You'll find your dog
+or connect to your dog.
+Yeah, connect to your dog.
+Or, yeah, no,
+fuck. It's very it's very sensitive. So it's going to be a
+i forgot i.
+Yeah, it's gonna be connect with your dog,
+or find your dog. I.
+
+memo 42
+
+Uh, this memo is about one of the competitors or partners, also probably the same as Bazile, but they are way more monetized, and they have, like, millions of users and all this stuff. They're they're called Better me. So better me provides
+different kind of this, tailored
+schemas for different apps, also some mechanics. But the thing which I liked during their onboarding, I don't like their onboarding. It's too long. I think that this 50, I don't know how many, like 50 questions. It's too long. I didn't answer them. I started to think about, first, I don't know five answers, and then I just randomly picked a lot of things. I didn't even even read all them, you know, just randomly because I wanted to get to the last screen as fast as I can, because it's too many screens. So, but they have one of the screens which is asking, like, do you have an upcoming important event? This is very cool thing, I guess, to know what the person is waiting for or is expecting for. Something about expectation. This is, I guess, a good hook to to connect to, like an anchor point in time which will be, if we ask about this event, it will be related in users mind with our app, because it was somehow like connected one day, like one app asked about event, etc, so the user will
+cognitively
+relate or how to reference
+our application with this big event. That's cool, I guess. And I also have a photo of print screen remind me to upload it also. I.
+
+
+memo 43
+
+Keywords
+Speakers
+Speaker 1 (94%), Speaker 2 (6%)
+Actually the this better me approach, approach of this app is, is very,
+it seems to be very scientific or very,
+you know, like intelligent,
+etc.
+But as for me, it looks very, you know, pushing or something like that, and very like formal or something. It lacks style because they ask a lot of questions and they also emphasize on the goals they always will set you some goals. Will provide you with some progress bars, with some stages badges and all that stuff. I think, our achievements, or your completions, and you know, like all of these progress things, they I think, contradict with the main idea of the mindfulness apps, or the apps which will really help person to
+to become better in a long, lasting
+state, like because if, if you are forced, or, I don't know the best word for that, like if you are pushed to to your limits to get your goal by this app, it's not about becoming more mindful, because there is no goal in mindfulness, like there is a way only, and I think that we should avoid any status or any things like so the user
+should not
+feel himself like in a game with a score, a user must feel himself like in a game war in which no one wins, no one loses. It's just a game. Like just a game. I don't know if there are such games without winners or losers.
+Well, I think
+it may be something like paired game with jumping on the robbers, anyway.
+So you get the point that
+our application will not be about setting goals or reminding or pushing or whatever. We will only
+provide help
+when user actually seeks for it, so only when it opens the app and has some some ideas or some feelings, and we want to
+make users
+to walk through this, like, start, start, pass, when we ask, what is around you, what is inside you. And maybe we will add a couple of more questions, or we will paraphrase this, but anyway, we will ask only two, maximum three questions with a very, very simple answers so that, and yeah, like so basically, it's, it's for the person to concentrate on itself. So this process, like the the procedure of this open, the opening the app, you know, seeing these lights and slow, slow appearance of the questions. And these questions are pleasant to you because you you want somebody to ask you about, how do you feel? Like, what, where, blah, blah, blah. So this ask, this application, it asks you instantly, and it's like talks, talking to you. It's not a machine with a multiple choices, all that you know, configurations like bring us the survey form with lots of validations and all this stuff. No, no, no, no. We only lead the thought, the thing, thinking process or the No, nothing. We lead the attention and the intention of the person who is using this app. And we. Yeah, by doing this, by using the app, the person must feel good already, less by feeling the quiz, and not by feeling the quiz, because it anticipates some, you know, end result, like in better me. So like feeling filling up the quiz is not the pleasant part. I guess for the user, it's more well, it might be considered as a self check, but then it must be, you know, presented in another way, and maybe later, or something like that, because I don't want to talk about myself right from the start. I don't know this app. I don't know what it does, etc, and I open it, and it asks me, like, 50 questions. What? Why the fuck should I, you know, answer all that? Because, wow, no, no normal person would would ask you about like 50 questions. None of the psychologists will lead the conversation in the way when
+during the session, like,
+the only thing the mentor and the patient do is that, like, mentor asks the questions and like a list of predefined questions and the patient answer is like, none of the sessions go like that. All psychological sessions, they are based on the conversation and the idea of the facilitator, whether it is an app or
+real
+life, person, life specialist, they will like their goal is To bring the person into this state of self analysis and not to get the information, because facilitator doesn't, don't need this information, like nobody cares whether I like chicken or I don't eat salt or whatever. I mean. The the idea is, is of the facilitator is to facilitate me to think about my preferences, but only if it is applicable for this moment. I mean, if it's already an exercise, so filling up the quiz, maybe we can, you know, make some story with some variants, blah, blah, blah, and after several sessions, after several after
+for example, if the user will,
+will Use our flow like I don't know, five times, and we will improve it little bit, but five times per two questions. So basically,
+we will better collect
+20 data points or answers or whatever, like choices within the week, when user and user will not even understand that that like that we obtain this data. I mean, he will know that we use this data, but he will not pay attention that the intention was that application will acquire this data to make some analysis. The user will will need to think that it's only for him that application doesn't want anything to that is kind of a magic. Application is not pushing it always says, like, you know, very wise and funny and sarcosmic things, but
+doesn't push you to do anything
+vice versa. Like
+even even vice versa,
+we will
+commonly say, we will often say something like,
+relax or
+don't get too, you know, too obsessed with your self development, just, you know, like pet the dog and don't think about
+reading custom Castaneda
+within one week, like as a goal or whatever. No, we want people just to live happy and without any any forcing. You.
+
+memo 44
+
+Keywords
+Speakers
+Speaker 1 (91%), Speaker 2 (9%)
+Also about this better me app, the competitor one at the end of the quiz, which is really very long, they provide just a picture, like a PNG, picture of illustration of some they call it like development plan. But basically it is just a chart when, where the line goes up pretty much randomly, like, but was the time for, for going up, like, just, just, just a graph with pretty much nothing. And they, they say, oh, like, your plan is ready. But the picture which you I first started, I started to think that this picture actually reflects my, my plan, but then I realized that it's just a standard, standard template, like, just, just a picture for everybody, and then they have the button, like, continue. And, of course, probably I will be able to see my plan only after, you know, after payment or whatever. So they, by adding so many questions, they created the value, or the sense of the sense of value for me because I already invested, or had to invest or, I mean,
+should have invest
+a lot of time, because I decided not to invest time. I just decided to click and skip and roll this, most of the questions randomly. And actually, that's a bad thing, because I think that even if later, I will become an active user, how better me will understand that my preferences are actually set correctly. I will forget about my preferences, which I created, which I configured during onboarding, frankly speaking, like I, like
+70% of this,
+this questionary was,
+was picked by me, like, just by randomly only, like, maybe 20% of things with pictures which were easy to pick, I picked, but anyways, totally incorrect data about myself, even things like
+weight. For example,
+when I was filling the form, I don't remember my exact weight. It's something about 70, between 70.
+No, it's between 68
+my lowest was like 68 within, say, five last years. My lowest was 68 and my highest was maybe 71 and a half, or some 772, let's say. But you see, in order to understand when I, when I, when people ask me, What's your weight now? Now, like right now? Well, approximately 70. I will always answer 70. I will not calculate like, whether I'm now more slimmer than usually, or then it's like below 70 or blah, blah, blah. So I'm not going to think about it. I'm just, I will just hit 70. But the point is that when, when it will be closer to the point like to my exact goal. Because if to talk about exercising, my goal always is to to add not more than one two kilos. It's like one kilo for me, it's a lot. When I, when I'm above 70, it's, it's pretty above so it's, for me, it's really like important to stay within plus minus three kilos and blah, blah, blah. But since during the first onboarding, I picked 70, and maybe now I feel like sick. I'm exactly 68 for example, or 16. Nine. So now I'm slimmer than usually, but I picked 70. So basically what the app thinks is that I wait 70. What I think is that I wait
+less like
+what I think, what I thought when I was answering was that, well, it doesn't matter, like just pick the random number. But now and I set the mark to 70 as a kind of my actual so baseline. But now I realize that I'm minus two from that, so I'm already below the line. So basically, only after thorough thinking about the kilos and like, thinking not just how much, how many, like, what? What's my weight? But is my weight, like, lower than than I want to be yours, or, blah, blah, blah. This is more, more important. I mean, but, but I didn't think you thought about it when answering 70. So better to,
+I think, understand the intention
+of the client of the user, not by making the quizzes, but by making the
+stories, interactive stories
+where,
+where we can
+subjectively define the intention of the person, something like that, not by providing clear options, like pick from options, but by analyzing the behavior, by analyzing what exactly the person chooses, like, for example, if we ask the person silly Question, like, we will show the picture of a fox. And this picture of a fox will have, for example, like three, three highlighted areas. And one of the highlighted areas will be fox tail. Another highlighted area will be fox head and, and the pole, for example. And we will ask the person like, which part of the Fox Do you like the most? And, and the person will, will, will have to choose from, from these three things, but,
+yeah, so it's maybe a bad example, but you Get the point. We can, for example, paint or, Oh no, for example, we can show
+three foxes, three different foxes,
+but very, very similar. I mean, the it will be, it will be photo office of the same Fox, but repainted.
+Ah, no, no, no, no.
+We will have, for example, four seasons or four or no. We have six. We have six dimensions. And
+six options, and
+we can list
+six,
+six types of the of the weather, for example, yeah, or something like that. And ask the person what's your favorite, or ask the person
+like when you leave, when you are listening to this track,
+which
+which season or which type of the weather is more applicable to it. Or for example, we may play, we may play some broken melody with a changing rhythm and changing mood of the song from minor to major. Etc, etc. Some, you know, some audio, audio entertainment, Melody, very beautiful. One, very, you know, melodic, but which changes the mood a lot. And we can
+put a toggle a
+so, like, like a volume, volume button,
+which can be from, you know, from,
+like a slide bar, or how to say
+so, basically, from zero to 100%
+like a bar which can be picked and the user will will have to react somehow.
+For example, if you feel,
+whenever you feel more sad tones scroll the this volume to up up like higher when you think that the melody lacks
+set tones.
+Then, like,
+if you think it, it has
+big set tones. Then scroll it
+then scroll it down.
+If you think that
+song has
+is too funny, like, basically it is too funny, like, too aeronico, then scroll it up and the goal or the result, which we will show. After this exercise,
+we will show something like a graph
+of accurately
+calculated pass of send said and not set tones. I mean, we will, we will provide some we will create some formula, etc, etc, some calculations about, what's the reality like? What was the, you know, machinery, calculated tone in like at every millisecond of the track, something like that. What was the the wave line
+of this, like
+the gistogramma of the of the mood and yeah, and when we can show the user whether he or she was close or not. And also we can then make some exercises about, like, check the discrepancies. If the user thought that it's too
+it's too funny,
+but it was not actually,
+we can show it, replay it again, and say, like, Why? Why did you do? Why did you thought about, you know, this kind of exercises? Yeah, I.
+
+memo 46
+
+Keywords
+Speakers
+Speaker 1 (100%)
+There is an app also called chat me, something. I don't know the domain, but it's called, like a never ending game or whatever they use the model and the look and everything from Tinder. Where people from Tinder, you know that, and but they imitate the candidates by generating them with help of AI. And just like imitate that someone liked you, and you start to talk with these creatures or whatever, and you are all only able to pick predefined answers, which is pretty strange. I mean, well, that simplifies the process a lot. But I don't know if it's about millions of users, but I really enjoyed the look of like it's intriguing, and they did all of the very fast and bored and very smooth everything. So look and feel very good. And basically, you start playing really fast, I mean, several clicks, and you already are engaged in the game. This is what I really enjoyed. But the mechanics is rather super primitive. I would say, I don't know. Maybe by playing this game more, I will, I will feel something, but I want, I.
+
+
+
+
+memo 49
+
+
+Speakers
+Speaker 1 (87%), Speaker 2 (13%)
+I really like the concept and look and feel and everything of the FOIA game,
+it is actually positioned as a game, and
+that's that's something which probably I would avoid for my app, it
+shouldn't be a game, because game is something, you
+know, not really mindful and blah, blah, but FOIA is good. I think they really made the way more,
+more
+kind of
+interact, interactivity effect and this gamification. But I'm not sure that that users are really learning anything. Probably the the like the goal of the user is simply to play, to click on the button and be anxious and all this stuff. And it pretty much doesn't matter which fruits are flying over the over the phone or screen,
+or fruits or vegetables or
+coins or dollars or whatever.
+It's kind of
+a good marketing just for a game, but we're not talking about the game, but look and feel is really good. And I
+there is an app called Happy fi. They have this scientific guided meditations and everything scientific. Well, good app. As for me, it lacks the design a little bit. Should check the pricing, but the logic is very clear, and
+a lot of interactive things so
+pretty like enjoyable
+and like fascinating to dig deeper to the deeper into this app once you install it, and also a good argument, by the way. So when you Google for the print print print screens, like public print screens, I don't know where are they stored? And how were they uploaded to the internet? But you can find, like most common public print screens, and they contain dogs, which is not coincidence. They put the picture of a cute, white, hairy foodie dog to one of their application screen templates. Or how to say, like, examples,
+probably in in App Store,
+I don't know where,
+so, yeah, basically it's like, it's like an anchor. So you see brands are using Doc as a good anchor to catch clients. I.
+
+
+memo 51
+I've just got the definition of the genre or sub domain, or whatever it is, called, heartfelting, interactive storybook. Heart felting, interactive storybook.
+Or heartfelt interactive storybook.
+It's about it was for the Florence game, like definition of the Florence game,
+which is really nice story of first love.
+Well, that's great. I.
+
+
+memo 54
+
+One of the big important tasks scheduled ahead in our project will be to convert, to convert what we have into the app. So convert web
+into mobile app,
+something like this, or like redo, redesign, convert,
+not Well, I don't know,
+or just make mobile app.
+Make mobile app
+and this task is gonna be, is gonna be one month.
+Yeah, one month and I need,
+and I need one developer for one month,
+or two people for two weeks, something like that, like but I'm not sure it will work. But if you if someone will have, you know, resources, who people, who engineers, who release, like, dozens of apps per month, then it may work, because now it's pretty easy to do the app, even to convert it, especially you already have, like, code, JavaScript and everything working. I think it's pretty doable within the months. I.
