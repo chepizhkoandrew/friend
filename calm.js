@@ -1,32 +1,4 @@
-// Define the userChoices object globally
-const userChoices = { where: "", what: "" };
 
-
-// Fetch GPT response
-
-const gptcallclient = async () => {
-  const exerciseoneprompt = `If you were a dog psychologist loving Bill Murray and Monty Python and being the smartest person in the dog world, what advice would you give to a stranger who is now at ${userChoices.where} feeling ${userChoices.what} inside? The advice should be creative, sarcastic, sexy, rough, and bohemian but very smart and funny. Make it sound like it's from the dog's perspective.`;
-  console.log(`Sending GPT request with choices: ${userChoices.where}, ${userChoices.what}`);
-  try {
-    const response = await fetch('/api/gpt', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ exerciseoneprompt })
-    });
-    const data = await response.json();
-    if (data.text) {
-      return data.text.trim();
-    } else {
-      console.error("Invalid response format: text is missing");
-      return "Sorry, wisdom is unavailable.";
-    }
-  } catch (error) {
-    console.error("Error fetching dog wisdom:", error);
-    return "Sorry, wisdom is unavailable.";
-  }
-};
 
 
 document.addEventListener("DOMContentLoaded", () => {
