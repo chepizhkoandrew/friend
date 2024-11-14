@@ -122,20 +122,36 @@ body, html {
   margin-right: 10px;
 }
 
+/* Ensure proper grid styling for second-grid */
+.second-grid {
+  gap: 10px;
+  justify-items: center;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  margin: 10px auto;
+}
+
 /* Responsive Grid Layout */
 @media (min-width: 768px) {
-  .activity-grid {
+  .activity-grid, .second-grid {
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(2, 1fr);
+    gap: 10px; /* Adjust gap between items */
   }
 }
 
 @media (max-width: 767px) {
-  .activity-grid {
+  .activity-grid, .second-grid {
+    display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(3, 1fr);
+    gap: 10px; /* Adjust gap between items */
   }
 }
+
+
+
 
 /* Question Animation */
 .question {

@@ -64,8 +64,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
-  
-
   // Handle activity selection and transitions
   fetch('options.json')
     .then(response => response.json())
@@ -86,9 +84,8 @@ document.addEventListener("DOMContentLoaded", () => {
           document.querySelector('.question').style.display = 'none';
           document.querySelector('.activity-grid').style.display = 'none';
           document.querySelector('.second-question').style.display = 'block';
-            secondGrid.style.display = 'block';
+          secondGrid.style.display = 'grid'; // Ensure grid display is set
           showElementsSequentially(Array.from(secondGrid.children), 4000, 8000, 1000, 4000);
-
         });
       });
 
@@ -98,11 +95,6 @@ document.addEventListener("DOMContentLoaded", () => {
         if (selectedOption) {
           userChoices.option2 = selectedOption; // Store second choice
 
-           // Show fourth normal screen
-
-
-
-
           // Transition to last screen
           thirdGrid.style.display = 'none';
           document.querySelector('.second-question').style.display = 'none';
@@ -110,7 +102,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
           document.querySelector('.third-grid').style.display = 'grid';
           document.querySelector('.third-question').style.display = 'block';
-          showElementsSequentially(Array.from(document.querySelector('.third-grid').children), 4000, 8000, 1000, 4000,);
+          showElementsSequentially(Array.from(document.querySelector('.third-grid').children), 4000, 8000, 1000, 4000);
         }
       });
 
