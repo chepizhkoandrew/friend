@@ -83,20 +83,13 @@ document.addEventListener("DOMContentLoaded", () => {
           const category = item.textContent.trim();
           userChoices.option1 = category; // Store first choice
         
-          if (data[category]) {
-            // Populate second grid dynamically
-            secondGrid.innerHTML = data[category]
-              .map(option => `<div class="activity-item">${option.name}</div>`)
-              .join('');
-            secondGrid.style.display = 'grid';
+          showElementsSequentially(Array.from(secondGrid.children), 4000, 8000, 1000, 4000);
+          document.querySelector('.question').style.display = 'none';
+          document.querySelector('.activity-grid').style.display = 'none';
+          document.querySelector('.second-question').style.display = 'block';
+          background.classList.add('second');
 
-            // Show second screen
-            showElementsSequentially(Array.from(secondGrid.children), 4000, 8000, 1000, 4000);
-            document.querySelector('.question').style.display = 'none';
-            document.querySelector('.activity-grid').style.display = 'none';
-            document.querySelector('.second-question').style.display = 'block';
-            background.classList.add('second');
-          }
+          
         });
       });
 
