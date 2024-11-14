@@ -78,18 +78,17 @@ document.addEventListener("DOMContentLoaded", () => {
       const video = document.getElementById('background-video');
 
       // First screen activity selection
-      document.querySelectorAll('.activity-grid.activity-item').forEach(item => {
+      document.querySelectorAll('.activity-grid .activity-item').forEach(item => {
         item.addEventListener('click', () => {
           const category = item.textContent.trim();
           userChoices.option1 = category; // Store first choice
         
-          showElementsSequentially(Array.from(secondGrid.children), 4000, 8000, 1000, 4000);
           document.querySelector('.question').style.display = 'none';
           document.querySelector('.activity-grid').style.display = 'none';
           document.querySelector('.second-question').style.display = 'block';
-          background.classList.add('second');
+            secondGrid.style.display = 'block';
+          showElementsSequentially(Array.from(secondGrid.children), 4000, 8000, 1000, 4000);
 
-          
         });
       });
 
@@ -100,41 +99,6 @@ document.addEventListener("DOMContentLoaded", () => {
           userChoices.option2 = selectedOption; // Store second choice
 
            // Show fourth normal screen
-// Transition to the fourth screen (Dog Wisdom)
-const goToFourthScreen = async () => {
-  const fourthQuestion = document.querySelector('.fourth-question');
-  const wisdomElement = document.getElementById('dog-wisdom');
-
-  fourthQuestion.style.display = 'block';
-
-  try {
-    const wisdomText = await fetchDogWisdom();
-    const wisdomParts = wisdomText.split(' ').reduce((acc, word, index) => {
-      const partIndex = Math.floor(index / 10);
-      if (!acc[partIndex]) acc[partIndex] = [];
-      acc[partIndex].push(word);
-      return acc;
-    }, []).map(part => part.join(' '));
-
-    wisdomParts.forEach((part, index) => {
-      const span = document.createElement('span');
-      span.textContent = part;
-      span.style.opacity = '0';
-      wisdomElement.appendChild(span);
-    });
-
-    const spans = Array.from(wisdomElement.children);
-    const minDelay = 4000; // Minimum delay (4 seconds)
-    const maxDelay = 7000; // Maximum delay (7 seconds)
-    const minDuration = 1000; // Minimum duration (1 second)
-    const maxDuration = 4000; // Maximum duration (4 seconds)
-
-    showElementsSequentially(spans, minDelay, maxDelay, minDuration, maxDuration);
-  } catch (error) {
-    console.error('Error in goToFourthScreen:', error.message);
-  }
-};
-
 
 
 
@@ -142,7 +106,8 @@ const goToFourthScreen = async () => {
           // Transition to last screen
           thirdGrid.style.display = 'none';
           document.querySelector('.second-question').style.display = 'none';
-          document.querySelector('.second-question').style.display = 'none';
+          document.querySelector('.second-grid').style.display = 'none';
+
           document.querySelector('.third-grid').style.display = 'grid';
           document.querySelector('.third-question').style.display = 'block';
           showElementsSequentially(Array.from(document.querySelector('.third-grid').children), 4000, 8000, 1000, 4000,);
