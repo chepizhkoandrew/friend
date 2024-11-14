@@ -14,7 +14,42 @@
 
   gtag('config', 'G-2XWXK4VJX4');
 </script>
-<body>
+
+
+<script>
+// Define the userChoices object globally
+const userChoices = { where: "", what: "" };
+
+
+// Fetch GPT response
+
+const gptcallclient = async () => {
+  const exerciseoneprompt = `If you were a dog psychologist loving Bill Murray and Monty Python and being the smartest person in the dog world, what advice would you give to a stranger who is now at ${userChoices.where} feeling ${userChoices.what} inside? The advice should be creative, sarcastic, sexy, rough, and bohemian but very smart and funny. Make it sound like it's from the dog's perspective.`;
+  console.log(`Sending GPT request with choices: ${userChoices.where}, ${userChoices.what}`);
+  try {
+    const response = await fetch('/api/gpt', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ exerciseoneprompt })
+    });
+    const data = await response.json();
+    if (data.text) {
+      return data.text.trim();
+    } else {
+      console.error("Invalid response format: text is missing");
+      return "Sorry, wisdom is unavailable.";
+    }
+  } catch (error) {
+    console.error("Error fetching dog wisdom:", error);
+    return "Sorry, wisdom is unavailable.";
+  }
+};
+</script>
+
+
+
   <div class="container">
     <div class="background"></div>
     <div class="frame">
@@ -73,7 +108,10 @@
       <div class="activity-grid third-grid" style="display: none;">
         <div class="activity-item"><a href="/calm">START AGAIN</a></div>
         <div class="activity-item"><a href="https://www.patreon.com/MadridTheDog" target="_blank">DONATE</a></div>
-        <div class="activity-item"><a href="https://tailtrail.club/about" target="_blank">OUR MISSION</a></div>
+        <div class="activity-item"><a href="#" onclick="gptcallclient()">GPT TEST</a></div>
+        
+      
+      
         <div class="activity-item"><a href="https://www.instagram.com/madrid_the_dog/" target="_blank">INSTAGRAM</a></div>
       </div>
 

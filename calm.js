@@ -1,5 +1,35 @@
+// Define the userChoices object globally
+const userChoices = { where: "", what: "" };
+
+
+// Fetch GPT response
+
+const gptcallclient = async () => {
+  const exerciseoneprompt = `If you were a dog psychologist loving Bill Murray and Monty Python and being the smartest person in the dog world, what advice would you give to a stranger who is now at ${userChoices.where} feeling ${userChoices.what} inside? The advice should be creative, sarcastic, sexy, rough, and bohemian but very smart and funny. Make it sound like it's from the dog's perspective.`;
+  console.log(`Sending GPT request with choices: ${userChoices.where}, ${userChoices.what}`);
+  try {
+    const response = await fetch('/api/gpt', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ exerciseoneprompt })
+    });
+    const data = await response.json();
+    if (data.text) {
+      return data.text.trim();
+    } else {
+      console.error("Invalid response format: text is missing");
+      return "Sorry, wisdom is unavailable.";
+    }
+  } catch (error) {
+    console.error("Error fetching dog wisdom:", error);
+    return "Sorry, wisdom is unavailable.";
+  }
+};
+
+
 document.addEventListener("DOMContentLoaded", () => {
-  const userChoices = { option1: "", option2: "" }; // Store user selections
 
   // Function to show elements sequentially with random delays and durations
   const showElementsSequentially = (elements, minDelay, maxDelay, minDuration, maxDuration) => {
@@ -39,30 +69,7 @@ document.addEventListener("DOMContentLoaded", () => {
     showElementsSequentially(rows, minDelay, maxDelay, minDuration, maxDuration);
   }, 4000); // Start after 4 seconds
 
-  // Fetch GPT response
-  const fetchDogWisdom = async () => {
-    const exerciseoneprompt = `If you were a dog psychologist loving Bill Murray and Monty Python and being the smartest person in the dog world, what advice would you give to a stranger who is now at ${userChoices.option1} feeling ${userChoices.option2} inside? The advice should be creative, sarcastic, sexy, rough, and bohemian but very smart and funny. Make it sound like it's from the dog's perspective.`;
-    console.log(`Sending GPT request with choices: ${userChoices.option1}, ${userChoices.option2}`);
-    try {
-      const response = await fetch('/api/gpt', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ exerciseoneprompt })
-      });
-      const data = await response.json();
-      if (data.text) {
-        return data.text.trim();
-      } else {
-        console.error("Invalid response format: text is missing");
-        return "Sorry, wisdom is unavailable.";
-      }
-    } catch (error) {
-      console.error("Error fetching dog wisdom:", error);
-      return "Sorry, wisdom is unavailable.";
-    }
-  };
+  
 
   // Handle activity selection and transitions
   fetch('options.json')
@@ -79,7 +86,8 @@ document.addEventListener("DOMContentLoaded", () => {
       document.querySelectorAll('.activity-grid .activity-item').forEach(item => {
         item.addEventListener('click', () => {
           const category = item.textContent.trim();
-          userChoices.option1 = category; // Store first choice
+          userChoices.where = category; // Store first choice as "where"
+          console.log(`User choice for "where": ${userChoices.where}`);
         
           document.querySelector('.question').style.display = 'none';
           document.querySelector('.activity-grid').style.display = 'none';
@@ -93,7 +101,8 @@ document.addEventListener("DOMContentLoaded", () => {
       secondGrid.addEventListener('click', event => {
         const selectedOption = event.target.textContent.trim();
         if (selectedOption) {
-          userChoices.option2 = selectedOption; // Store second choice
+          userChoices.what = selectedOption; // Store second choice as "what"
+          console.log(`User choice for "what": ${userChoices.what}`);
 
           // Transition to last screen
           thirdGrid.style.display = 'none';
@@ -110,7 +119,7 @@ document.addEventListener("DOMContentLoaded", () => {
       secondGrid.addEventListener('click', event => {
         const selectedOption = event.target.textContent.trim();
         if (selectedOption) {
-          userChoices.option2 = selectedOption; // Store second choice
+          userChoices.what = selectedOption; // Store second choice as "what"
 
           // Show fourth normal screen
           // Transition to the fourth screen (Dog Wisdom)
