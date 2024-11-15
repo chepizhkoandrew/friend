@@ -25,6 +25,7 @@ app.listen(PORT, () => {
 app.use(cors());
 app.use(express.json());
 
+console.log('OpenAI API Key:', process.env.OPENAI_API_KEY ? 'Loaded' : 'Missing');
 
 app.post('/api/gpt', async (req, res) => {
   console.log('Request received on /api/gpt with body:', req.body); // Log request body
