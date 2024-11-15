@@ -26,7 +26,7 @@ const gptcallclient = async () => {
   const exerciseoneprompt = `If you were a dog psychologist loving Bill Murray and Monty Python and being the smartest person in the dog world, what advice would you give to a stranger who is now at ${userChoices.where} feeling ${userChoices.what} inside? The advice should be creative, sarcastic, sexy, rough, and bohemian but very smart and funny. Make it sound like it's from the dog's perspective.`;
   console.log(`Sending GPT request with choices: ${userChoices.where}, ${userChoices.what}`);
   try {
-    const response = await fetch('https://tailtrail.club:443/api/gpt', {
+    const response = await fetch('/api/gpt', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
