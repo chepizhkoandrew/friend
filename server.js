@@ -14,7 +14,38 @@ app.get('/', (req, res) => {
 });
 
 
-const PORT = 443;
+app.get('/health', async (req, res) => {
+  try {
+    // Check OpenAI API connectivity
+    const openaiCheck = await openai.createChatCompletion({
+      model: 'gpt-4',
+      messages: [{ role: 'system', content: 'Health check' }],
+      max_tokens: 5,
+    });
+
+    res.status(200).json({
+      status: 'OK',
+      uptime: process.uptime(),
+      timestamp: new Date().toISOString(),
+      dependencies: {
+        openai: 'Connected',
+      },
+    });
+  } catch (error) {
+    res.status(500).json({
+      status: 'ERROR',
+      uptime: process.uptime(),
+      timestamp: new Date().toISOString(),
+      dependencies: {
+        openai: 'Disconnected',
+      },
+      error: error.message,
+    });
+  }
+});
+
+
+const PORT = 3000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
@@ -27,6 +58,12 @@ app.use(express.json());
 
 
 console.log('OpenAI API Key:', process.env.OPENAI_API_KEY ? 'Loaded' : 'Missing');
+
+
+
+
+
+
 
 app.post('/api/gpt', async (req, res) => {
   console.log('Request received on /api/gpt with body:', req.body); // Log request body
