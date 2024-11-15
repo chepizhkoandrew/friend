@@ -27,14 +27,16 @@ app.use(express.json());
 
 
 app.post('/api/gpt', async (req, res) => {
-  console.log('Received request on /api/gpt');
+  console.log('Request received on /api/gpt with body:', req.body); // Log request body
   const { exerciseoneprompt } = req.body;
+
   if (!exerciseoneprompt) {
-    console.log('Prompt is missing from the request.');
+    console.log('Error: Missing exerciseoneprompt in request body.');
     return res.status(400).json({ error: 'Prompt is missing from the request.' });
   }
+
   try {
-    console.log('Sending request to OpenAI API with prompt:', exerciseoneprompt);
+    console.log('Sending request to OpenAI API...');
     const response = await openai.createChatCompletion({
       model: 'gpt-4',
       messages: [{ role: 'assistant', content: exerciseoneprompt }],
@@ -42,11 +44,11 @@ app.post('/api/gpt', async (req, res) => {
     });
 
     const joke = response.data.choices?.[0]?.message?.content?.trim();
-    console.log('Received response from OpenAI API:', joke);
+    console.log('Response from OpenAI API:', joke);
     res.json({ joke });
   } catch (error) {
-    console.error('Error fetching joke:', error.response?.data || error.message);
-    res.status(500).json({ error: 'Failed to fetch joke' });
+    console.error('Error occurred while calling OpenAI API:', error.response?.data || error.message);
+    res.status(500).json({ error: 'Failed to fetch data from OpenAI API' });
   }
 });
 
