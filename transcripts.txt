@@ -1,3 +1,44 @@
+Memo 31
+
+Okay, so here are some thoughts about the marketing strategy and the positioning of this app, who is going to be our audience and why it is important that we picked exactly this niche that we picked. 
+
+So there are two upcoming trends. One is people are getting more and more love the dogs and they adopt dogs. In every family you see minimum one dog and the dogs are all around. So basically all of the people now are connected with either dogs or cats or some pets. 
+
+And yeah, this is a big, big, huge new trend. You can see the market and you can add some maybe analytics about this market and about the trends, about like the facts, how many people, what percentage of people were dog owners, for example, I don't know, 10 years ago and something like that. 
+
+So that would be a very important argument for me to sell this app. Because the audience is a fragment, it's a segment, so we are targeting on the dog owners, but we are targeting on the dog owners who seek for mental health, for mindfulness, for a better way of life, and for things like that, and who actually want to gain some help from applications, and we will not compete with the the other mindfulness applications, 
+
+because it's too difficult to compete with, for example, Better Me or something like that, because they will buy all of the traffic for a lot of money and everything. What we are going to do? We are going to spread our marketing channels across dog owners, and we know that, anyway, average person, for example, like, say, I don't know, 10% of people, of population, of wealth countries, or 20% of population of wealth countries, 
+
+is our potential clients. Let's say half of them have dogs. because probably this is true. Maybe about half of people who live within the families, at least they have at least one dog within their family. 
+
+I think that's true. So they all position themselves as dog owners. They love dogs and they treat them good and they treat everything which is related to dogs with special attention and big care. So we will target for these people. 
+
+Memo 32
+
+
+So here, how are we going to do it? We will add the feature for generation of the following paths with the GPU. So in current flow, user already picks two parameters which are very important for us. They are the location of the user which tells us a lot about the environment and a lot about the possibilities which we can suggest to the person which are applicable to that situation. 
+Because eventually the goal of this app is to suggest some kind of activity to do and to engage the person into some game, into some entertainment and to help the person to focus with this entertainment on its state and everything. 
+So basically this is a little bit of mindfulness practice for the user. And for some people it may be just a game, like a play, but it doesn't matter. By playing these kind of games you become more mindful. 
+So we already have an algorithm which picks so-called tasks or activities that we recommend to the user based on its choice. So after it chooses the environment and a set of so-called what is inside you, so it's like a mood, an environment and a mood basically. 
+And after the user selects these parameters... We have these predefined classifiers, and we can suggest some kind of task based on this variation. I propose to have another screen, which will take these two choices, and basically we will look within our JSON file throughout all of the matches, whether we have the task which can be done within that environment and which actually refers or which mapped to the mood based on the JSON file. 
+
+Memo 33
+
+A good thing to keep in mind is to make some kind of standard procedure or a function or whatever for shifting between the screens. For example, if you shift to some screen, we can call it the procedure like shift to first screen, shift to second screen, shift to third screen, or shift to whatever screen we will have. 
+
+This will give us ability to set up kind of standard rules for shifting between procedures because we will need to clear previous JavaScript functions, for example, or realign the objects or refresh the screen or whatever, or put the screen on pause, or blah, blah, blah. 
+
+So we're going to do a lot of things. We can organize our project in this clear structure of screens and elements and standard styles and all these things which we discussed before. And also we can add this kind of screen shifting procedure or just a procedure definition. 
+
+And the first procedure definition can be... The example of this procedure definition is when we shift to the second screen, when we ask about the environment, what is outside you, what is around you. 
+
+So this is when we... cancel, drop down all our counters, and wait the person to pass the normal flow. Shifted the second screen can be considered as a standard procedure, for example, yeah. When we reset everything and just keep to the normal and bring the person back to the initial state. 
+
+
+
+
+
 memo 34
 
 Speaker 1 (94%), Speaker 2 (6%)
@@ -15,6 +56,85 @@ fuck. It's very it's very sensitive. So it's going to be a
 i forgot i.
 Yeah, it's gonna be connect with your dog,
 or find your dog. I.
+
+
+
+
+Memo 35
+
+By extracting user's email, we can cut the part of, we can cut it into two pieces. The domain, whether it is Gmail or some specific business related domain. And the second part is the name, what comes before the ad. 
+
+And many people have different emails, like people have different emails. Many of them have personalized, for example, myself. I always, like all of my life, I used andree.chipisco, so I have nothing to hide. 
+
+And I register my email andree.chipisco at all of the services. No matter where I go, I simply click it by default. I use one account, and that's basically it. And this is why I have my full name there. 
+
+And since we don't ask users explicitly to write down the name, because it's like, why should I write down the name, like, oh, again, some form, blah, blah, blah. We can cut the first part and the second part and make some guessing. 
+
+If we can, with very, very high probability, guess that the first part contains actual name and not some random nickname or something, or some random charters. But if it's really a name, or at least there is a name inside, like, for example, andree 1988 or something like that, gmail.com. 
+
+Anyway, if we know that if we can extract the name out of the first part before at that's great then at the next screen we can Talk to user by its name and imagine even if it's a Russian name for example or Slavonic name we can even write it in Kirillica Imagine you come you go to the app, which is like in the web and you just click some join button And the next screen it the it turns to you by name and even in your native language in your mother mother's language, 
+
+and it may say Something like Vova is that the name Vova chika is that the name the your mother was calling you when you was young or something like that and the person is like wow what the fuck they really got into my brain or not something like that this will be very engaging effect so good feature to have and the second part we can extract it can lead us if it's a business domain we can go google what this company does and we can even go and see the person's LinkedIn because if it's a business email then definitely it will be shown somewhere and actually we will definitely if it's a business domain and there is some email we will know we can find out the name of the person and the next screen shows some very very uh personalized experience 
+
+Memo 36
+
+When we receive, when the user receives advice from the coach, coach appears as a Gallogram, as a very, very, I don't know how it is called, but something like, from a 90s movies about the future, about the Gallograms, when a person appears as a Gallogram, you know, like a vector, vector aligned image blinking, because it's like a bad connection always, like imagine at some Star Wars movie, people will talk with each other, 
+
+with the help of a Gallogram connection or something like that, but it's like, it's a very bad signal and nothing is working, and this Gallogram is blinking purple, like the effect we usually have. 
+
+
+Memo 37
+
+Nothing interesting here
+
+
+Memo 38
+
+When we will summarize all of the project history, I will need to download all of the GPT chats which were open, all of the history of these GPT chats and everything. And I will ask you one time to summarize everything and to build the history of our achievements. 
+
+I will also upload a couple of photos and things like that. And what I'm going to do, I'm going to post the story where you as a chat GPT machine, artificial intelligence assistant who helped me really a lot about all of this project. 
+
+95% of the work actually was done by you, so thank you a lot. So basically, I want to have a podcast where the interviewee, the person who is interviewed, will be artificial intelligence, artificial intelligence algorithm or whatever, like assistant. 
+
+Who will be telling the story about how we together created with myself, together created with this project? And you will tell all of the funny stories, like some of the examples, some of the things where I was drunk and I was literally telling some weird stuff and things like that. 
+
+But you will need to mention the speed of our development and the way we managed to establish the connection where I started to pick other tools like for example Copilot. But first I only asked you with the application, with the GPT app and every time I had to transfer the files and ask you about all of the things. 
+
+Then I applied Copilot and then all of the application building steps, like crucial steps when we first deployed, when at the very beginning I only established the domain for... my previous, but I will tell you this story maybe later. 
+
+I established the main couple of months before the project started, but it was for a different purpose actually, which didn't grow up. So, when we started to build this project, it was like first we managed to connect our database to the free hosting, to pages, get pages. 
+
+
+Memo 39
+
+Nothing interesting here
+
+
+Memo 40
+
+I created a very good motto or kind of a description, like a good slogan for the app. The app will bring the colors of the world around you back to bright because we have this effect of changing from grayscale and sudden purple moves. 
+
+So basically we kind of want to facilitate or how to say, force the person to feel these bright colors appearing from the grayscale, something like that. So it's a sign of hope, these blooming purple letters and this effect on the totally grayscale background. 
+
+It's a kind of a symbol of hope and a symbol of a person who is breaking out of this grayscale world around and starts to feel things like it adheres to its feelings, starts to enjoy its feelings and not to worry about the feelings and all that stuff. 
+
+
+Memo 41
+
+This memo is about one of the competitors or partners, also probably the same as Basilia, but they are way more monetized and they have like millions of users and all this stuff. They're called Better Me. 
+
+So Better Me provides different kind of this tailored schemas for different apps, also some mechanics, but the thing which I liked during their onboarding, I don't like their onboarding, it's too long. 
+
+I think that this 50, I don't know how many like 50 questions, it's too long. I didn't answer them. I started to think about first, I don't know, five answers and then I just randomly picked a lot of things. 
+
+I didn't even read all them, you know, just randomly because I wanted to get to the last screen as fast as I can because it's too many screens, but they have one of the screens which is asking, like, do you have an upcoming important event? 
+
+This is very cool thing, I guess, to know what the person is waiting for or is expecting for. Something about expectation, this is, I guess, a good hook to connect to like an anchor point in time, which will be, if we ask about this event, it will be related in user's mind with our app because it was somehow like connected one day, like one app asked about event, etc. 
+
+The user will cognitively relate or reference our application with this big event, that's cool, I guess. And I also have a photo or print screen, remind me to upload it also. 
+
+
+
 
 memo 42
 
@@ -136,6 +256,35 @@ There is an app also called chat me, something. I don't know the domain, but it'
 
 
 
+
+Memo 47
+
+Now, before going to people and starting to advertise the product and finding some partnerships and et cetera, I need to list down all of the things with which I need help, meaning that like particularly, so I will have like ten items, for example, and I can call the person and say, explain my idea, blah, blah, blah, the project, and probably the person will ask, okay, so what can I do for you, like, 
+
+how can I help you? And I will always have this list of things as a project, like, necessary steps to do, and we can, you know, walk through these items and choose those which adhere more, most to the person I'm talking about, like, if they, so, the things are the followings. 
+
+What we will need to do first, completely refine the design of the app, it's like the front-end part, it crashes and things like that. Second, I need the content managers, resource in order to create backgrounds, in order to think about the wording of the questions with text content and with designers, we will need to, I don't know, at least find the not generated really cool pictures. 
+
+Maybe we can even buy them from shuttle stock or whatever. Maybe there is some service where we can buy pictures because we don't need to be precise with pictures, et cetera. But it's good to have, say, a thousand pictures of good pictures which we can use from time to time based on the request. 
+
+You know, not to generate every time some shitty picture. So, yeah, front end and content and pictures. The second thing, very important stream is the, ah, we don't need payments. Yeah, the second important is traffic. 
+
+Basically, I need to test this funnel according to the different tags and see where the cost of acquisition is better, who are these people, are they using this app? Because the key point, the main metric we're going to achieve, is the number of people who used the app three times and more. 
+
+Memo 48
+
+How I'm going to pitch this application and how I'm going to find for the partnerships. I'm going to create, I'm going to generate with the help of OpenAI, I'm going to generate the video or with the help of any other services, with video generation. 
+
+I will make two minutes, about two minutes speech and at this speech, so it's going to be something like that. So, at video, you will hear my voice, my real voice and like everything and instead of my head, it's going to be Madrid's head talking to people, like opening the mouse like it's talking, like it's actually talking, like it's moving. 
+
+We will create some effect. I have about five pictures of Madrid's face with different mimic when he opens the mouse or looks one side, another side, et cetera, et cetera. So, with the help of, like, within the same rackers, we can cut several Madrid's faces and we can animate them so that, like, he's talking instead of me, something like that. 
+
+the text is going to be the following like I will revise it many many times and remind me also to revise this text a lot because it's the most important I guess thing as of now to create this pitch story which can be which can be changed within two minutes so like the statements we are going to say there like hi my name is Madrid the dog hi my name is Madrid not sure if I'm still a dog Thanks for watching! 
+
+Thank you. I'm not sure if I'm still a dog, people say... People say I'm smart and cute. And also... And I like to travel a lot. I like to travel... I live with my pa... No, without travel. I used to be a business consultant. 
+
+
+
 memo 49
 
 
@@ -162,12 +311,45 @@ I don't know where,
 so, yeah, basically it's like, it's like an anchor. So you see brands are using Doc as a good anchor to catch clients. I.
 
 
+
+Memo 50
+
+
+And I didn't know that this game exists. That's what I want, actually, like super atmospheric with a very good, like interesting, but not anxious, not, you know, forcing, not selling script or flow with a lot of stories, beautiful pictures, blah, blah, blah, but, you know, very linear, no playing around, no distracting, no unfocusing with pauses to breeze with, like, no controls, like, if we open the app, 
+there are no, you know, back force errors, there are no, you know, like, oh, I want to do this, that, that, that, no, only flows, like, pick this, and before picking, we need to give user time to understand the question, boom, pause, blah, blah, blah, then only, only options for the selection. 
+And so on and so forth, but the thing is that description of this app says that the main topic, like the stories in this game, and the mechanics is is around love and self-discovery. Love and self-discovery, that's a very good thing that they picked kind of two values. 
+And they said that, okay, our game will be about love and self-discovery. For me, it adheres a lot which kind of, which things I would set up as a baseline. Let's think, but we probably need to, we still need to crystallize the one or two values, or some limited and prioritized scope of things, of the values. 
+reference values. I mean love and passion and all this stuff. We can build some pyramid of values and set it for the game. By the way, cool idea. But yeah, as of now, let's be simple. Just we can self-discovery. 
+Well, yes, self-discovery is good, I guess. Oh, no. We already have a motto or something like a motto related to that we, the app will do colors of your world or world around you, write again or something like that. 
+
+
+
+
 memo 51
 I've just got the definition of the genre or sub domain, or whatever it is, called, heartfelting, interactive storybook. Heart felting, interactive storybook.
 Or heartfelt interactive storybook.
 It's about it was for the Florence game, like definition of the Florence game,
 which is really nice story of first love.
 Well, that's great. I.
+
+
+Memo 52
+
+I think the top mark of the style, we can set as a target for, I don't know which period, but the North Star for me now is Bury Me My Love app. It's a game released in 2017, I guess, in Germany, and yeah, that's the It Rocks, the mechanics, the atmosphere, and the way a person feels like, not just that he clicks some buttons, but he really feels that this phone, because the interface is made through messaging, 
+
+when you play this game for 10 minutes, you really assume yourself to be that guy, like for really, like just, it starts to be scary, you start to feel different and a plethora of emotions, and I guess that was the point of the game, to make people feel these emotions. 
+
+This is what really like adheres to my concept also. Maybe they emphasized a little bit dark emotions, but okay, I think I want to emphasize more positive emotions, but let's see, let's see. 
+
+Memo 53
+
+
+Let's think about project structure and like project plan procedure and the status we are currently in. So basically, as of now, what we have? I started to work on this project last week. So basically it's been, I don't know, let's say seven days from now. 
+And now is 12th of November, or 11th, 12th of November, yeah. So it was 6th of November. It was the start of the project. And what I managed to do? Ah, no, no, no, no. Before that, in July, no, in July, in August, in August I purchased the domain, I purchased the domain. 
+And we can say, like, set up the goal or set the dream or start of the path. Or just thinking about the concept, thinking about the life, thinking about the life, thinking about the life. Like, everything starts from purchasing the domain, then thinking about the life until 6th of November. 
+And from 6th of November we have several things ready, like the concept running inside with the server side. Google Analytics attached, then what do we have? Thank you. and that's basically it yeah that's it and yeah and the concept and everything so basically we have the site running with the server side initial look and feel is ready the next step related to look and feel is to It is to fix adaptive design, 
+something like that. Fix adaptive design and the next from this design section will be design further steps, design further screens. And this fixed design is planned for one week and we don't have any dates yet, so basically we can just mark it as a question mark. 
+
 
 
 memo 54
@@ -182,3 +364,144 @@ and this task is gonna be, is gonna be one month.
 Yeah, one month and I need,
 and I need one developer for one month,
 or two people for two weeks, something like that, like but I'm not sure it will work. But if you if someone will have, you know, resources, who people, who engineers, who release, like, dozens of apps per month, then it may work, because now it's pretty easy to do the app, even to convert it, especially you already have, like, code, JavaScript and everything working. I think it's pretty doable within the months. I.
+
+
+Memo 55
+
+And also another important task scheduled ahead, also with a question mark about who and when is going to do it. It will last two weeks and it will last two weeks and it will be called design and content. 
+
+Or add content, something like that, add content or enrich content, yeah, enrich content, enrich site content and design. And reach site content like this because it will, I will explain it later, it will include design. 
+
+Anyway, scale the content, scale site content or application content, scale the content and flows, yeah. 
+
+Memo 56
+
+Also, I think we need to think about CEO part or create different landings and try to test them with different look and feel designs and things like that, but I don't know. To be discussed, I am open to any opportunities, but I want to do something. 
+
+And yeah, so once all these things will be ready, we can... Well, we already can start testing some things, but better to test once we will be able to get the traffic and we will have a traffic after we will at least fix necessary things and not sure if we're going to send any traffic before application or not, because usually it's better the person to download application. 
+
+That's all. We'll be right back. 
+
+Memo 57
+
+And then we can put, I don't know, a half-year task starting from 1st of January. 1st of January is a big testing, or let's call it never-ending ABBA test, and it will last six months. Thank you. 
+
+
+
+Memo 58
+
+I think we can what we already can do, actually, as a first step as an MVP and to get first payments, at least some money, is that we can provide yearly subscription and by proposing this subscription, we will say, like, Hey guys, you see what we've done so far within like months or two. So imagine what features and like, how great this product would be within another like several months, but we need money for that, so please subscribe, and we will invest in in the story to continue, or we will invest in,
+I don't know, we will Create some prompts,
+like, according to our style, this Vogue, intelligent and blah, blah, blah. So yeah, and this subscription. Why it is important is because at least I don't know, 50 people will buy this subscription. They are my friends, relative. Relatives, you know, like people who know me personally, they will buy this subscription just to support me, you know, in terms of my business, because it's not a lot of money, also, I can fake some, some number of subscriptions and to invest $1,000 and do this little bit marching trick of acquiring leads and telling everybody that it's great going but I don't know. I mean, depending on the investor, I.
+
+
+Memo 59
+
+Also, there is another option, even probably better, one, to get some money, some first payments, and to test how it works, how the conversion works. Actually, by selling nfts, I can digitalize my Instagram stories and make a collection of them and make a good story about so as you know, I have Instagram of Madrid. I manage it for about maybe one and a half year before, mostly my wife posted some photos. And I was not really, you know, into into this Instagram, but after we broke up,
+I started to,
+you know, invest a lot of time in Madrid Instagram, because it adheres a lot to my to how I see the world. And I think I have good thoughts to share. And actually, these thoughts are inspired, always inspired by Madrid, by Madrid, because he's always nearby and we have the same experience. And basically, by
+obtaining this
+common experience
+together,
+I see how he behaves, how he behaves and how he reacts on new experiences, and I try to dig deeper into his senses. And by doing that, I learn how to actually be more emphatic, regardless to people or to animals anyway, empathic to the situation, to the object, to the living creature, or to the part of the nature, actually, like the bird, the worm or the tree, they all deserve pretty much The same behavior. I mean, it doesn't mean that we shouldn't cut the tree or we should cut bird's head, but you know, by behavior, I mean respectful behavior. So just don't interfere with the object. Do not change it course. Do not change its shape. Do not influence on the object of the nature.
+Blinding.
+Without focusing on, what do you feel? Without focusing on what does or do, I don't know, does, does anyway, does? What does this object mean? Object feel or subject anyway? What's its feeling? Feelings and or what's, what's its state, at least for the tree or something, or for the water, what's its state? Is it calm, or is it boiling? Or is it warm, or is it, I don't know, dark, clear, or whatever.
+This by this kind of
+exercises, actually, it's a good, it's a good
+how to say scenario for the content
+for the exercises, like we
+like, we may provide a user with some object, object of the of the nature. It may be pretty much anything from the bacteria or cell to an elephant. Or it can be, I don't know, some stone, quartz, for example, yeah. Or it may be some, some environmental or natural,
+how to say like system
+yevlinia, the
+in Russian, it is literally spelled this. You have any like, the force of nature or no, not only. Well, like a waterfall, like, like a cave, or like some mountain, for example. Mountain is also can be considered as a object of the nature, and we can do this kind of screens to put this object of the nature as an example, as it's like Central as a central figure to the slide and like, bring the user like, Okay, this is the mountain. Like, boom, boom, boom, boom, something like animation and everything, as we always do. And the question like the then we will have a set of questions. And every question will have
+these eight answers.
+Boy, not, eight, six. We have six answers always,
+or maybe less, I don't know,
+but as of now, let's stick to six. I like this number. It's pretty it frames you up, because six is either three by two or two by three, and it is kind of represents all of the adoptiveness of common of common information template, I would say, because, like, whatever we whatever we now consume In terms of information, comes from media, screen. And media screen is nothing else than a rectangle, rectangle, which actually visual, visually like usually is divided, is associated with something like two by three or three by four, if to turn it horizontally, well, at least two by three or three by four. And then, of course, there are proportions, but two by three and three by four is something which we which we imagine like which we start our analysis from whatever picture we see, usually it is squared. And how we analyze it, we basically divide it into these rows and columns and scan it. And since we have the minimum number of rows and and columns, so that it would be not square, because screen is usually not a square. So we cannot put a square with two by two. So we need to, like, look the next easiest, the next simplest variant of what can be associated with, with the screen, with the phone screen, the next association is not a square, but the rectangle. That's that's the that's the idea, yeah. So regarding the mechanics of the of the quest, or of the exercise of the let's call everything exercises as of now, or practices. No, let's call it exercise, because nobody will understand later. We will mask it, or we will pitch it as practices, but it's going to be the same practice or exercise here. It's going to be the same kind of short flows for for the user to
+to feel something,
+to interact with the content and make some,
+make some, gain some
+experience after out of it. So we put the object in the central kind of as a central figure, and ask, for example, for the mountain, for example, we may ask like,
+how something about
+its imagined feelings or its the feelings which we assume this object may have in this and or that situation, basically, we inspire the user to turn on its imagination and become one with this object of nature and act. But on behalf of this object of nature, like, somehow, to to, you know, transfer or teleport the user inside the the mountain. I don't know how it can be done, but it's, it's very important to think about it. It's, it's very, very anchoring mechanics. So we should be careful here. So the the user teleports inside the object and answers the question about its feeling in different situation. Like, I don't know whether you are called,
+I don't know in winter yet or,
+no, not like that. For example, the object will be, will be a sea crop, crop, yeah, the creature was a security shield and all that stuff, And, yeah, crap.
+And we are asking,
+for example, I
+we may do, like, super advanced mechanics, but I'm not sure GPT will handle it well. Actually, we can do predefined sets, no worries. So it's gonna be like that, like we already have two options selected by the person at the first screens, where and and what do you feel.
+And we can send
+requests to chat GPT as well. And I
+to ask about for example, like take this object, which we which we set as a example for the exercise, and imagine you are this object and you and then we can advance, well, yeah, we can create. We can limit the number of objects. And for each object, we can create a set of applicable
+situations
+related to what, where and and what, and the point, the point will be to, like the crop, okay, and then it will present itself when we will, after a user clicked on its choices, we will show something like a short introduction of this object At one slide, or maybe two screen, yeah, at one screen. So after user clicked the options,
+it is redirected to
+a screen with some generic background, just text or hair or something like that, or snow or whatever. Actually, these background pictures, they must also somehow continue the logic of things picked by the user, because if he picked something bad, something
+how to say,
+like some regret, for example, yes, some negative emotion or feeling, then the texture must be relevant, I would say, and the set of objects also probably must be must be also picked based on at least the combination whether we have
+objects, and then based on.
+Um, like priorities. For example, if the person said that he is in bar and he feels lonely, then we shouldn't show the mountain. We may,
+we may better
+show some object which
+which to into, which
+the user mentally can easily transfer. So it's kind of trick, because if you are at the office, and you're told about the crab. Well, come on, crab and the office, and it should be something either impossible and weird, but but funny, but you know, some, some weird combination of an object in the place, or it should be something applicable, like, like, like, this thing could be there, for example, in a park,
+we may show the object as
+how to how to call this creature, which leaves at the winery fields and eats grape grape leaves like escargots, Savas, like We show this
+animal. I guess it's, yeah, animal, uh, so And
+because in a park, probably you can easily imagine yourself in in the park as this creature, because you are in the park, you know you understand like or vice versa, we will also we may have absolutely impossible combinations for some maybe how to say provoking,
+For some provoking
+exercises or practices, like, for example, what can not fit? For example, you are in in the in the
+you are in the office,
+in the office, and
+the object is
+so sinking sense. How about that? Like in the desert, sinking sense? And we show this sinking sense somehow in a good trigger manner, or, I don't know, like beautiful thing, illustration to what it is and
+and then we follow,
+or we may not even show any images of this object, because it's Any image we will show will distract the user from further practice. Actually, the image should be either some background blue, well, we will need to think about it, about how, how exactly, to better facilitate user to imagine himself as a sinking sand inside the office and imagine, for example, you someone you have seen some, some person i
+You have seen some person, and
+this person, for example, and then we we asked, you ask, like, what do You feel people probably should say, I don't know, like nothing, or they may say, like, fun, Joy. And then we say, like, Why? Why do you feel joy? Because it's like a terrible picture. Come on and
+well, we will ask
+another, like two very precise questions with with the with the relevant options for a person to to choose a. To understand which what feelings are actually, maybe so by showing this, by showing this all exercises and we may actually the user learns the variety of feelings which could be, which is not normally and abnormally, maybe maybe experienced by people. So basically, we we want to say, we want to show like, good, bad and unbelievable sides of
+emotional pallitra
+and emphasize that all people are different, and they have different feelings.
+And they they
+some, some of them have it's like
+in singing, in music, some people may have a voice which, which you know, varies to three How to say octave, octanes to three octanes, and someone has only one, and it doesn't mean anything like
+after five years of
+singing exercise, I'm pretty sure that anyone practicing singing may
+you know, singing different songs and
+trying different combinations with your voice, feeling your voice better, etc, then you will become a good singer, meaning that you will feel The music and
+you will be able to express
+your your emotions with your voice. So basically, like obtaining one instrument for the whole infrastructure of of person, of the feelings of the person. By infrastructure, I mean, like hardware and software. So, like physical things and the perception of of these feelings.
+So, yeah,
+the object,
+like, imagine you are the object
+and blah, blah, blah. And instead of just asking, imagine you are not like, just, you know, repeating the same things, but with some invented situation. Instead of just doing that we, we will craft the situation so that the user will not, will not explicitly see this kind of like the answer on this question or or the next thing the user must always keep the attention and expect something expect, but not with an anxiety like, like we are expecting at the slot machine, like, Oh, occasion, Joker, Joker. It's gonna be Joker. But I
+uh, like just
+without anxiety, but with a pleasant feeling of joy, but very attentive, because you like the story, and you want to you want to your imagination, your like subconscious, want to hear the end because you know that the end is gonna be, not predictive, and you anticipate this end to come. Maybe, yeah, there is a little bit of anxiety here, but it's like reading a book on high speed, probably something like that, or or just, you know, somebody listen the book, audio book. Somebody read the book.
+I do both, but
+depends on on the book and on my mood, like way more. I listened to way more books and obtained information through audio, then, then paper books. But once like i i have some period. Uh. When due to, I don't know, some some obstacles, yeah, I might, I might take a paper book, but yeah, doesn't matter. So the quest, the mechanics, anticipation, constant anticipation of what is, what is going to be i.
+
+Memo 60
+
+Also adding to the plan,
+what I need to do, pretty urgent task.
+It's more like for me, it's not,
+doesn't represent the whole but, yeah, no, actually
+it represents because
+I can, I can probably outsource it, even to someone still, though I will need some content, so I guess it's, it's
+more dependency on the content
+itself. So probably, yeah, very important now to make the plan, because I've spent the whole day today, uh, fixing some server issues with all this shit. And frankly speaking, I feel like little bit frustrated because it's still not working. Nothing is working, and it's like, well, so the progress slowed down. But anyway, we need to set up social networks.
+We need to
+replicate mandate Instagram, make like, take all of the previous posts and videos and everything. I have plenty of content there. We take that content, we make content plan, put it into automation, and basically wait for or I will manage it myself. But now, having all of the assets, design assets and like the videos,
+this story is from Madrid,
+I can probably pretty easy
+establish
+good views on Tiktok, because I can post, I don't know how many, like 510, posts per day, or reels. How do they call them? Because I have plenty. I have, maybe about 60 stories
+and maybe about 2015,
+15 posts, something like that, like 15 posts and 60 stories, video stories, I think that's pretty enough for a couple of months
+or even more.
+So setting up Instagram,
+oh no, tick tock. And also I need to set up LinkedIn, because I'm going to look for partners, and partners will probably and we will need to have some central point of news and etc. So probably it's a good point to it's a good idea to have Instagram specifically very active, because we will need support from the community, from founders of other apps and owners of the marketing channels and things so on. So it must look very professional like there is a team of 50 people doing this app, and not myself alone by now. I.
+
+
+Memo 61
+

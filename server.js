@@ -8,6 +8,8 @@ import OpenAI from "openai";
 
 const app = express();
 
+const openai = new OpenAI(process.env.OPENAI_API_KEY);
+
 // Define your routes here
 app.get('/', (req, res) => {
   res.send('Server is running!');
