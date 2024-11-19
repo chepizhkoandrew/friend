@@ -1,27 +1,16 @@
 const http = require('http');
+const express = require('express');
 const fs = require('fs');
 const path = require('path');
 const axios = require('axios');  // For making HTTP requests to OpenAI or external APIs
 const querystring = require('querystring');
-const { Configuration, OpenAIApi } = require('openai');
 
-const app = express();
-dotenv.config();
+const openai = require('openai')
 
-const PORT = process.env.PORT || 3000;
+const oaiClient = new openai.OpenAI();
 
-// Enable CORS for all routes
-app.use(cors());
-app.use(express.json());
+const port = process.env.PORT || 4000;
 
-// Environment variable for OpenAI API key
-const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
-
-// Configure OpenAI API
-const configuration = new Configuration({
-  apiKey: OPENAI_API_KEY,
-});
-const openai = new OpenAIApi(configuration);
 
 // Create an HTTP server
 const server = http.createServer((req, res) => {
@@ -82,20 +71,26 @@ const server = http.createServer((req, res) => {
 
       // Make a request to the OpenAI API (or another API)
       try {
-        const completion = await openai.createChatCompletion({
-          model: 'gpt-4',
-          messages: [
-            { role: 'system', content: 'You are a helpful assistant.' },
-            { role: 'user', content: question },
-          ],
-          max_tokens: 50,
+        
+        const completion = await oaiClient.chat.completions.create({
+            model: "gpt-4o-mini",
+            messages: [
+                { role: "system", content: "You are a helpful assistant." },
+                {
+                    role: "user",
+                    content: question,
+                },
+            ],
         });
+        
+        console.log(completion.choices[0].message);
 
         // Return OpenAI's response
-        const answer = completion.data.choices[0].message.content;
+        const answer = completion.choices[0].message.content;
         res.statusCode = 200;
         res.setHeader('Content-Type', 'application/json');
         res.end(JSON.stringify({ answer }));
+
       } catch (error) {
         console.error('Error calling OpenAI:', error);
         res.statusCode = 500;
@@ -114,6 +109,6 @@ const server = http.createServer((req, res) => {
 });
 
 // Start the server
-server.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+server.listen(port, hostname, () => {
+  console.log(`Server running at http://${hostname}:${port}/`);
 });
