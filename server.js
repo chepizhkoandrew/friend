@@ -1,95 +1,113 @@
-// Import necessary modules
-import dotenv from 'dotenv';
-dotenv.config();
-import express from 'express';
-import axios from 'axios';
-import cors from 'cors';
-import OpenAI from "openai";
+const http = require('http');
+const fs = require('fs');
+const path = require('path');
+const axios = require('axios');  // For making HTTP requests to OpenAI or external APIs
+const querystring = require('querystring');
 
-const app = express();
+const openai = require('openai')
 
-const openai = new OpenAI(process.env.OPENAI_API_KEY);
+const oaiClient = new openai.OpenAI();
 
-// Define your routes here
-app.get('/', (req, res) => {
-  res.send('Server is running!');
-});
+const hostname = '127.0.0.1';
+const port = 3000;
 
+// Create an HTTP server
+const server = http.createServer((req, res) => {
+  // Serve the static files from the /public directory
+  if (req.method === 'GET' && req.url === '/') {
+    fs.readFile(path.join(__dirname, 'public', 'index.html'), (err, data) => {
+      if (err) {
+        res.statusCode = 500;
+        res.setHeader('Content-Type', 'text/plain');
+        res.end('Error reading the index.html file.');
+        return;
+      }
 
-app.get('/health', async (req, res) => {
-  try {
-    // Check OpenAI API connectivity
-    const openaiCheck = await openai.createChatCompletion({
-      model: 'gpt-4',
-      messages: [{ role: 'system', content: 'Health check' }],
-      max_tokens: 5,
+      res.statusCode = 200;
+      res.setHeader('Content-Type', 'text/html');
+      res.end(data);
+    });
+  }
+  else if (req.method === 'GET' && req.url === '/styles.css') {
+    fs.readFile(path.join(__dirname, 'public', 'styles.css'), (err, data) => {
+      if (err) {
+        res.statusCode = 500;
+        res.setHeader('Content-Type', 'text/plain');
+        res.end('Error reading the styles.css file.');
+        return;
+      }
+
+      res.statusCode = 200;
+      res.setHeader('Content-Type', 'text/css');
+      res.end(data);
+    });
+  }
+  else if (req.method === 'GET' && req.url === '/client.js') {
+    fs.readFile(path.join(__dirname, 'public', 'client.js'), (err, data) => {
+      if (err) {
+        res.statusCode = 500;
+        res.setHeader('Content-Type', 'text/plain');
+        res.end('Error reading the client.js file.');
+        return;
+      }
+
+      res.statusCode = 200;
+      res.setHeader('Content-Type', 'application/javascript');
+      res.end(data);
+    });
+  }
+
+  // Handle POST request to /ask (when user submits a question)
+  else if (req.method === 'POST' && req.url === '/ask') {
+    let body = '';
+
+    req.on('data', chunk => {
+      body += chunk;
     });
 
-    res.status(200).json({
-      status: 'OK',
-      uptime: process.uptime(),
-      timestamp: new Date().toISOString(),
-      dependencies: {
-        openai: 'Connected',
-      },
+    req.on('end', async () => {
+      const { question } = JSON.parse(body);
+
+      // Make a request to the OpenAI API (or another API)
+      try {
+        
+        const completion = await oaiClient.chat.completions.create({
+            model: "gpt-4o-mini",
+            messages: [
+                { role: "system", content: "You are a helpful assistant." },
+                {
+                    role: "user",
+                    content: question,
+                },
+            ],
+        });
+        
+        console.log(completion.choices[0].message);
+
+        // Return OpenAI's response
+        const answer = completion.choices[0].message.content;
+        res.statusCode = 200;
+        res.setHeader('Content-Type', 'application/json');
+        res.end(JSON.stringify({ answer }));
+
+      } catch (error) {
+        console.error('Error calling OpenAI:', error);
+        res.statusCode = 500;
+        res.setHeader('Content-Type', 'application/json');
+        res.end(JSON.stringify({ error: 'Error calling the OpenAI API.' }));
+      }
     });
-  } catch (error) {
-    res.status(500).json({
-      status: 'ERROR',
-      uptime: process.uptime(),
-      timestamp: new Date().toISOString(),
-      dependencies: {
-        openai: 'Disconnected',
-      },
-      error: error.message,
-    });
+  }
+
+  // Handle other routes (404 Not Found)
+  else {
+    res.statusCode = 404;
+    res.setHeader('Content-Type', 'text/plain');
+    res.end('Not Found');
   }
 });
 
-
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+// Start the server
+server.listen(port, hostname, () => {
+  console.log(`Server running at http://${hostname}:${port}/`);
 });
-
-
-
-// Enable CORS for all routes
-app.use(cors());
-app.use(express.json());
-
-
-console.log('OpenAI API Key:', process.env.OPENAI_API_KEY ? 'Loaded' : 'Missing');
-
-
-
-
-
-
-
-app.post('/api/gpt', async (req, res) => {
-  console.log('Request received on /api/gpt with body:', req.body); // Log request body
-  const { exerciseoneprompt } = req.body;
-
-  if (!exerciseoneprompt) {
-    console.log('Error: Missing exerciseoneprompt in request body.');
-    return res.status(400).json({ error: 'Prompt is missing from the request.' });
-  }
-
-  try {
-    console.log('Sending request to OpenAI API...');
-    const response = await openai.createChatCompletion({
-      model: 'gpt-4',
-      messages: [{ role: 'assistant', content: exerciseoneprompt }],
-      max_tokens: 50,
-    });
-
-    const joke = response.data.choices?.[0]?.message?.content?.trim();
-    console.log('Response from OpenAI API:', joke);
-    res.json({ joke });
-  } catch (error) {
-    console.error('Error occurred while calling OpenAI API:', error.response?.data || error.message);
-    res.status(500).json({ error: 'Failed to fetch data from OpenAI API' });
-  }
-});
-
