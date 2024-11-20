@@ -1,46 +1,45 @@
-const http = require('http');
-const express = require('express');
-const fs = require('fs');
-const path = require('path');
-const axios = require('axios');  // For making HTTP requests to OpenAI or external APIs
-const querystring = require('querystring');
+// Import necessary modules
+import dotenv from 'dotenv';
+dotenv.config();
+import express from 'express';
+import axios from 'axios';
+import cors from 'cors';
+import OpenAI from "openai";
 
-const openai = require('openai')
+const app = express();
 
-const oaiClient = new openai.OpenAI();
+// Define your routes here
+app.get('/', (req, res) => {
+  res.send('Server is running!');
+});
 
-const port = process.env.PORT || 4000;
 
-
-// Create an HTTP server
-const server = http.createServer((req, res) => {
-  // Serve the static files from the /public directory
-  if (req.method === 'GET' && req.url === '/') {
-    fs.readFile(path.join(__dirname, 'public', 'index.html'), (err, data) => {
-      if (err) {
-        res.statusCode = 500;
-        res.setHeader('Content-Type', 'text/plain');
-        res.end('Error reading the index.html file.');
-        return;
-      }
-
-      res.statusCode = 200;
-      res.setHeader('Content-Type', 'text/html');
-      res.end(data);
+app.get('/health', async (req, res) => {
+  try {
+    // Check OpenAI API connectivity
+    const openaiCheck = await openai.createChatCompletion({
+      model: 'gpt-4',
+      messages: [{ role: 'system', content: 'Health check' }],
+      max_tokens: 5,
     });
-  }
-  else if (req.method === 'GET' && req.url === '/styles.css') {
-    fs.readFile(path.join(__dirname, 'public', 'styles.css'), (err, data) => {
-      if (err) {
-        res.statusCode = 500;
-        res.setHeader('Content-Type', 'text/plain');
-        res.end('Error reading the styles.css file.');
-        return;
-      }
 
-      res.statusCode = 200;
-      res.setHeader('Content-Type', 'text/css');
-      res.end(data);
+    res.status(200).json({
+      status: 'OK',
+      uptime: process.uptime(),
+      timestamp: new Date().toISOString(),
+      dependencies: {
+        openai: 'Connected',
+      },
+    });
+  } catch (error) {
+    res.status(500).json({
+      status: 'ERROR',
+      uptime: process.uptime(),
+      timestamp: new Date().toISOString(),
+      dependencies: {
+        openai: 'Disconnected',
+      },
+      error: error.message,
     });
   }
   else if (req.method === 'GET' && req.url === '/client.js') {
