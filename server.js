@@ -16,36 +16,6 @@ app.get('/', (req, res) => {
 });
 
 
-app.get('/health', async (req, res) => {
-  try {
-    // Check OpenAI API connectivity
-    const openaiCheck = await openai.createChatCompletion({
-      model: 'gpt-4',
-      messages: [{ role: 'system', content: 'Health check' }],
-      max_tokens: 5,
-    });
-
-    res.status(200).json({
-      status: 'OK',
-      uptime: process.uptime(),
-      timestamp: new Date().toISOString(),
-      dependencies: {
-        openai: 'Connected',
-      },
-    });
-  } catch (error) {
-    res.status(500).json({
-      status: 'ERROR',
-      uptime: process.uptime(),
-      timestamp: new Date().toISOString(),
-      dependencies: {
-        openai: 'Disconnected',
-      },
-      error: error.message,
-    });
-  }
-});
-
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
