@@ -1,0 +1,58 @@
+{
+    "HOME": [
+      {"name": "Rest", "color": "#FF5733"},
+      {"name": "Cozy", "color": "#33FF57"},
+      {"name": "Mess", "color": "#3357FF"},
+      {"name": "Dream", "color": "#FF33A1"},
+      {"name": "Heavy", "color": "#FF8C33"},
+      {"name": "Warm", "color": "#FF5733"}
+    ],
+    "STREET": [
+      {"name": "Rush", "color": "#FF5733"},
+      {"name": "Watch", "color": "#33FF57"},
+      {"name": "Lost", "color": "#3357FF"},
+      {"name": "Free", "color": "#FF33A1"},
+      {"name": "Alert", "color": "#FF8C33"},
+      {"name": "Quiet", "color": "#FF5733"}
+    ],
+    "LOVE": [
+      {"name": "Close", "color": "#FF5733"},
+      {"name": "Doubt", "color": "#33FF57"},
+      {"name": "Safe", "color": "#3357FF"},
+      {"name": "Open", "color": "#FF33A1"},
+      {"name": "Hurt", "color": "#FF8C33"},
+      {"name": "Glow", "color": "#FF5733"}
+    ],
+    "WORK": [
+      {"name": "Focus", "color": "#FF5733"},
+      {"name": "Stress", "color": "#33FF57"},
+      {"name": "Pride", "color": "#3357FF"},
+      {"name": "Tense", "color": "#FF33A1"},
+      {"name": "Growth", "color": "#FF8C33"},
+      {"name": "Dull", "color": "#FF5733"}
+    ],
+    "TRANSPORT": [
+      {"name": "Wait", "color": "#FF5733"},
+      {"name": "Flow", "color": "#33FF57"},
+      {"name": "Late", "color": "#3357FF"},
+      {"name": "Still", "color": "#FF33A1"},
+      {"name": "Move", "color": "#FF8C33"},
+      {"name": "Crowd", "color": "#FF5733"}
+    ],
+    "BAR": [
+      {"name": "Loud", "color": "#FF5733"},
+      {"name": "Open", "color": "#33FF57"},
+      {"name": "Play", "color": "#3357FF"},
+      {"name": "Hide", "color": "#FF33A1"},
+      {"name": "Thirst", "color": "#FF8C33"},
+      {"name": "Bold", "color": "#FF5733"}
+    ],
+    "DOG_CAN_HELP_YOU": [
+      {"name": "GO PLAY", "color": "#FF5733"},
+      {"name": "LIVE TALK", "color": "#33FF57"},
+      {"name": "SEE EXAMPLE", "color": "#3357FF"},
+      {"name": "INSTAGRAM", "color": "#FF33A1"},
+      {"name": "DONATE", "color": "#FF8C33"},
+      {"name": "START AGAIN", "color": "#FF5733"}
+    ]
+  }

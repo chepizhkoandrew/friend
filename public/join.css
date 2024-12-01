@@ -1,0 +1,291 @@
+/* Import the font from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bleeding+Cowboys&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=VTKS+Revolt&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Eater&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Monoton&display=swap');
+
+/* Basic Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: 'Eater', cursive;
+}
+
+.container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: flashlightEffect 10s infinite; /* Reuse the animation from calm.css */
+
+}
+
+/* Background Image */
+.background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('/images/IMG_2412.jpg');
+  background-size: cover;
+  filter: grayscale(80%) brightness(120%) contrast(110%); /* mostly grayscale */
+  animation: flashlightEffect 10s infinite;
+  background-position: center;
+  z-index: -1; /* Keep it behind other content */
+}
+
+.background::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(128, 0, 128, 0.2); /* Transparent purple overlay */
+  mix-blend-mode: screen; /* Ensures it blends well with the background */
+  z-index: 2; /* Above the background but below the content */
+}
+
+/* Keyframes for Blinking Effect */
+@keyframes neonBlink {
+  0% {
+    box-shadow: 0 0 20px 20px rgba(128, 0, 128, 0.2);
+  }
+  20% {
+    box-shadow: 0 0 40px 40px rgba(255, 0, 255, 0.4);
+  }
+  40% {
+    box-shadow: 0 0 60px 60px rgba(128, 0, 128, 0.6);
+  }
+  50% {
+    box-shadow: 0 0 100px 100px rgba(255, 0, 255, 1); /* Sudden flash of bright purple */
+  }
+  60% {
+    box-shadow: 0 0 60px 60px rgba(128, 0, 128, 0.6);
+  }
+  80% {
+    box-shadow: 0 0 40px 40px rgba(255, 0, 255, 0.4);
+  }
+  100% {
+    box-shadow: 0 0 20px 20px rgba(128, 0, 128, 0.2);
+  }
+}
+
+@keyframes flashlightEffect {
+  0% {
+    box-shadow: 0 0 50px 50px rgba(255, 255, 255, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 100px 100px rgba(255, 255, 255, 0.34);
+    
+  }
+  70% {
+    box-shadow: 0 0 100px 100px rgba(255, 255, 255, 0.34); filter:grayscale(75%);
+  } 
+  90% {
+    box-shadow: 0 0 100px 100px rgba(255, 255, 255, 0.34);filter:grayscale(100%);
+  } 
+  100% {
+    box-shadow: 0 0 50px 50px rgba(255, 255, 255, 0.2); 
+  }
+}
+
+/* Enhanced Neonpunk Animation */
+@keyframes neonPsychoEffect {
+  0%, 100% {
+    transform: translate(0, 0);
+    filter: brightness(100%);
+  }
+  10% {
+    transform: translate(-1px, 0);
+    filter: brightness(120%);
+  }
+  20% {
+    transform: translate(1px, 0);
+    filter: brightness(90%);
+  }
+  30% {
+    transform: translate(-1px, 0);
+    filter: brightness(100%);
+  }
+  40% {
+    transform: translate(1px, 0);
+    filter: brightness(120%);
+  }
+  50% {
+    transform: translate(-1px, 0);
+    filter: brightness(80%);
+  }
+  60% {
+    transform: translate(1px, 0);
+    filter: brightness(120%);
+  }
+  70% {
+    transform: translate(-1px, 0);
+    filter: brightness(100%);
+  }
+  80% {
+    transform: translate(1px, 0);
+    filter: brightness(100%);
+  }
+  90% {
+    transform: translate(-1px, 0);
+    filter: brightness(90%);
+  }
+}
+
+@keyframes calmGravity {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: translate(20px, -20px) scale(0.9);
+    opacity: 0.8;
+  }
+}
+
+/* Frame Layer */
+.frame {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 3; /* Ensure the frame is above the background and pseudo-element */
+}
+
+/* Motto */
+.motto {
+  width: 100%;
+  color: #fff;
+  text-align: center;
+  justify-content: center;
+}
+
+.motto .block1,
+.motto .block2 {
+  opacity: 0;
+  animation: fadeInText 1s ease-in forwards; 
+}
+
+.motto .block1 {
+  animation-delay: 2s;
+}
+
+.motto .block2 {
+  animation-delay: 6s;
+}
+
+
+/* Equalizer Animation */
+@keyframes scaleLetter {
+  0% {
+    color: #e29be2;
+    text-shadow: 0 0 10px #8399ce, 0 0 20px #ff77ff, 0 0 30px #ff77ff, 0 0 40px #ff77ff;
+  }
+  20% { color: white; text-shadow: none; scale:0.95}
+30% {
+    color: #e29be2;
+    text-shadow: 0 0 10px #8399ce, 0 0 20px #ff77ff, 0 0 30px #ff77ff, 0 0 40px #ff77ff;
+  }
+  20% { color: white; text-shadow: none; scale:0.95}
+  100% {
+    color: #e29be2;
+    text-shadow: 0 0 10px #8399ce, 0 0 20px #ff77ff, 0 0 30px #ff77ff, 0 0 40px #ff77ff;
+  }
+}
+/* Motto Text Style */
+.motto span {
+  display: inline-block;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+
+.motto p {
+  font-size: 6.5vw; /* Adjusted size for mobile */
+  line-height: 1.6;
+  font-weight: 500;
+  text-align: center;
+  font-family: 'Monoton', cursive;
+  color: white;
+  text-shadow: none;
+}
+
+@keyframes fadeInText {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@media (min-width: 768px) {
+  .motto p {
+    font-size: 3.8vw; /* Adjusted size for larger screens */
+  }
+}
+
+@media (min-width: 768px) {
+  #joinButtonContainer {
+    top: calc(79% + 4em); /* Slightly larger spacing for bigger screens */
+  }
+}
+
+#joinButtonContainer {
+  position: relative;
+  top: calc(70% + 1.5em); /* Below motto */
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  opacity: 0; /* Initially hidden */
+  animation: fadeInContainer 2s ease-in 3s forwards; /* Fade in after 6 seconds */
+}
+
+.join-button {
+  font-family: 'Monoton', cursive; /* Match motto font */
+  font-size: 4vw; /* Responsive size */
+  color: white;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-shadow: 2px 2px 5px #000;
+  animation: fadeInButton 1s ease-in forwards, shinePulse 3s ease-in-out infinite;
+}
+
+@keyframes fadeInContainer {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes fadeInButton {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes shinePulse {
+  0% {
+    color: #e29be2;
+    text-shadow: 0 0 10px #8399ce, 0 0 20px #ff77ff, 0 0 30px #ff77ff, 0 0 40px #ff77ff;
+  }
+  50% { color: white; text-shadow: none; }
+  100% {
+    color: #e29be2;
+    text-shadow: 0 0 10px #8399ce, 0 0 20px #ff77ff, 0 0 30px #ff77ff, 0 0 40px #ff77ff;
+  }
+}
+
+.join-button:hover {
+  color: #fff;
+  text-shadow: 0 0 10px rgb(252, 210, 187);
+}

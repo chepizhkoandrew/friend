@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-signin-client_id" content="515649551791-2m70cejboi72ct3cileeii6ntn6jmis7.apps.googleusercontent.com">
+    <title>TailTrailClub</title>
+    <script>
+        // Redirect to /join page
+        window.location.href = "https://tailtrail.club/join";
+    </script>
+</head>
+<body>
+    <div id="logo">
+        <img src="images/medit.png" alt="TailTrailClub Logo"> <!-- Replace with actual logo filename -->
+        <h1>TailTrailClub</h1>
+        <div id="g_id_onload"
+             data-client_id="515649551791-2m70cejboi72ct3cileeii6ntn6jmis7.apps.googleusercontent.com"
+             data-callback="handleCredentialResponse"
+             data-context="signin"
+             data-ux_mode="popup"
+             data-auto_prompt="false">
+        </div>
+
+        <div class="g_id_signin"
+             data-type="standard"
+             data-shape="pill"
+             data-theme="outline"
+             data-size="large">
+        </div>
+    </div>
+
+    <style>
+        :root {
+            --primary-color: hsl(197, 36%, 19%);
+            --hover-color: hsl(208, 21%, 74%);
+            --border-radius: 8px;
+            --background-light: #f9f9f9;
+        }
+    </style>
+</body>
+</html>
